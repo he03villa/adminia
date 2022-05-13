@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 declare var $ : any;
 
 @Injectable({
@@ -181,23 +182,7 @@ export class ServicesService {
   }
 
   Promet(subscribe) {
-    return new Promise((resolve, reject) => subscribe.subscribe((resul) => {
-      let user = localStorage.getItem("dataUser");
-      //resul["status"] = "errorVencido";
-      if (user != "") {
-        if (resul['status'] == 'errorVencido') {
-          var res = this.Alert('warning', '', this.arrayFijoResponse("notificacion160"), this.arrayFijoResponse("notificacion2"), false);
-          resolve(resul);
-          this.hideModal("#myModal");
-          this.cerrarSecion();
-        } else if (resul['status'] == 'errorEncabezado' || resul['status'] == 'errorToken') {
-          var res = this.Alert('warning', '', this.arrayFijoResponse("notificacion168"), this.arrayFijoResponse("notificacion2"), false);
-          this.hideModal("#myModal");
-          this.cerrarSecion();
-        }
-      }
-      resolve(resul);
-    }, error => reject(error)));
+    return new Promise((resolve, reject) => subscribe.subscribe((resul) => resolve(resul), error => reject(error)));
   }
 
   addLoading(target) {
@@ -341,5 +326,14 @@ export class ServicesService {
         resolve(reader.result);
       }
     });
+  }
+
+  validar18yead(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const fechaActu = new Date();
+      const fechaCo = new Date(control.value);
+      const di = fechaActu.getFullYear() - fechaCo.getFullYear();
+      return di < 18 ? { fecha: { value: control.value } } : null;
+    }
   }
 }

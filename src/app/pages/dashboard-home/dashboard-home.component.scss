@@ -1,0 +1,149 @@
+@import 'src/variables.scss';
+.container {
+    background: $white;
+    .conten-propiedades {
+        background: url('../../../assets/image/dashboard/Background.png');
+        background-size: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: self-start;
+        flex-direction: column;
+        padding: 12px 30px;
+        h1, p {
+            color: $white;
+        }
+        .conten-propiedades-propiedad {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px 0;
+            .propiedad {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: $body-claro;
+                padding: 5px 10px;
+                font-size: 15px;
+                width: 350px;
+                border-radius: 4px;
+                label {
+                    margin-bottom: 0;
+                }
+                label:last-child {
+                    margin-left: 136px;
+                    mat-icon {
+                        font-size: 15px;
+                        height: 0;
+                        width: 10px;
+                    }
+                }
+            }
+            button {
+                position: absolute;
+                right: 90px;
+                border: none;
+                background: $body;
+                color: $white;
+                border-radius: 0px 4px 4px 0px;
+                height: 33px;
+            }
+        }
+
+        a {
+            display: flex;
+            text-decoration: none;
+            color: white;
+            margin: 7px 0;
+            position: relative;
+            left: 280px;
+        }
+    }
+    .contect-comunidad {
+        background: url('../../../assets/image/dashboard/Mask\ Group.png');
+        background-size: 140%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 300px;
+        border-radius: 25px;
+        img {
+            width: 105px;
+            height: 136px;
+        }
+        h6 {
+            color: $body-oscuro;
+        }
+        button {
+            color: $white;
+            background: $primary;
+            display: flex;
+            align-items: center;
+            border: none;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+    }
+
+    .conten-buzon {
+        border-radius: 11px;
+        box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%);
+        padding: 5px 30px;
+        hr {
+            width: 345px;
+            position: relative;
+            left: -27px;
+        }
+        .conten-buzon-mensaje {
+            .conten-buzon-mensaje-titulo {
+                display: flex;
+                justify-content: space-between;
+                
+                label {
+                    margin: 0;
+                    font-size: 14px;
+                    span {
+                        font-weight: bold;
+                    }
+                }
+
+                .conten-buzon-mensaje-titulo-fecha-sede {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    span {
+                        margin: 0 5px;
+                        &:first-child {
+                            color: $primary;
+                            background: $primary-difuminado;
+                            padding: 0px 9px;
+                            border-radius: 25px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            width: 72px;
+                        }
+                        &:last-child {
+                            color: $body;
+                        }
+                    }
+                }
+            }
+            p {
+                overflow: hidden; 
+                text-overflow: ellipsis;
+                display: -webkit-box; 
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2; 
+            }
+        }
+        
+        a {
+            display: flex;
+            text-decoration: none;
+            color: $secondary;
+            margin: 7px 0;
+            justify-content: end;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row content-login">
+        <div class="col-12">
+            <img src="../../../assets/image/admina.png">
+        </div>
+        <div class="col-12">
+            <img src="../../../assets/image/Group 2.png">
+        </div>
+        <div class="col-12">
+            <h5>Creando <span>comunidades</span> en propiedad horizontal</h5>
+            <p>Inicia sesión para acceder a toda la información de tu co-propiedad</p>
+        </div>
+        <form [formGroup]="form" (submit)="login($event)" class="col-12 content-input">
+            <input type="text" formControlName="email" (keyup)="cambiarValidarMensaje()" class="form-control email" placeholder="Tu email" name="" id="">
+            <ng-container *ngIf="form.controls.email.errors && !validarMensaje">
+                <label for="" *ngIf="form.controls.email.errors.required">El email está vacio</label>
+                <label for="" *ngIf="form.controls.email.errors.email">El email no es valido</label>
+            </ng-container>
+            <input type="password" formControlName="password" (keyup)="cambiarValidarMensaje()" class="form-control password" placeholder="Contraseña" name="" id="">
+            <ng-container *ngIf="form.controls.password.errors && !validarMensaje">
+                <label for="" *ngIf="form.controls.password.errors.required">El email está vacio</label>
+            </ng-container>
+            <button class="btn">Entrar</button>
+        </form>
+        <div class="col-12">
+            <label>¿Aún no eres miembro? Crea una cuenta.</label>
+        </div>
+    </div>
+</div>

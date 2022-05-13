@@ -1,0 +1,82 @@
+@import 'src/variables.scss';
+.conten-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .conten-nav-img {
+        img {
+            background: $soft-grey;
+            display: block;
+            margin: auto;
+            padding: 12.5px;
+        }
+    }
+
+    .conten-nav-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .conten-nav-menu-group {
+            background: $soft-grey;
+            border-radius: 25px;
+            padding: 0 11px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 0 5px;
+            img {
+                margin: 0 3px;
+            }
+            input {
+                border: none;
+                background: $soft-grey;
+                color: $body;
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+        }
+        .conten-nav-menu-date {
+            background: $soft-grey;
+            border-radius: 25px;
+            padding: 0 11px;
+            margin: 0 5px;
+            input {
+                border: none;
+                background: $soft-grey;
+                color: $body;
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+        }
+        .conten-nav-menu-notificacion {
+            margin: 0 5px;
+        }
+        mat-accordion {
+            mat-expansion-panel {
+                box-shadow: none;
+                mat-expansion-panel-header {
+                    .conten-nav-menu-user {
+                        margin: 0 5px;
+                        img {
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50px;
+                            object-fit: cover;
+                        }
+                    }
+                    &:hover {
+                        background: transparent;
+                    }
+                }
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+            &:focus-visible {
+                outline: none;
+            }
+        }
+    }
+}

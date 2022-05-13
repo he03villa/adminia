@@ -1,0 +1,30 @@
+<app-nav></app-nav>
+
+<!-- <router-outlet></router-outlet> -->
+
+<!-- <app-sideboard></app-sideboard> -->
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened>
+        <div [routerLink]="['/dashboard']" class="contenedor-menu-dashoboard dashoboard">
+            <img src="../../../assets/image/sideboard/dashboard.png" alt="">
+            <p>Dashboard</p>
+        </div>
+        <div [routerLink]="['/dashboard/copropiedades']" class="contenedor-menu-dashoboard copropiedades">
+            <img src="../../../assets/image/sideboard/copropiedades.png" alt="">
+            <p>Copropiedades</p>
+        </div>
+        <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
+            <img src="../../../assets/image/sideboard/pagos.png" alt="">
+            <p>Pagos</p>
+        </div>
+        <div [routerLink]="['/dashboard/buzon']" class="contenedor-menu-dashoboard buzon">
+            <img src="../../../assets/image/sideboard/buzon.png" alt="">
+            <p>Buzón</p>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <button class="toggle-mobile d-block d-sm-none " mat-button (click)="sidenav.toggle() "><i
+                class="fas fa-bars "></i></button>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,30 @@
+<nav>
+    <div class="conten-nav">
+        <div class="conten-nav-img">
+            <img src="../../../assets/image/admina.png" alt="">
+        </div>
+        <div class="conten-nav-menu">
+            <div class="conten-nav-menu-group">
+                <img src="../../../assets/image/buscar.png" alt="">
+                <input type="text" name="" id="" placeholder="Buscar en dashboard">
+            </div>
+            <div class="conten-nav-menu-date">
+                <input type="date" name="" id="">
+            </div>
+            <div class="conten-nav-menu-notificacion">
+                <img src="../../../assets/image/notification.png" alt="">
+            </div>
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-description>
+                            <div class="conten-nav-menu-user">
+                                <img src="../../../assets/image/avatar.png" alt="">
+                            </div>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+</nav>

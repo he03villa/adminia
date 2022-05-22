@@ -2,14 +2,55 @@
     margin: 16px;
     .containeritemcopropiedades {
         .itemcopropiedades {
-            height: 144px;
-            width: 259px;
+            width: 240px;
+            height: 240px;
             background: #FFFFFF;
             border: 1px solid #EFEFEF;
             box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
             border-radius: 14px;
-            margin-bottom: 16px;
+            margin-bottom: 32px;
             padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            img {
+                margin-bottom: 16px;
+            }
+            &::before {
+                content: "";
+                width: 0;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: red;
+                transition: all 0.2s;
+            }
+            &.crearcoso {
+                &:hover {
+                    img {
+                        filter: brightness(1) contrast(1) grayscale(1);
+                    }
+                }
+            }
+            &:hover {
+                background: #8275f4;
+                width: 100%;
+                h6 {
+                    color: #fff;
+                }
+            }
+        }
+    }
+    .contenedor-notificaciones {
+        h6 {
+            margin: 0 5px;
+        }
+        img {
+            margin-right: 5px;
         }
     }
 }

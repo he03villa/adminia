@@ -8,14 +8,15 @@
                     <h6>Crear copropiedad</h6>
                 </div>
             </div>
-            <div class="col-6 ">
+            <div class="col-6 " *ngFor="let item of arrayPropiedad">
                 <div class="itemcopropiedades">
 
-                    <img src="../../../assets/image/copropiedades/edificio.png" alt="">
-                    <h6>Sendai</h6>
+                    <img src="../../../assets/image/copropiedades/{{ item.tipo_propiedad_id == 1 ? 'casa' : 'edificio' }}.png" alt="">
+                    <h6>{{ item.nombre }}</h6>
+                    <label for="">{{ item.codigo }}</label>
                 </div>
             </div>
-            <div class="col-6 ">
+            <!-- <div class="col-6 ">
                 <div class="itemcopropiedades">
 
                     <img src="../../../assets/image/copropiedades/casa.png" alt="">
@@ -29,7 +30,7 @@
                     <h6>Parcelación Los Pinos</h6>
                 </div>
 
-            </div>
+            </div> -->
 
         </div>
     </div>

@@ -1,7 +1,6 @@
 <form [formGroup]="form" class="row">
 
     <div class="col-6">
-
         <p> Nombre propiedad: </p>
         <input type="text" formControlName="nombre" (keyup)="cambiarValidarMensaje()" placeholder="">
         <ng-container *ngIf="form.controls.nombre.errors && !validarMensaje">

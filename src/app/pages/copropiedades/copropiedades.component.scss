@@ -16,6 +16,11 @@
             align-items: center;
             position: relative;
             cursor: pointer;
+            label{
+                width: 100%;
+                word-break: break-word;
+                text-align: center
+            }
             img {
                 margin-bottom: 16px;
             }

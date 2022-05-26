@@ -1,0 +1,5 @@
+id,nombre,descripcion
+1,Administrador,"Tiene todos los accesos del grupo es un superusuario"
+2,Propietario,"Tiene los accesos limitado a su rol"
+3,Residente,"Tiene los accesos limitado a su rol "
+4,Empleado,"Tiene los accesos limitado a su rol "

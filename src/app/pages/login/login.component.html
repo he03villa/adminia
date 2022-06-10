@@ -10,7 +10,7 @@
             <h5>Creando <span>comunidades</span> en propiedad horizontal</h5>
             <p>Inicia sesión para acceder a toda la información de tu co-propiedad</p>
         </div>
-        <form [formGroup]="form" (submit)="login($event)" class="col-12 content-input">
+        <form [formGroup]="form" class="col-12 content-input">
             <input type="text" formControlName="email" (keyup)="cambiarValidarMensaje()" class="form-control email" placeholder="Tu email" name="" id="">
             <ng-container *ngIf="form.controls.email.errors && !validarMensaje">
                 <label for="" *ngIf="form.controls.email.errors.required">El email está vacio</label>
@@ -20,10 +20,14 @@
             <ng-container *ngIf="form.controls.password.errors && !validarMensaje">
                 <label for="" *ngIf="form.controls.password.errors.required">El email está vacio</label>
             </ng-container>
-            <button class="btn">Entrar</button>
+            <button class="btn" (click)="login($event)">Entrar</button>
+            <button class="btn" (click)="loginPropiedad($event)">Entrar como propiedad</button>
         </form>
         <div class="col-12">
             <label (click)="abrirModal()">¿Aún no eres miembro? Crea una cuenta.</label>
+        </div>
+        <div class="col-12">
+            <label (click)="services.url('/registro-propiedad')">¿Aún no tienes una conjunto? Crea una cuenta.</label>
         </div>
     </div>
     <div class="modal content-login" id="ModalRegistro" role="dialog" tabindex="-1">

@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   validarMensajeRegistro = true;
 
   constructor(
-    private services: ServicesService,
+    public services: ServicesService,
     private fb: FormBuilder,
     private User: UserService
   ) { }
@@ -44,12 +44,12 @@ export class LoginComponent implements OnInit {
 
   async login(event) {
     /* this.validarMensaje = this.form.invalid; */
-    this.services.addLoading(event.submitter);
+    this.services.addLoading(event.target);
     if (!this.form.invalid) {
       const data = { email: this.form.controls.email.value, password: this.form.controls.password.value, rol: 1 };
       console.log(data);
       const res = await this.User.Login(data);
-      this.services.removeLoading(event.submitter);
+      this.services.removeLoading(event.target);
       if (res['status'] == 'success') {
         localStorage.setItem('dataUser', JSON.stringify(res['data']));
         this.services.url('dashboard');
@@ -58,7 +58,27 @@ export class LoginComponent implements OnInit {
       }
     } else {
       this.validarMensaje = false;
-      this.services.removeLoading(event.submitter);
+      this.services.removeLoading(event.target);
+    }
+  }
+
+  async loginPropiedad(event) {
+    /* this.validarMensaje = this.form.invalid; */
+    this.services.addLoading(event.target);
+    if (!this.form.invalid) {
+      const data = { email: this.form.controls.email.value, password: this.form.controls.password.value, rol: 1 };
+      console.log(data);
+      const res = await this.User.LoginPropiedad(data);
+      this.services.removeLoading(event.target);
+      if (res['status'] == 'success') {
+        localStorage.setItem('dataUser', JSON.stringify(res['data']));
+        this.services.url('dashboard');
+      } else {
+        this.services.Alert('error', '', 'EL usuario no existe', 'Aceptar', '', false);
+      }
+    } else {
+      this.validarMensaje = false;
+      this.services.removeLoading(event.target);
     }
   }
 

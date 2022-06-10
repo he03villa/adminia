@@ -23,6 +23,11 @@ export class UserService {
     return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
 
+  LoginPropiedad(data) {
+    const url = `${ this.servicios.ApiURL }/propiedad/login.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
   saveUser(data) {
     const url = `${ this.servicios.ApiURL }/usuario/saveUser.php`;
     return this.servicios.Promet(this.Data.metodoPost(url, data));

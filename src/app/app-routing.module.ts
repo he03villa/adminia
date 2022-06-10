@@ -13,7 +13,6 @@ const routes: Routes = [
       { path: 'copropiedades', loadChildren: () => import('./pages/copropiedades/copropiedades.module').then(m => m.CopropiedadesModule) },
       { path: 'pagos', loadChildren: () => import('./pages/pagos/pagos.module').then(m => m.PagosModule) },
       { path: 'buzon', loadChildren: () => import('./pages/buzon/buzon.module').then(m => m.BuzonModule) },
-      { path: 'crearcopropiedad', loadChildren: () => import('./pages/crearcopropiedad/crearcopropiedad.module').then(m => m.CrearcopropiedadModule) },
       { path: '**', redirectTo: 'dashboard' },
     ]
   },
@@ -22,6 +21,7 @@ const routes: Routes = [
     component: ContentComponent,
     children: [
       { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
+      { path: 'registro-propiedad', loadChildren: () => import('./pages/crearcopropiedad/crearcopropiedad.module').then(m => m.CrearcopropiedadModule) },
       { path: '**', redirectTo: 'login' }
     ]
   },

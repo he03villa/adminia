@@ -8,11 +8,15 @@ import { ServicesService } from '../../services/services.service';
 })
 export class DashboardComponent implements OnInit {
 
+  dataUser;
+
   constructor(
     public services: ServicesService
   ) { }
 
   ngOnInit() {
+    const user = JSON.parse(localStorage.getItem('dataUser'));
+    this.dataUser = user;
   }
 
 }

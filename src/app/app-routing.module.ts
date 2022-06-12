@@ -13,6 +13,8 @@ const routes: Routes = [
       { path: 'copropiedades', loadChildren: () => import('./pages/copropiedades/copropiedades.module').then(m => m.CopropiedadesModule) },
       { path: 'pagos', loadChildren: () => import('./pages/pagos/pagos.module').then(m => m.PagosModule) },
       { path: 'buzon', loadChildren: () => import('./pages/buzon/buzon.module').then(m => m.BuzonModule) },
+      { path: 'propietarios', loadChildren: () => import('./pages/propietarios/propietarios.module').then(m => m.PropietariosModule) },
+      { path: 'documento', loadChildren: () => import('./pages/documentos/documentos.module').then(m => m.DocumentosModule) },
       { path: '**', redirectTo: 'dashboard' },
     ]
   },

@@ -5,13 +5,21 @@
 <!-- <app-sideboard></app-sideboard> -->
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" opened>
-        <div [routerLink]="['/dashboard']" class="contenedor-menu-dashoboard dashoboard">
+        <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard']" class="contenedor-menu-dashoboard dashoboard">
             <img src="../../../assets/image/sideboard/dashboard.png" alt="">
             <p>Dashboard</p>
         </div>
-        <div [routerLink]="['/dashboard/copropiedades']" class="contenedor-menu-dashoboard copropiedades">
+        <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard/copropiedades']" class="contenedor-menu-dashoboard copropiedades">
             <img src="../../../assets/image/sideboard/copropiedades.png" alt="">
             <p>Copropiedades</p>
+        </div>
+        <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/propietarios']" class="contenedor-menu-dashoboard pagos">
+            <img src="../../../assets/image/sideboard/pagos.png" alt="">
+            <p>Propietarios</p>
+        </div>
+        <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
+            <img src="../../../assets/image/sideboard/pagos.png" alt="">
+            <p>Documento</p>
         </div>
         <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
             <img src="../../../assets/image/sideboard/pagos.png" alt="">

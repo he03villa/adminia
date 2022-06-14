@@ -27,6 +27,11 @@ export class PropiedadService {
     return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
 
+  getAllPropiedad(data) {
+    const url = `${ this.servicios.ApiURL }/propiedad/getAllPropietario.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
   listarTipoPropiedad() {
     const url = `${ this.servicios.ApiURL }/propiedad/listarTipoPropiedad.php`;
     return this.servicios.Promet(this.Data.metodoGet(url));

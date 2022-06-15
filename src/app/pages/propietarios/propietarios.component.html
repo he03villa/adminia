@@ -17,7 +17,7 @@
                 <tr *ngFor="let item of arrayPropietarios">
                     <td>{{ item.nombre }}</td>
                     <td>{{ services.validarText(item.nombre_user) ? item.nombre_user : '-' }}</td>
-                    <td>{{ services.validarNumero(item.statud) ? item.statud : '-' }}</td>
+                    <td>{{ services.validarNumeroConCero(item.statud) ? item.statud == '0' ? 'Falta por aprobar' : 'Aprobado' : '-' }}</td>
                     <td>{{ item.fecha }}</td>
                 </tr>
             </tbody>

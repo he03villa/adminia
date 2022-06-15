@@ -14,7 +14,10 @@
             <div class="conten-nav-menu-notificacion">
                 <img src="../../../assets/image/notification.png" alt="">
             </div>
-            <mat-accordion data-toggle="modal" data-target="#exampleModalCenter">
+            <div data-toggle="modal" data-target="#exampleModalCenter" class="conten-nav-menu-notificacion compartirt">
+                <img src="../../../assets/image/compartir/compartir.png" alt="">
+            </div>
+            <mat-accordion>
                 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                     <mat-expansion-panel-header>
                         <mat-panel-description>
@@ -41,7 +44,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <h6 class="text-center">Haz click y comparte </h6>
+
+                <div class="contenedor-img">
+
+                    <a href=""> <img src="/assets\image\compartir/ws.png" alt=""> </a>
+                    <a href=""> <img src="/assets\image\compartir/tw.png" alt=""> </a>
+                    <a href=""> <img src="/assets\image\compartir/fb.png" alt=""> </a>
+                    <a href=""> <img src="/assets\image\compartir/copiar.png" alt=""> </a>
+                </div>
             </div>
 
         </div>

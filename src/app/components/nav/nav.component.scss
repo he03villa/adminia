@@ -11,7 +11,6 @@
             padding: 12.5px;
         }
     }
-
     .conten-nav-menu {
         display: flex;
         align-items: center;
@@ -52,6 +51,12 @@
         }
         .conten-nav-menu-notificacion {
             margin: 0 5px;
+            &.compartirt {
+                img {
+                    width: 24px;
+                    cursor: pointer;
+                }
+            }
         }
         mat-accordion {
             mat-expansion-panel {
@@ -78,5 +83,16 @@
                 outline: none;
             }
         }
+    }
+}
+
+.contenedor-img {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    img {
+        width: 40px;
+        height: auto;
+        object-fit: contain;
     }
 }

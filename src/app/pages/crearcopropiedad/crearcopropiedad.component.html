@@ -1,108 +1,132 @@
-<form [formGroup]="form" class="row">
+<div class="row p-3 row-padre">
 
-    <div class="col-6">
-        <p> Nombre del conjunto: </p>
-        <input type="text" formControlName="nombre" (keyup)="cambiarValidarMensaje()" placeholder="">
-        <ng-container *ngIf="form.controls.nombre.errors && !validarMensaje">
-            <label for="" *ngIf="form.controls.nombre.errors.required">El nombre de la propiedad está vacio</label>
-        </ng-container>
-    </div>
-    <div class="col-6">
-        <p> Correo del conjunto: </p>
-        <input type="text" formControlName="email" (keyup)="cambiarValidarMensaje()" placeholder="">
-        <ng-container *ngIf="form.controls.email.errors && !validarMensaje">
-            <label for="" *ngIf="form.controls.email.errors.required">El email de la propiedad está vacio</label>
-            <label for="" *ngIf="form.controls.email.errors.email">El email no es valido</label>
-        </ng-container>
-    </div>
-    <div class="col-6">
-        <p> Contranseña del conjunto: </p>
-        <input type="text" formControlName="password" (keyup)="cambiarValidarMensaje()" placeholder="">
-        <ng-container *ngIf="form.controls.password.errors && !validarMensaje">
-            <label for="" *ngIf="form.controls.password.errors.required">La contraseña de la propiedad está
-                vacio</label>
-        </ng-container>
-    </div>
-    <div class="col-6">
 
-        <p> Tipo de la propiedad </p>
-        <select name="" id="" formControlName="tipo_propiedad_id" (change)="cambiarValidarMensaje()">
-            <option value="">Selecciona un tipo</option>
-            <option *ngFor="let item of arrayTipo" [value]="item.id">{{ item.nombre }}</option>
-        </select>
-        <ng-container *ngIf="form.controls.tipo_propiedad_id.errors && !validarMensaje">
-            <label for="" *ngIf="form.controls.tipo_propiedad_id.errors.required">Selecciona un tipo a la
-                proiedad</label>
-        </ng-container>
-    </div>
-    <div class="col-6">
+    <div class="col-12 p-3">
+        <div class="bordermix">
 
-        <p> Dirección propiedad: </p>
-        <input type="text" placeholder="" formControlName="direccion" (keyup)="cambiarValidarMensaje()">
-        <ng-container *ngIf="form.controls.direccion.errors && !validarMensaje">
-            <label for="" *ngIf="form.controls.direccion.errors.required">La dirección de la propiedad está
-                vacio</label>
-        </ng-container>
-    </div>
-    <div class="col-6">
+            <div class="col-12">
+                <h2>Crea un conjunto</h2>
+            </div>
 
-        <p> Departamento: </p>
-        <input type="text" placeholder="" formControlName="departamento" (keyup)="cambiarValidarMensaje()">
-        <ng-container *ngIf="form.controls.departamento.errors && !validarMensaje">
-            <label for="" *ngIf="form.controls.departamento.errors.required">El departamento de la propiedad está
-                vacio</label>
-        </ng-container>
-    </div>
-    <div class="col-6">
+            <form [formGroup]="form" class="contenedor-input">
 
-        <p> Ciudad: </p>
-        <input type="text" placeholder="" formControlName="ciudad" (keyup)="cambiarValidarMensaje()">
-        <ng-container *ngIf="form.controls.ciudad.errors && !validarMensaje">
-            <label for="" *ngIf="form.controls.ciudad.errors.required">La ciudad de la propiedad está vacio</label>
-        </ng-container>
-    </div>
-    <div class="col-6">
+                <div class="item-input">
+                    <p> Nombre del conjunto: </p>
+                    <input type="text" formControlName="nombre" (keyup)="cambiarValidarMensaje()" placeholder="">
+                    <ng-container *ngIf="form.controls.nombre.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.nombre.errors.required">El nombre de la propiedad está
+                            vacio</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
+                    <p> Correo del conjunto: </p>
+                    <input type="text" formControlName="email" (keyup)="cambiarValidarMensaje()" placeholder="">
+                    <ng-container *ngIf="form.controls.email.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.email.errors.required">El email de la propiedad está
+                            vacio</label>
+                        <label for="" *ngIf="form.controls.email.errors.email">El email no es valido</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
+                    <p> Contranseña del conjunto: </p>
+                    <input type="text" formControlName="password" (keyup)="cambiarValidarMensaje()" placeholder="">
+                    <ng-container *ngIf="form.controls.password.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.password.errors.required">La contraseña de la propiedad está
+                            vacio</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
 
-        <p> Código postal </p>
-        <input type="number" placeholder="" formControlName="codigo_postal" (keyup)="cambiarValidarMensaje()">
-        <ng-container *ngIf="form.controls.codigo_postal.errors && !validarMensaje">
-            <label for="" *ngIf="form.controls.codigo_postal.errors.required">El código postal de la propiedad está
-                vacio</label>
-            <label for="" *ngIf="form.controls.codigo_postal.errors.maxlength">El código postal nada mas tiene permitido
-                7 dígitos</label>
-        </ng-container>
-    </div>
-    <div class="col-6">
-        <p> Nombre de la propiedad </p>
-        <input type="text" placeholder="" formControlName="nombre_nomezclatura" (keyup)="cambiarValidarMensaje();llenarArray()">
-        <ng-container *ngIf="form.controls.nombre_nomezclatura.errors && !validarMensaje">
-            <label for="" *ngIf="form.controls.nombre_nomezclatura.errors.required">El nombre postal de la propiedad
-                está vacio</label>
-        </ng-container>
-    </div>
-    <div class="col-6">
-        <p> Cantidad de propiedades </p>
-        <input type="number" placeholder="" formControlName="cantidad_propiedad" (keyup)="cambiarValidarMensaje();llenarArray()">
-        <ng-container *ngIf="form.controls.cantidad_propiedad.errors && !validarMensaje">
-            <label for="" *ngIf="form.controls.cantidad_propiedad.errors.required">El nombre postal de la propiedad está
-                vacio</label>
-        </ng-container>
-    </div>
-    <div class="col-6">
-        <p> Numero de inicio de la propiedad </p>
-        <input type="number" placeholder="" formControlName="inicio_nomezclatura" (keyup)="cambiarValidarMensaje();llenarArray()">
-        <ng-container *ngIf="form.controls.inicio_nomezclatura.errors && !validarMensaje">
-            <label for="" *ngIf="form.controls.inicio_nomezclatura.errors.required">El nombre postal de la propiedad
-                está vacio</label>
-        </ng-container>
-    </div>
-    <div class="col-6">
-        <p> Vista previa </p>
-        <div style="display: flex;flex-direction: column" *ngIf="form.controls.nombre_nomezclatura.value != '' && (form.controls.inicio_nomezclatura.value != '') && (form.controls.cantidad_propiedad.value != '')">
-            <label *ngFor="let item of arrayNombre">{{ item }}</label><br>
-            <!-- {{ form.controls.inicio_nomezclatura.value + indece }} -->
+                    <p> Tipo de la propiedad </p>
+                    <select name="" id="" formControlName="tipo_propiedad_id" (change)="cambiarValidarMensaje()">
+                        <option value="">Selecciona un tipo</option>
+                        <option *ngFor="let item of arrayTipo" [value]="item.id">{{ item.nombre }}</option>
+                    </select>
+                    <ng-container *ngIf="form.controls.tipo_propiedad_id.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.tipo_propiedad_id.errors.required">Selecciona un tipo a la
+                            proiedad</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
+
+                    <p> Dirección propiedad: </p>
+                    <input type="text" placeholder="" formControlName="direccion" (keyup)="cambiarValidarMensaje()">
+                    <ng-container *ngIf="form.controls.direccion.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.direccion.errors.required">La dirección de la propiedad está
+                            vacio</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
+
+                    <p> Departamento: </p>
+                    <input type="text" placeholder="" formControlName="departamento" (keyup)="cambiarValidarMensaje()">
+                    <ng-container *ngIf="form.controls.departamento.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.departamento.errors.required">El departamento de la propiedad
+                            está
+                            vacio</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
+
+                    <p> Ciudad: </p>
+                    <input type="text" placeholder="" formControlName="ciudad" (keyup)="cambiarValidarMensaje()">
+                    <ng-container *ngIf="form.controls.ciudad.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.ciudad.errors.required">La ciudad de la propiedad está
+                            vacio</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
+
+                    <p> Código postal </p>
+                    <input type="number" placeholder="" formControlName="codigo_postal" (keyup)="cambiarValidarMensaje()">
+                    <ng-container *ngIf="form.controls.codigo_postal.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.codigo_postal.errors.required">El código postal de la
+                            propiedad
+                            está
+                            vacio</label>
+                        <label for="" *ngIf="form.controls.codigo_postal.errors.maxlength">El código postal nada mas
+                            tiene
+                            permitido
+                            7 dígitos</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
+                    <p> Nombre de la propiedad </p>
+                    <input type="text" placeholder="" formControlName="nombre_nomezclatura" (keyup)="cambiarValidarMensaje();llenarArray()">
+                    <ng-container *ngIf="form.controls.nombre_nomezclatura.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.nombre_nomezclatura.errors.required">El nombre postal de la
+                            propiedad
+                            está vacio</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
+                    <p> Cantidad de propiedades </p>
+                    <input type="number" placeholder="" formControlName="cantidad_propiedad" (keyup)="cambiarValidarMensaje();llenarArray()">
+                    <ng-container *ngIf="form.controls.cantidad_propiedad.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.cantidad_propiedad.errors.required">El nombre postal de la
+                            propiedad está
+                            vacio</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
+                    <p> Numero de inicio de la propiedad </p>
+                    <input type="number" placeholder="" formControlName="inicio_nomezclatura" (keyup)="cambiarValidarMensaje();llenarArray()">
+                    <ng-container *ngIf="form.controls.inicio_nomezclatura.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.inicio_nomezclatura.errors.required">El nombre postal de la
+                            propiedad
+                            está vacio</label>
+                    </ng-container>
+                </div>
+                <div class="item-input vistaprevia-apar">
+                    <p> Vista previa </p>
+                    <div class="contenedorvistaprevia" *ngIf="form.controls.nombre_nomezclatura.value != '' && (form.controls.inicio_nomezclatura.value != '') && (form.controls.cantidad_propiedad.value != '')">
+                        <label *ngFor="let item of arrayNombre">{{ item }}</label><br>
+                        <!-- {{ form.controls.inicio_nomezclatura.value + indece }} -->
+                    </div>
+                </div>
+            </form>
+            <button class="btn" (click)="saveCopropiedad($event)">Registrar</button>
+            <button class="btn" (click)="services.url('/login')">Atras</button>
         </div>
     </div>
-</form>
-<button class="btn" (click)="saveCopropiedad($event)">Registrar</button>
-<button class="btn" (click)="services.url('/login')">Atras</button>
+</div>

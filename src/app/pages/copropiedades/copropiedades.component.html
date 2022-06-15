@@ -2,10 +2,10 @@
     <div class="col-12 containeritemcopropiedades">
         <div class="row">
             <div class="col-6 ">
-                <div [routerLink]="['/dashboard/crearcopropiedad']" class="itemcopropiedades crearcoso ">
+                <div (click)="abrirModalAgregarPropiedad()" class="itemcopropiedades crearcoso ">
 
                     <img src="../../../assets/image/copropiedades/plus.png" alt="">
-                    <h6>Crear copropiedad</h6>
+                    <h6>Agregar Propiedad</h6>
                 </div>
             </div>
             <div class="col-6 " *ngFor="let item of arrayPropiedad">

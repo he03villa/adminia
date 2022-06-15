@@ -116,6 +116,15 @@ export class ServicesService {
     }
   }
 
+  validarNumeroConCero(valor) {
+    // tslint:disable-next-line: max-line-length
+    if (isNaN(valor) === true || valor === 'NaN' || valor === undefined || valor === null || valor === '' || valor === 'null') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   validarText(valor) {
     if (valor === undefined || valor == null || valor === '' || valor === 'null' || valor <= 0) {
       return false;

@@ -12,6 +12,38 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffadc0;
+    /* border-radius: 5px; */
+}
+
+
+/* Works on Chrome, Edge, and Safari */
+
+*::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+}
+
+a:hover {
+    color: #8275F4!important;
+}
+
+*::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #8275F4;
+    border-radius: 20px;
+    border: 3px solid #8275F4;
+}
+
 html,
 body {
     height: 100%;
@@ -26,4 +58,10 @@ body {
 .row {
     margin: 0;
     padding: 0;
+}
+
+.mat-drawer-content {
+    &.mat-sidenav-content {
+        min-height: calc(100vh - 67px);
+    }
 }

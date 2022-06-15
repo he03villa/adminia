@@ -1,16 +1,16 @@
 <div class="container">
     <div class="row content-login">
-        <div class="col-12">
+        <div class="col-8 mx-auto">
             <img src="../../../assets/image/admina.png">
         </div>
-        <div class="col-12">
+        <div class="col-8 mx-auto">
             <img src="../../../assets/image/Group 2.png">
         </div>
-        <div class="col-12">
+        <div class="col-8 mx-auto">
             <h5>Creando <span>comunidades</span> en propiedad horizontal</h5>
             <p>Inicia sesión para acceder a toda la información de tu co-propiedad</p>
         </div>
-        <form [formGroup]="form" class="col-12 content-input">
+        <form [formGroup]="form" class="col-8 mx-auto content-input">
             <input type="text" formControlName="email" (keyup)="cambiarValidarMensaje()" class="form-control email" placeholder="Tu email" name="" id="">
             <ng-container *ngIf="form.controls.email.errors && !validarMensaje">
                 <label for="" *ngIf="form.controls.email.errors.required">El email está vacio</label>
@@ -23,10 +23,10 @@
             <button class="btn" (click)="login($event)">Entrar</button>
             <button class="btn" (click)="loginPropiedad($event)">Entrar como propiedad</button>
         </form>
-        <div class="col-12">
+        <div class="col-8 mx-auto">
             <label (click)="abrirModal()">¿Aún no eres miembro? Crea una cuenta.</label>
         </div>
-        <div class="col-12">
+        <div class="col-8 mx-auto">
             <label (click)="services.url('/registro-propiedad')">¿Aún no tienes una conjunto? Crea una cuenta.</label>
         </div>
     </div>
@@ -34,28 +34,35 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"> <span aria-hidden="true"> × </span> </button>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"> <span
+                            aria-hidden="true"> × </span> </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <form [formGroup]="formRegistro" (submit)="registrar($event)" class="col-12 content-input">
                             <input type="text" formControlName="nombre" (keyup)="cambiarValidarMensajeRegistro()" class="form-control email" placeholder="Tu nombre" name="" id="">
                             <ng-container *ngIf="formRegistro.controls.nombre.errors && !validarMensajeRegistro">
-                                <label for="" *ngIf="formRegistro.controls.nombre.errors.required">El nombre está vacio</label>
+                                <label for="" *ngIf="formRegistro.controls.nombre.errors.required">El nombre está
+                                    vacio</label>
                             </ng-container>
                             <input type="date" formControlName="fecha" (keyup)="cambiarValidarMensajeRegistro()" class="form-control email" placeholder="Tu fecha de nacimiento" name="" id="">
                             <ng-container *ngIf="formRegistro.controls.fecha.errors && !validarMensajeRegistro">
-                                <label for="" *ngIf="formRegistro.controls.fecha.errors.required">La fecha está vacio</label>
-                                <label for="" *ngIf="formRegistro.controls.fecha.errors.fecha">Solo se pueden registrar mayores de 18 años</label>
+                                <label for="" *ngIf="formRegistro.controls.fecha.errors.required">La fecha está
+                                    vacio</label>
+                                <label for="" *ngIf="formRegistro.controls.fecha.errors.fecha">Solo se pueden registrar
+                                    mayores de 18 años</label>
                             </ng-container>
                             <input type="text" formControlName="email" (keyup)="cambiarValidarMensajeRegistro()" class="form-control email" placeholder="Tu email" name="" id="">
                             <ng-container *ngIf="formRegistro.controls.email.errors && !validarMensajeRegistro">
-                                <label for="" *ngIf="formRegistro.controls.email.errors.required">El email está vacio</label>
-                                <label for="" *ngIf="formRegistro.controls.email.errors.email">El email no es valido</label>
+                                <label for="" *ngIf="formRegistro.controls.email.errors.required">El email está
+                                    vacio</label>
+                                <label for="" *ngIf="formRegistro.controls.email.errors.email">El email no es
+                                    valido</label>
                             </ng-container>
                             <input type="password" formControlName="password" (keyup)="cambiarValidarMensajeRegistro()" class="form-control password" placeholder="Contraseña" name="" id="">
                             <ng-container *ngIf="formRegistro.controls.password.errors && !validarMensajeRegistro">
-                                <label for="" *ngIf="formRegistro.controls.password.errors.required">El email está vacio</label>
+                                <label for="" *ngIf="formRegistro.controls.password.errors.required">El email está
+                                    vacio</label>
                             </ng-container>
                             <button class="btn">Registrar</button>
                         </form>

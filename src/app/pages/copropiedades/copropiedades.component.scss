@@ -16,7 +16,7 @@
             align-items: center;
             position: relative;
             cursor: pointer;
-            label{
+            label {
                 width: 100%;
                 word-break: break-word;
                 text-align: center
@@ -43,8 +43,7 @@
             }
             &:hover {
                 background: #8275f4;
-                width: 100%;
-                h6 {
+                width: max-content h6 {
                     color: #fff;
                 }
             }

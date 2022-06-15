@@ -3,13 +3,15 @@
     background: $white;
     .conten-propiedades {
         background: url('../../../assets/image/dashboard/Background.png');
-        background-size: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
         display: flex;
         justify-content: center;
         align-items: self-start;
         flex-direction: column;
         padding: 12px 30px;
-        h1, p {
+        h1,
+        p {
             color: $white;
         }
         .conten-propiedades-propiedad {
@@ -48,7 +50,6 @@
                 height: 33px;
             }
         }
-
         a {
             display: flex;
             text-decoration: none;
@@ -84,7 +85,6 @@
             margin: 5px 0;
         }
     }
-
     .conten-buzon {
         border-radius: 11px;
         box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%);
@@ -98,7 +98,6 @@
             .conten-buzon-mensaje-titulo {
                 display: flex;
                 justify-content: space-between;
-                
                 label {
                     margin: 0;
                     font-size: 14px;
@@ -106,7 +105,6 @@
                         font-weight: bold;
                     }
                 }
-
                 .conten-buzon-mensaje-titulo-fecha-sede {
                     display: flex;
                     justify-content: space-between;
@@ -130,14 +128,13 @@
                 }
             }
             p {
-                overflow: hidden; 
+                overflow: hidden;
                 text-overflow: ellipsis;
-                display: -webkit-box; 
+                display: -webkit-box;
                 -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2; 
+                -webkit-line-clamp: 2;
             }
         }
-        
         a {
             display: flex;
             text-decoration: none;

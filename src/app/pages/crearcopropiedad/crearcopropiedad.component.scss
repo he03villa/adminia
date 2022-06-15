@@ -1,0 +1,70 @@
+@import 'src/variables.scss';
+.row-padre {
+    width: 50%;
+    margin: auto;
+    .bordermix {
+        margin: auto;
+        border: 1px solid #8275f4;
+        padding: 16px;
+        border-radius: 7px;
+        -webkit-box-shadow: 7px 6px 13px -6px rgba(130, 117, 244, 1);
+        -moz-box-shadow: 7px 6px 13px -6px rgba(130, 117, 244, 1);
+        box-shadow: 7px 6px 13px -6px rgba(130, 117, 244, 1);
+        h2 {
+            text-align: center;
+            color: #282B3B;
+            font-family: "Montserrat", sans-serif;
+            font-weight: bold;
+        }
+        .contenedor-input {
+            display: flex;
+            flex-wrap: wrap;
+            .item-input {
+                width: 50%;
+                margin-bottom: 16px;
+                p {
+                    margin-bottom: -4px;
+                    margin-left: 4px;
+                    font-size: 13px;
+                }
+                input,
+                select {
+                    margin: 5px 0 0 2px;
+                    font-size: 12px;
+                    width: 80%;
+                    padding: 3px 9px;
+                    border-radius: 7px;
+                    border: solid 1px $primary;
+                    color: $body;
+                }
+                .contenedorvistaprevia {
+                    max-height: 100px;
+                    padding: 5px;
+                    margin-top: 5px;
+                    overflow: scroll;
+                    display: -webkit-box;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    flex-direction: column;
+                    border: solid 1px #8275F4;
+                    border-radius: 3px;
+                    label {
+                        margin-bottom: 0px;
+                        margin-top: 5px;
+                        border-bottom: solid 1px #8275F4;
+                    }
+                }
+            }
+        }
+        button {
+            background: $primary;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            border-radius: 10px;
+            margin: 15px 0px;
+            width: 100%;
+            padding: 11px 0;
+        }
+    }
+}

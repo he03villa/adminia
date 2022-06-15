@@ -1,18 +1,26 @@
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Propietario</th>
-            <th>Estado</th>
-            <th>fecha</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of arrayPropietarios">
-            <td>{{ item.nombre }}</td>
-            <td>{{ services.validarText(item.nombre_user) ? item.nombre_user : '-' }}</td>
-            <td>{{ services.validarNumero(item.statud) ? item.statud : '-' }}</td>
-            <td>{{ item.fecha }}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="row row-tabla">
+    <div class="col-12">
+        <h2>Listado de propiedades</h2>
+    </div>
+    <div class="col-12 contenedor-tabla">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Propietario</th>
+                    <th>Estado</th>
+                    <th>fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of arrayPropietarios">
+                    <td>{{ item.nombre }}</td>
+                    <td>{{ services.validarText(item.nombre_user) ? item.nombre_user : '-' }}</td>
+                    <td>{{ services.validarNumero(item.statud) ? item.statud : '-' }}</td>
+                    <td>{{ item.fecha }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

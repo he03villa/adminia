@@ -1,5 +1,4 @@
 @import 'src/variables.scss';
-
 .container {
     .content-login {
         padding: 5%;
@@ -10,7 +9,6 @@
         h5 {
             text-align: center;
             color: $heading;
-            font-family: 'Montserrat', sans-serif;
             font-weight: bold;
             span {
                 color: $primary;
@@ -19,13 +17,11 @@
         p {
             color: $body;
             text-align: center;
-            font-family: 'Montserrat', sans-serif;
         }
         label {
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Montserrat', sans-serif;
             color: $heading;
             cursor: pointer;
         }
@@ -34,7 +30,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
             input {
                 margin: 5px 0;
                 padding: 25px;
@@ -42,13 +37,11 @@
                 border: solid 1px $primary;
                 color: $body;
             }
-
             button {
                 background: $primary;
                 color: white;
-                font-family: 'Montserrat', sans-serif;
                 border-radius: 10px;
-                margin: 15px 0px;
+                margin: 15px 0px 0;
                 width: 100%;
                 padding: 11px 0;
             }

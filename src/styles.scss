@@ -31,10 +31,6 @@
     height: 8px;
 }
 
-a:hover {
-    color: #8275F4!important;
-}
-
 *::-webkit-scrollbar-track {
     background: #fff;
 }
@@ -43,6 +39,14 @@ a:hover {
     background-color: #8275F4;
     border-radius: 20px;
     border: 3px solid #8275F4;
+}
+
+a:hover {
+    color: #8275F4!important;
+}
+
+.labelhover:hover {
+    color: #8275F4!important;
 }
 
 html,

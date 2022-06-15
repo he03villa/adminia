@@ -51,6 +51,12 @@
         }
         .conten-nav-menu-notificacion {
             margin: 0 5px;
+            &.compartirt {
+                img {
+                    width: 24px;
+                    cursor: pointer;
+                }
+            }
         }
         mat-accordion {
             mat-expansion-panel {

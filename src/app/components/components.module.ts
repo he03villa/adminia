@@ -4,6 +4,7 @@ import { NavComponent } from './nav/nav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ClipboardModule } from 'ngx-clipboard';
 
 
 
@@ -14,7 +15,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     CommonModule,
     MatSidenavModule,
     MatMenuModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ClipboardModule,
   ]
 })
 export class ComponentsModule { }

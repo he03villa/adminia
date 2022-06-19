@@ -86,6 +86,16 @@
     }
 }
 
+.content-cargar-qr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .text-qr {
+        margin-top: -20px;
+    }
+}
+
 .contenedor-img {
     display: flex;
     align-items: center;

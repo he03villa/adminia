@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: 'buzon', loadChildren: () => import('./pages/buzon/buzon.module').then(m => m.BuzonModule) },
       { path: 'propietarios', loadChildren: () => import('./pages/propietarios/propietarios.module').then(m => m.PropietariosModule) },
       { path: 'documento', loadChildren: () => import('./pages/documentos/documentos.module').then(m => m.DocumentosModule) },
+      { path: 'revision', loadChildren: () => import('./pages/revision/revision.module').then(m => m.RevisionModule) },
       { path: '**', redirectTo: 'dashboard' },
     ]
   },

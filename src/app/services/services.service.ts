@@ -345,4 +345,21 @@ export class ServicesService {
       return di < 18 ? { fecha: { value: control.value } } : null;
     }
   }
+
+  cargarQr(address, id) {
+    const out = new Event('build');
+    localStorage.setItem('valueQR', address);
+    localStorage.setItem('id', id);
+    document.dispatchEvent(out);
+  }
+
+  abrir(url) {
+    let a = document.createElement("a");
+    document.body.appendChild(a);
+    a.classList.add('d-none');
+    a.href = url;
+    a.target = "_blank";
+    a.click();
+    document.body.removeChild(a);
+  }
 }

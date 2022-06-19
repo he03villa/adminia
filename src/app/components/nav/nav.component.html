@@ -14,7 +14,7 @@
             <div class="conten-nav-menu-notificacion">
                 <img src="../../../assets/image/notification.png" alt="">
             </div>
-            <div data-toggle="modal" data-target="#exampleModalCenter" class="conten-nav-menu-notificacion compartirt">
+            <div *ngIf="dataUser.conjunto == 1" (click)="services.cargarQr(dataUser.codigo, 'propiedad-qr')" data-toggle="modal" data-target="#exampleModalCenter" class="conten-nav-menu-notificacion compartirt">
                 <img src="../../../assets/image/compartir/compartir.png" alt="">
             </div>
             <mat-accordion>
@@ -43,15 +43,22 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" *ngIf="dataUser.conjunto == 1" #referido>
+
+                <div class="content-cargar-qr">
+                    <div class="content-qr" id="propiedad-qr"></div>
+                    <div class="text-qr">{{ dataUser.codigo }}</div>
+                </div>
+
                 <h6 class="text-center">Haz click y comparte </h6>
 
                 <div class="contenedor-img">
 
-                    <a href=""> <img src="/assets\image\compartir/ws.png" alt=""> </a>
-                    <a href=""> <img src="/assets\image\compartir/tw.png" alt=""> </a>
-                    <a href=""> <img src="/assets\image\compartir/fb.png" alt=""> </a>
-                    <a href=""> <img src="/assets\image\compartir/copiar.png" alt=""> </a>
+                    <a (click)="compartirWhatsapp()"> <img src="/assets\image\compartir/ws.png" alt=""> </a>
+                    <!-- <a href=""> <img src="/assets\image\compartir/tw.png" alt=""> </a>
+                    <a href=""> <img src="/assets\image\compartir/fb.png" alt=""> </a> -->
+                    <button class="btn" ngxClipboard [cbContent]="dataUser.codigo" [container]="referido"
+                            (cbOnSuccess)="services.Toast('success', 'Se copio con exito')"> <img src="/assets\image\compartir/copiar.png" alt=""> </button>
                 </div>
             </div>
 

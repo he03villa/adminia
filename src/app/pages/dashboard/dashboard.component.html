@@ -21,6 +21,10 @@
             <img src="../../../assets/image/sideboard/pagos.png" alt="">
             <p>Documento</p>
         </div>
+        <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
+            <img src="../../../assets/image/sideboard/pagos.png" alt="">
+            <p>Revisión</p>
+        </div>
         <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
             <img src="../../../assets/image/sideboard/pagos.png" alt="">
             <p>Pagos</p>

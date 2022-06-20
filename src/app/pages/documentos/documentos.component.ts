@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { RevicionService } from '../../services/revicion.service';
 import { PropiedadService } from '../../services/propiedad.service';
-declare var $ : any;
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-documentos',
@@ -13,11 +13,14 @@ export class DocumentosComponent implements OnInit {
 
   arrayTipoRevision = [];
   arrayPropietarios = [];
+  arrayDocumento = [];
+  documento = false;
 
   constructor(
     public services: ServicesService,
     private Revicion: RevicionService,
-    private Propiedad: PropiedadService
+    private Propiedad: PropiedadService,
+    private Dashboar: DashboardComponent
   ) { }
 
   ngOnInit() {
@@ -38,20 +41,23 @@ export class DocumentosComponent implements OnInit {
     this.arrayPropietarios = res.data;
   }
 
-  async cambioArchivo(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      if (file.size >= 5000000) {
-        this.services.Alert('warning', '', 'El tamaño de la imagen debe de ser menor a 5 M.B.', 'Aceptar', false);
-        return;
-      } else if (file.type != 'application/pdf') {
-        this.services.Alert('warning', '', 'Solo se permite imagen con el formato pdf', 'Aceptar', false);
-        return;
-      }
-      const res = await this.services.cargar_img(file);
-      $(event.target).val('');
-      console.log(res, file);
-    }
+  abrirModal() {
+    this.Dashboar.arrayPropietarios = this.arrayPropietarios;
+    this.Dashboar.arrayTipoRevision = this.arrayTipoRevision;
+  }
+
+  async verDocumento(item) {
+    const user = JSON.parse(localStorage.getItem('dataUser'));
+    const data  = { cojunto: user.id, tipo_revision: item.id };
+    const res:any = await this.Revicion.getRevisionPropiedad(data);
+    console.log(res);
+    this.documento = true;
+    this.arrayDocumento = res.data;
+  }
+
+  atras() {
+    this.arrayDocumento = [];
+    this.documento = false;
   }
 
 }

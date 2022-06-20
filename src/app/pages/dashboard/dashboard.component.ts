@@ -9,6 +9,8 @@ import { ServicesService } from '../../services/services.service';
 export class DashboardComponent implements OnInit {
 
   dataUser;
+  arrayTipoRevision = [];
+  arrayPropietarios = [];
 
   constructor(
     public services: ServicesService

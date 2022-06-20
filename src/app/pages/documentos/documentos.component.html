@@ -1,11 +1,33 @@
 <div>
-    <button data-toggle="modal" data-target="#modal-save-documento">Agregar</button>
+    <button data-toggle="modal" data-target="#modal-save-documento" (click)="abrirModal()">Agregar</button>
+    <button (click)="atras()" *ngIf="documento">Atras</button>
 </div>
-<table class="table">
+<table class="table" *ngIf="!documento">
     <tbody>
         <tr *ngFor="let item of arrayTipoRevision">
             <td>{{ item.nombre }}</td>
             <td>{{ item.descripcion }}</td>
+            <td (click)="verDocumento(item)">Ver</td>
+        </tr>
+    </tbody>
+</table>
+<table class="table" *ngIf="documento">
+    <tbody>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Propiedad</th>
+            <th>Fecha</th>
+            <th></th>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr *ngFor="let item of arrayDocumento; let indece = index">
+            <td>{{ indece + 1 }}</td>
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.nombre_propiedad }}</td>
+            <td>{{ item.fecha }}</td>
+            <td (click)="services.openURL(services.urlRevicion+''+item.ruta)">Ver</td>
         </tr>
     </tbody>
 </table>

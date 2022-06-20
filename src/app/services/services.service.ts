@@ -10,6 +10,7 @@ declare var $ : any;
 export class ServicesService {
 
   ApiURL = 'https://vino.intermediosdigital.com/api/controllers';
+  urlRevicion = 'http://vino.intermediosdigital.com';
 
   urlPaginas = {
     '/dashboard': 'dashoboard'

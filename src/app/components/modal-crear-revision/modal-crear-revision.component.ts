@@ -47,8 +47,11 @@ export class ModalCrearRevisionComponent implements OnInit {
   }
 
   limpiar() {
-    this.form.controls.tipo_revicion.setValue('');
-    this.form.controls.propiedad.setValue('');
+    console.log(this.form.controls);
+    if (this.form.controls.tipo_revicion) {
+      this.form.controls.tipo_revicion.setValue('');
+      this.form.controls.propiedad.setValue('');
+    }
     this.dataDocumento.base64 = '';
     this.dataDocumento.extencion = '';
     this.dataDocumento.nombre = '';
@@ -69,7 +72,7 @@ export class ModalCrearRevisionComponent implements OnInit {
       this.dataDocumento.base64 = res;
       this.dataDocumento.extencion = file.name.split('.')[1];
       this.dataDocumento.nombre = file.name.split('.')[0];
-      /* console.log(res, file); */
+      console.log(this.dataDocumento);
     }
   }
 

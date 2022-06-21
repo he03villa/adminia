@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
+import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-nav',
@@ -12,7 +13,8 @@ export class NavComponent implements OnInit {
   dataUser;
 
   constructor(
-    public services: ServicesService
+    public services: ServicesService,
+    private Dashboard: DashboardComponent
   ) { }
 
   ngOnInit() {
@@ -24,6 +26,12 @@ export class NavComponent implements OnInit {
     /* https://api.whatsapp.com/send?text= */
     const content = `https://api.whatsapp.com/send?text=${ this.dataUser.codigo }`;
     this.services.abrir(content);
+  }
+
+  atras() {
+    this.Dashboard.propiedad = undefined;
+    sessionStorage.removeItem('dataPropiedad');
+    this.services.url('/dashboard');
   }
 
 }

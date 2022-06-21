@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   dataUser;
   arrayTipoRevision = [];
   arrayPropietarios = [];
+  propiedad;
 
   constructor(
     public services: ServicesService
@@ -18,7 +19,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem('dataUser'));
+    const propiedad = JSON.parse(sessionStorage.getItem('dataPropiedad'))
     this.dataUser = user;
+    this.propiedad = propiedad;
   }
 
 }

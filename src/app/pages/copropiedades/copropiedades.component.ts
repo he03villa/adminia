@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PropiedadService } from '../../services/propiedad.service';
 import { ServicesService } from '../../services/services.service';
 import Swal from 'sweetalert2';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-copropiedades',
@@ -14,7 +15,8 @@ export class CopropiedadesComponent implements OnInit {
 
   constructor(
     public services: ServicesService,
-    private Propiedad: PropiedadService
+    private Propiedad: PropiedadService,
+    private Dashboard: DashboardComponent
   ) { }
 
   ngOnInit() {
@@ -76,6 +78,13 @@ export class CopropiedadesComponent implements OnInit {
         }
       }
     }
+  }
+
+  abrirOpcionPropiedad(item) {
+    console.log(item);
+    this.Dashboard.propiedad = item;
+    sessionStorage.setItem('dataPropiedad', JSON.stringify(item));
+    this.services.url('/dashboard/documento');
   }
 
 }

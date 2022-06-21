@@ -5,26 +5,38 @@
 <!-- <app-sideboard></app-sideboard> -->
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" opened>
-        <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard']" class="contenedor-menu-dashoboard dashoboard">
-            <img src="../../../assets/image/sideboard/dashboard.png" alt="">
-            <p>Dashboard</p>
-        </div>
-        <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard/copropiedades']" class="contenedor-menu-dashoboard copropiedades">
-            <img src="../../../assets/image/sideboard/copropiedades.png" alt="">
-            <p>Propiedades</p>
-        </div>
-        <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/propietarios']" class="contenedor-menu-dashoboard pagos">
-            <img src="../../../assets/image/sideboard/pagos.png" alt="">
-            <p>Propietarios</p>
-        </div>
-        <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
-            <img src="../../../assets/image/sideboard/pagos.png" alt="">
-            <p>Documento</p>
-        </div>
-        <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
-            <img src="../../../assets/image/sideboard/pagos.png" alt="">
-            <p>Revisión</p>
-        </div>
+        <ng-container *ngIf="!propiedad">
+            <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard']" class="contenedor-menu-dashoboard dashoboard">
+                <img src="../../../assets/image/sideboard/dashboard.png" alt="">
+                <p>Dashboard</p>
+            </div>
+            <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard/copropiedades']" class="contenedor-menu-dashoboard copropiedades">
+                <img src="../../../assets/image/sideboard/copropiedades.png" alt="">
+                <p>Propiedades</p>
+            </div>
+            <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/propietarios']" class="contenedor-menu-dashoboard pagos">
+                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <p>Propietarios</p>
+            </div>
+            <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
+                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <p>Documento</p>
+            </div>
+            <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
+                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <p>Revisión</p>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="propiedad">
+            <div [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
+                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <p>Documento</p>
+            </div>
+            <div [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
+                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <p>Revisión</p>
+            </div>
+        </ng-container>
         <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
             <img src="../../../assets/image/sideboard/pagos.png" alt="">
             <p>Pagos</p>
@@ -33,7 +45,7 @@
             <img src="../../../assets/image/sideboard/buzon.png" alt="">
             <p>Buzón</p>
         </div>
-        <div [routerLink]="['/login']" class="contenedor-menu-dashoboard cerrarsesion">
+        <div (click)="services.cerrarSecion()" class="contenedor-menu-dashoboard cerrarsesion">
             <img src="../../../assets/image/sideboard/buzon.png" alt="">
             <p>Cerrar sesión</p>
         </div>
@@ -45,4 +57,4 @@
     </mat-sidenav-content>
 </mat-sidenav-container>
 
-<app-modal-crear-revision [tipoRevision]="arrayTipoRevision" [tipoPropiedad]="arrayPropietarios"></app-modal-crear-revision>
+<app-modal-crear-revision *ngIf="dataUser.conjunto == 1" [tipoRevision]="arrayTipoRevision" [tipoPropiedad]="arrayPropietarios"></app-modal-crear-revision>

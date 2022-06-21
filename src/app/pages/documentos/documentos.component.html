@@ -1,5 +1,5 @@
 <div>
-    <button data-toggle="modal" data-target="#modal-save-documento" (click)="abrirModal()">Agregar</button>
+    <button *ngIf="!propiedad" data-toggle="modal" data-target="#modal-save-documento" (click)="abrirModal()">Agregar</button>
     <button (click)="atras()" *ngIf="documento">Atras</button>
 </div>
 <table class="table" *ngIf="!documento">
@@ -16,7 +16,7 @@
         <tr>
             <th>#</th>
             <th>Nombre</th>
-            <th>Propiedad</th>
+            <th *ngIf="!propiedad">Propiedad</th>
             <th>Fecha</th>
             <th></th>
         </tr>
@@ -25,7 +25,7 @@
         <tr *ngFor="let item of arrayDocumento; let indece = index">
             <td>{{ indece + 1 }}</td>
             <td>{{ item.nombre }}</td>
-            <td>{{ item.nombre_propiedad }}</td>
+            <td *ngIf="!propiedad">{{ item.nombre_propiedad }}</td>
             <td>{{ item.fecha }}</td>
             <td (click)="services.openURL(services.urlRevicion+''+item.ruta)">Ver</td>
         </tr>

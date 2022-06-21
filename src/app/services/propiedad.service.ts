@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { EventEmitter } from 'events';
 import { DataService } from './data.service';
 import { ServicesService } from './services.service';
 
@@ -6,6 +7,8 @@ import { ServicesService } from './services.service';
   providedIn: 'root'
 })
 export class PropiedadService {
+
+  propiedad = new EventEmitter();
 
   constructor(
     private Data: DataService,

@@ -15,6 +15,7 @@ export class DocumentosComponent implements OnInit {
   arrayPropietarios = [];
   arrayDocumento = [];
   documento = false;
+  propiedad = false;
 
   constructor(
     public services: ServicesService,
@@ -25,8 +26,12 @@ export class DocumentosComponent implements OnInit {
 
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem('dataUser'));
+    const propiedad = JSON.parse(sessionStorage.getItem('dataPropiedad'));
+    this.propiedad = propiedad ? true : false;
     this.cargarListarTipo();
-    this.listarPropietarios(user.id);
+    if (!this.propiedad) {
+      this.listarPropietarios(user.id);
+    }
   }
 
   async cargarListarTipo() {
@@ -47,12 +52,21 @@ export class DocumentosComponent implements OnInit {
   }
 
   async verDocumento(item) {
-    const user = JSON.parse(localStorage.getItem('dataUser'));
-    const data  = { cojunto: user.id, tipo_revision: item.id };
-    const res:any = await this.Revicion.getRevisionPropiedad(data);
-    console.log(res);
-    this.documento = true;
-    this.arrayDocumento = res.data;
+    if (!this.propiedad) {
+      const user = JSON.parse(localStorage.getItem('dataUser'));
+      const data  = { cojunto: user.id, tipo_revision: item.id };
+      const res:any = await this.Revicion.getRevisionPropiedad(data);
+      console.log(res);
+      this.documento = true;
+      this.arrayDocumento = res.data;
+    } else {
+      const propiedad = JSON.parse(sessionStorage.getItem('dataPropiedad'));
+      const data  = { propiedad: propiedad.id, tipo_revision: item.id };
+      const res:any = await this.Revicion.getRevision(data);
+      console.log(res);
+      this.documento = true;
+      this.arrayDocumento = res.data;
+    }
   }
 
   atras() {

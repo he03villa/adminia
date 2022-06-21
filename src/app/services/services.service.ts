@@ -278,6 +278,7 @@ export class ServicesService {
 
   cerrarSecion() {
     localStorage.removeItem('dataUser');
+    sessionStorage.removeItem('dataPropiedad');
     localStorage.removeItem('currentPath');
     if (this.getCookie("plataforma") == null || this.getCookie("plataforma") == "") {
       this.url('login');

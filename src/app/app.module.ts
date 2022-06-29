@@ -8,6 +8,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ComponentsModule } from './components/components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     ComponentsModule,
     BrowserAnimationsModule,
     MatSidenavModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

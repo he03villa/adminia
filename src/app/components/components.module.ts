@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { NavComponent } from './nav/nav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ModalCrearRevisionComponent } from './modal-crear-revision/modal-crear-revision.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -20,7 +22,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatExpansionModule,
     ClipboardModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ]
 })
 export class ComponentsModule { }

@@ -4,30 +4,25 @@
             <img (click)="dataUser.conjunto == 0 ? atras() : ''" src="../../../assets/image/admina.png" alt="">
         </div>
         <div class="conten-nav-menu">
-            <div class="conten-nav-menu-group">
+            <!-- <div class="conten-nav-menu-group">
                 <img src="../../../assets/image/buscar.png" alt="">
                 <input type="text" name="" id="" placeholder="Buscar en dashboard">
-            </div>
+            </div> -->
             <div class="conten-nav-menu-date">
-                <input type="date" name="" id="">
+
             </div>
-            <div class="conten-nav-menu-notificacion">
+            <div class="conten-nav-menu-notificacion pointercursor">
                 <img src="../../../assets/image/notification.png" alt="">
             </div>
-            <div *ngIf="dataUser.conjunto == 1" (click)="services.cargarQr(dataUser.codigo, 'propiedad-qr')" data-toggle="modal" data-target="#exampleModalCenter" class="conten-nav-menu-notificacion compartirt">
+            <div *ngIf="dataUser.conjunto == 1" (click)="services.cargarQr(dataUser.codigo, 'propiedad-qr')" data-toggle="modal" data-target="#exampleModalCenter" class="conten-nav-menu-notificacion compartirt pointercursor">
                 <img src="../../../assets/image/compartir/compartir.png" alt="">
             </div>
-            <mat-accordion>
-                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                    <mat-expansion-panel-header>
-                        <mat-panel-description>
-                            <div class="conten-nav-menu-user">
-                                <img src="../../../assets/image/avatar.png" alt="">
-                            </div>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                </mat-expansion-panel>
-            </mat-accordion>
+
+
+            <div class="conten-nav-menu-user pointercursor" data-toggle="modal" data-target="#perfilusuario">
+                <img src="../../../assets/image/avatar.png" alt="">
+            </div>
+
         </div>
     </div>
 </nav>
@@ -60,6 +55,26 @@
                     <button class="btn" ngxClipboard [cbContent]="dataUser.codigo" [container]="referido" (cbOnSuccess)="services.Toast('success', 'Se copio con exito')"> <img
                             src="/assets\image\compartir/copiar.png" alt=""> </button>
                 </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="perfilusuario" tabindex="-1" role="dialog" aria-labelledby="perfilusuarioTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="perfilusuarioLongTitle">Perfil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" *ngIf="dataUser.conjunto == 1" #referido>
+
+                informacion del perfil
             </div>
 
         </div>

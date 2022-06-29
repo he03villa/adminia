@@ -1,14 +1,14 @@
 <div id="copropiedades" class="row ">
     <div class="col-12 containeritemcopropiedades">
         <div class="row">
-            <div class="col-6 ">
+            <div class="col-sm-3 ">
                 <div (click)="abrirModalAgregarPropiedad()" class="itemcopropiedades crearcoso ">
 
                     <img src="../../../assets/image/copropiedades/plus.png" alt="">
                     <h6>Agregar Propiedad</h6>
                 </div>
             </div>
-            <div class="col-6 " *ngFor="let item of arrayPropiedad">
+            <div class="col-sm-3" *ngFor="let item of arrayPropiedad">
                 <div class="itemcopropiedades" (click)="abrirOpcionPropiedad(item)">
 
                     <img src="../../../assets/image/copropiedades/{{ item.tipo_propiedad_id == 1 ? 'casa' : 'edificio' }}.png" alt="">

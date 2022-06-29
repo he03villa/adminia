@@ -1,17 +1,47 @@
-<div>
-    <button *ngIf="!propiedad" data-toggle="modal" data-target="#modal-save-documento" (click)="abrirModal()">Agregar</button>
-    <button (click)="atras()" *ngIf="documento">Atras</button>
+<div class="row" *ngIf="!documento">
+    <div class="col-sm-3" *ngFor="let item of arrayTipoRevision">
+        <div class="contenedor-carpeta" (click)="verDocumento(item)">
+            <img src="assets/image/documentos/carpeta.png" alt="">
+            <h6>
+
+                {{ item.nombre }}
+            </h6>
+        </div>
+    </div>
 </div>
-<table class="table" *ngIf="!documento">
-    <tbody>
-        <tr *ngFor="let item of arrayTipoRevision">
-            <td>{{ item.nombre }}</td>
-            <td>{{ item.descripcion }}</td>
-            <td (click)="verDocumento(item)">Ver</td>
-        </tr>
-    </tbody>
-</table>
-<table class="table" *ngIf="documento">
+
+<div class="row" *ngIf="documento">
+    <div class="col-sm-3" *ngFor="let item of arrayDocumento; ">
+        <div class="contenedor-carpeta" (click)="services.openURL(services.urlRevicion+''+item.ruta)">
+
+            <img src="assets/image/documentos/pdf.png" alt="">
+            <h6>
+
+                {{ item.nombre }} {{ item.fecha }}
+
+            </h6>
+            <h6 *ngIf="!propiedad">
+                {{ item.nombre_propiedad }}
+            </h6>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="contenedor-carpeta">
+
+            <img src="assets/image/documentos/no-documento.png" alt="">
+            <h6>
+
+                no hay documento
+
+            </h6>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- <table class="table" *ngIf="documento">
     <tbody>
         <tr>
             <th>#</th>
@@ -30,4 +60,9 @@
             <td (click)="services.openURL(services.urlRevicion+''+item.ruta)">Ver</td>
         </tr>
     </tbody>
-</table>
+</table> -->
+
+<div class="contenedor-botones">
+    <button *ngIf="!propiedad" data-toggle="modal" data-target="#modal-save-documento" (click)="abrirModal()">Agregar</button>
+    <button (click)="atras()" *ngIf="documento">Atras</button>
+</div>

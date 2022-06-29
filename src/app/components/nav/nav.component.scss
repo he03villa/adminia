@@ -8,7 +8,7 @@
             background: $soft-grey;
             display: block;
             margin: auto;
-            padding: 12.5px;
+            padding: 12px;
         }
     }
     .conten-nav-menu {
@@ -34,6 +34,9 @@
                     outline: none;
                 }
             }
+        }
+        .pointercursor {
+            cursor: pointer;
         }
         .conten-nav-menu-date {
             background: $soft-grey;

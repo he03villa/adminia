@@ -52,7 +52,8 @@ a:hover {
 html,
 body {
     height: 100%;
-    padding-right: 15px;
+    background: #fafafa;
+    margin-right: 32px;
 }
 
 body {
@@ -69,4 +70,18 @@ body {
     &.mat-sidenav-content {
         min-height: calc(100vh - 67px);
     }
+}
+
+.mat-sidenav-content {
+    padding-left: 16px;
+    padding-top: 16px;
+}
+
+.mat-drawer.mat-drawer-side,
+.conten-nav-img {
+    border-right: 1px solid #ddd;
+}
+
+.conten-nav {
+    background: #fafafa;
 }

@@ -20,7 +20,7 @@
             <ng-container *ngIf="form.controls.password.errors && !validarMensaje">
                 <label for="" *ngIf="form.controls.password.errors.required">El email está vacio</label>
             </ng-container>
-            <button class="btn" (click)="login($event)">Entrar como usuario</button>
+            <button class="btn" (click)="login($event)">Entrar como propietario</button>
             <button class="btn mb-3" (click)="loginPropiedad($event)">Entrar como propiedad</button>
         </form>
         <div class="col-8 mx-auto">

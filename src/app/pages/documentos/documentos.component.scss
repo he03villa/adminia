@@ -20,7 +20,11 @@
     }
     h6 {
         margin-top: 8px;
-        color: #8275f4
+        color: #8275f4;
+        display: flex;
+        flex-direction: column;
+        word-break: break-all;
+        padding: 9px 16px;
     }
 }
 

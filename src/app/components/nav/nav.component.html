@@ -19,8 +19,21 @@
             </div>
 
 
-            <div class="conten-nav-menu-user pointercursor" data-toggle="modal" data-target="#perfilusuario">
-                <img src="../../../assets/image/avatar.png" alt="">
+            <div ngbDropdown class="d-inline-block">
+                <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+
+                    <img src="../../../assets/image/avatar.png" alt="">
+
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem>Editar perfil</button>
+                    <button ngbDropdownItem>Cerrar sesión</button>
+                </div>
+            </div>
+
+
+
+            <div class="conten-nav-menu-user pointercursor">
             </div>
 
         </div>

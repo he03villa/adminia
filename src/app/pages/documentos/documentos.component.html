@@ -11,31 +11,26 @@
 </div>
 
 <div class="row" *ngIf="documento">
-    <div class="col-sm-3" *ngFor="let item of arrayDocumento; ">
-        <div class="contenedor-carpeta" (click)="services.openURL(services.urlRevicion+''+item.ruta)">
-
-            <img src="assets/image/documentos/pdf.png" alt="">
-            <h6>
-
-                {{ item.nombre }} {{ item.fecha }}
-
-            </h6>
-            <h6 *ngIf="!propiedad">
-                {{ item.nombre_propiedad }}
-            </h6>
+    <ng-container *ngIf="arrayDocumento.length > 0">
+        <div class="col-sm-3" *ngFor="let item of arrayDocumento; ">
+            <div class="contenedor-carpeta" (click)="services.openURL(services.urlRevicion+''+item.ruta)">
+    
+                <img src="assets/image/documentos/pdf.png" alt="">
+                <h6>
+    
+                    {{ item.nombre }} {{ item.fecha }}
+    
+                </h6>
+                <h6 *ngIf="!propiedad">
+                    {{ item.nombre_propiedad }}
+                </h6>
+            </div>
         </div>
-    </div>
+    </ng-container>
 
     <div class="col-12" *ngIf="arrayDocumento.length == 0">
         <div class="contenedor-carpeta">
-
-            <img src="assets/image/documentos/no-documento.png" alt="">
-            <h6>
-
-                no hay documento
-
-            </h6>
-
+            <app-no-data></app-no-data>
         </div>
     </div>
 </div>

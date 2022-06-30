@@ -7,14 +7,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ModalCrearRevisionComponent } from './modal-crear-revision/modal-crear-revision.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NoDataComponent } from './no-data/no-data.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
-
 @NgModule({
-  declarations: [NavComponent, ModalCrearRevisionComponent],
-  exports: [NavComponent, ModalCrearRevisionComponent],
+  declarations: [NavComponent, ModalCrearRevisionComponent, NoDataComponent],
+  exports: [NavComponent, ModalCrearRevisionComponent, NoDataComponent],
   imports: [
     CommonModule,
     MatSidenavModule,

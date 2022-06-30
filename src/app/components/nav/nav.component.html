@@ -11,7 +11,7 @@
             <div class="conten-nav-menu-date">
 
             </div>
-            <div class="conten-nav-menu-notificacion pointercursor">
+            <div class="conten-nav-menu-notificacion pointercursor" (click)="abrirModalNotificacion()">
                 <img src="../../../assets/image/notification.png" alt="">
             </div>
             <div *ngIf="dataUser.conjunto == 1" (click)="services.cargarQr(dataUser.codigo, 'propiedad-qr')" data-toggle="modal" data-target="#exampleModalCenter" class="conten-nav-menu-notificacion compartirt pointercursor">
@@ -27,7 +27,7 @@
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                     <button ngbDropdownItem>Editar perfil</button>
-                    <button ngbDropdownItem>Cerrar sesión</button>
+                    <button ngbDropdownItem (click)="services.cerrarSecion()">Cerrar sesión</button>
                 </div>
             </div>
 
@@ -93,3 +93,5 @@
         </div>
     </div>
 </div>
+
+<app-modal-notificacion [dataNotificaion]="arrayNotificaion"></app-modal-notificacion>

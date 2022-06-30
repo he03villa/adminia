@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { PropiedadService } from '../../services/propiedad.service';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-propietarios',
@@ -13,7 +14,8 @@ export class PropietariosComponent implements OnInit {
 
   constructor(
     public services: ServicesService,
-    private Propiedad: PropiedadService
+    private Propiedad: PropiedadService,
+    private Dash: DashboardComponent
   ) { }
 
   ngOnInit() {
@@ -25,6 +27,12 @@ export class PropietariosComponent implements OnInit {
     const res:any = await this.Propiedad.getAllPropiedad({ id: propiedad });
     console.log(res);
     this.arrayPropietarios = res.data;
+  }
+
+  verInfoPropietario(item) {
+    console.log(item);
+    this.Dash.dataPropietario = item;
+    this.services.showModal('#modal-info-propietario');
   }
 
 }

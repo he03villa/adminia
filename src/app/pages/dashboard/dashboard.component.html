@@ -22,29 +22,38 @@
                 <img src="../../../assets/image/sideboard/pagos.png" alt="">
                 <p>Documento</p>
             </div>
-            <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
+            <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
                 <img src="../../../assets/image/sideboard/pagos.png" alt="">
-                <p>Revisión</p>
+                <p>Revisión / Visitas</p>
+            </div>
+            <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
+                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <p>Pagos</p>
+            </div>
+            <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/buzon']" class="contenedor-menu-dashoboard buzon">
+                <img src="../../../assets/image/sideboard/buzon.png" alt="">
+                <p>Buzón</p>
             </div>
         </ng-container>
         <ng-container *ngIf="propiedad">
             <div [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
                 <img src="../../../assets/image/sideboard/pagos.png" alt="">
-                <p>Documento</p>
+                <p>Documentos</p>
             </div>
             <div [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
                 <img src="../../../assets/image/sideboard/pagos.png" alt="">
-                <p>Revisión</p>
+                <p>Revisión / Visitas</p>
+            </div>
+            <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
+                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <p>Pagos</p>
+            </div>
+            <div [routerLink]="['/dashboard/buzon']" class="contenedor-menu-dashoboard buzon">
+                <img src="../../../assets/image/sideboard/buzon.png" alt="">
+                <p>Buzón</p>
             </div>
         </ng-container>
-        <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
-            <img src="../../../assets/image/sideboard/pagos.png" alt="">
-            <p>Pagos</p>
-        </div>
-        <div [routerLink]="['/dashboard/buzon']" class="contenedor-menu-dashoboard buzon">
-            <img src="../../../assets/image/sideboard/buzon.png" alt="">
-            <p>Buzón</p>
-        </div>
+        
         <div (click)="services.cerrarSecion()" class="contenedor-menu-dashoboard cerrarsesion">
             <img src="../../../assets/image/sideboard/buzon.png" alt="">
             <p>Cerrar sesión</p>
@@ -58,3 +67,4 @@
 </mat-sidenav-container>
 
 <app-modal-crear-revision *ngIf="dataUser.conjunto == 1" [tipoRevision]="arrayTipoRevision" [tipoPropiedad]="arrayPropietarios"></app-modal-crear-revision>
+<app-modal-ver-info-propietario *ngIf="dataUser.conjunto == 1" [dataPropietario]="dataPropietario"></app-modal-ver-info-propietario>

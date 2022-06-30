@@ -44,4 +44,14 @@ export class PropiedadService {
     const url = `${ this.servicios.ApiURL }/propiedad/listarTipoPropiedad.php`;
     return this.servicios.Promet(this.Data.metodoGet(url));
   }
+
+  activarPropietario(data) {
+    const url = `${ this.servicios.ApiURL }/propiedad/activarPropietario.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  removerPropietario(data) {
+    const url = `${ this.servicios.ApiURL }/propiedad/removerPropietario.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
 }

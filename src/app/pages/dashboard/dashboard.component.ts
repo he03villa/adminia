@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
   arrayTipoRevision = [];
   arrayPropietarios = [];
   propiedad;
+  dataPropietario;
 
   constructor(
     public services: ServicesService

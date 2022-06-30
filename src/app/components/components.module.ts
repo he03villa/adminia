@@ -9,12 +9,14 @@ import { ModalCrearRevisionComponent } from './modal-crear-revision/modal-crear-
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NoDataComponent } from './no-data/no-data.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalVerInfoPropietarioComponent } from './modal-ver-info-propietario/modal-ver-info-propietario.component';
+import { ModalNotificacionComponent } from './modal-notificacion/modal-notificacion.component';
 
 
 
 @NgModule({
-  declarations: [NavComponent, ModalCrearRevisionComponent, NoDataComponent],
-  exports: [NavComponent, ModalCrearRevisionComponent, NoDataComponent],
+  declarations: [NavComponent, ModalCrearRevisionComponent, NoDataComponent, ModalVerInfoPropietarioComponent, ModalNotificacionComponent],
+  exports: [NavComponent, ModalCrearRevisionComponent, NoDataComponent, ModalVerInfoPropietarioComponent],
   imports: [
     CommonModule,
     MatSidenavModule,

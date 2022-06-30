@@ -1,0 +1,23 @@
+@import 'src/variables.scss';
+.row-tabla {
+    padding: 16px;
+    h5 {
+        text-align: center;
+        color: $heading;
+        font-weight: bold;
+        span {
+            color: $primary;
+        }
+    }
+    table {
+        table-layout: fixed;
+        th,
+        td {
+            width: 300px;
+            padding: 9px 6px;
+        }
+        th {
+            border-bottom: 1px solid;
+        }
+    }
+}

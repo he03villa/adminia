@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('dataUser', JSON.stringify(res['data']));
         this.services.url('dashboard');
       } else {
-        this.services.Alert('error', '', 'EL usuario no existe', 'Aceptar', '', false);
+        this.services.Alert('error', '', res['message'], 'Aceptar', '', false);
       }
     } else {
       this.validarMensaje = false;
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('dataUser', JSON.stringify(res['data']));
         this.services.url('dashboard/propietarios');
       } else {
-        this.services.Alert('error', '', 'EL usuario no existe', 'Aceptar', '', false);
+        this.services.Alert('error', '', res['message'], 'Aceptar', '', false);
       }
     } else {
       this.validarMensaje = false;
@@ -105,8 +105,8 @@ export class LoginComponent implements OnInit {
       if (res['status'] == 'success') {
         const re = await this.services.Alert('success', '', 'EL usuario se creo correctamente', 'Aceptar', '', false);
         this.services.hideModal('#ModalRegistro');
-        localStorage.setItem('dataUser', JSON.stringify(res['data']));
-        this.services.url('dashboard');
+        /* localStorage.setItem('dataUser', JSON.stringify(res['data']));
+        this.services.url('dashboard'); */
       } else if (res['status'] == 'errorUser') {
         this.services.Alert('error', '', 'EL usuario ya existe', 'Aceptar', '', false);
       } else {

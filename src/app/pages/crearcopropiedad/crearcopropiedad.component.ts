@@ -82,8 +82,8 @@ export class CrearcopropiedadComponent implements OnInit {
       const res:any = await this.Propiedad.savePropiedad(data);
       if (res.status == 'success') {
         const resp = await this.services.Alert('success', '', 'La propiedad se guardo correctamente', 'Aceptar', '');
-        localStorage.setItem('dataUser', JSON.stringify(res['data']));
-        this.services.url('dashboard');
+        /* localStorage.setItem('dataUser', JSON.stringify(res['data'])); */
+        this.services.url('/login');
         /* this.services.url('dashboard/copropiedades'); */
       } else {
         this.services.Alert('success', '', res.message, 'Aceptar', '');

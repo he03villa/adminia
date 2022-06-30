@@ -5,6 +5,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthService } from './services/auth.service';
 import { AutPropiedadService } from './services/aut-propiedad.service';
 import { NoAuthService } from './services/no-auth.service';
+import { ActivarUserService } from './services/activar-user.service';
+import { ActivarPropiedadService } from './services/activar-propiedad.service';
 
 
 const routes: Routes = [
@@ -28,7 +30,7 @@ const routes: Routes = [
     component: ContentComponent,
     canActivate: [NoAuthService],
     children: [
-      { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
+      { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), canActivate: [ActivarUserService, ActivarPropiedadService] },
       { path: 'registro-propiedad', loadChildren: () => import('./pages/crearcopropiedad/crearcopropiedad.module').then(m => m.CrearcopropiedadModule) },
       { path: '**', redirectTo: 'login' }
     ]

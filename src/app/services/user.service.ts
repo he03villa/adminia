@@ -32,4 +32,14 @@ export class UserService {
     const url = `${ this.servicios.ApiURL }/usuario/saveUser.php`;
     return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
+
+  activarUser(data) {
+    const url = `${ this.servicios.ApiURL }/usuario/activarUser.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  activarPropiedad(data) {
+    const url = `${ this.servicios.ApiURL }/propiedad/activarPropiedad.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
 }

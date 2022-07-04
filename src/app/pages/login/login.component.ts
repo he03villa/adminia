@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
       nombre: ['', [Validators.required]],
       fecha: ['', [Validators.required, this.services.validar18yead()]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      telefono: ['', [Validators.required]]
     });
   }
 
@@ -98,7 +99,8 @@ export class LoginComponent implements OnInit {
         email: this.formRegistro.controls.email.value,
         fecha: this.formRegistro.controls.fecha.value,
         password: this.formRegistro.controls.password.value,
-        rol: 1
+        rol: 1,
+        telefono: this.formRegistro.controls.telefono.value
       };
       const res = await this.User.saveUser(data);
       this.services.removeLoading(event.submitter);

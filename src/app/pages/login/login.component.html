@@ -66,6 +66,10 @@
                                 <label for="" *ngIf="formRegistro.controls.password.errors.required">El email está
                                     vacio</label>
                             </ng-container>
+                            <input type="number" formControlName="telefono" (keyup)="cambiarValidarMensajeRegistro()" class="form-control password" placeholder="Telefono" name="" id="">
+                            <ng-container *ngIf="formRegistro.controls.telefono.errors && !validarMensajeRegistro">
+                                <label for="" *ngIf="formRegistro.controls.telefono.errors.required">El telefono está vacio</label>
+                            </ng-container>
                             <button class="btn">Registrar</button>
                         </form>
                     </div>

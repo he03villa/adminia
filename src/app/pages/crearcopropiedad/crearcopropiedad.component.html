@@ -100,6 +100,13 @@
                     </ng-container>
                 </div>
                 <div class="item-input">
+                    <p> Telefono de la propiedad </p>
+                    <input type="number" placeholder="" formControlName="telefono" (keyup)="cambiarValidarMensaje();llenarArray()">
+                    <ng-container *ngIf="form.controls.telefono.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.telefono.errors.required">El telefono está vacio</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
                     <p> Cantidad de propiedades </p>
                     <input type="number" placeholder="" formControlName="cantidad_propiedad" (keyup)="cambiarValidarMensaje();llenarArray()">
                     <ng-container *ngIf="form.controls.cantidad_propiedad.errors && !validarMensaje">

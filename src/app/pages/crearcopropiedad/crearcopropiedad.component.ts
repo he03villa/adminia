@@ -34,6 +34,7 @@ export class CrearcopropiedadComponent implements OnInit {
       inicio_nomezclatura: [0, [Validators.required]],
       cantidad_propiedad: [0, [Validators.required]],
       nombre_nomezclatura: ['', [Validators.required]],
+      telefono: ['', [Validators.required]],
     });
     this.cargarTipo();
   }
@@ -77,6 +78,7 @@ export class CrearcopropiedadComponent implements OnInit {
         cantidad_propiedad: this.form.controls.cantidad_propiedad.value,
         email: this.form.controls.email.value,
         password: this.form.controls.password.value,
+        telefono: this.form.controls.telefono.value,
       };
       console.log(data);
       const res:any = await this.Propiedad.savePropiedad(data);

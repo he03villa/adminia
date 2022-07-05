@@ -10,14 +10,16 @@
                     <th>Nombre</th>
                     <th>Propietario</th>
                     <th>Estado</th>
-                    <th>fecha</th>
+                    <th>Fecha</th>
+                    <th>Contacto via whatsapp</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of arrayPropietarios">
                     <td>{{ item.nombre }}</td>
                     <td>{{ services.validarText(item.nombre_user) ? item.nombre_user : '-' }}</td>
-                    <td style="cursor: pointer;" (click)="services.validarText(item.telefono_user) ? compartirWhatsapp(item.telefono_user) : ''">{{ services.validarText(item.telefono_user) ? item.telefono_user : '-' }}</td>
+                    <td style="cursor: pointer;" (click)="services.validarText(item.telefono_user) ? compartirWhatsapp(item.telefono_user) : ''">
+                        {{ services.validarText(item.telefono_user) ? item.telefono_user : '-' }}</td>
                     <td>{{ item.fecha }}</td>
                     <td style="cursor: pointer;" *ngIf="services.validarText(item.telefono_user)" (click)="compartirWhatsapp(item.telefono_user)">Contactar</td>
                 </tr>

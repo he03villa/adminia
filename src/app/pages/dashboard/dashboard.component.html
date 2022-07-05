@@ -15,15 +15,16 @@
                 <p>Propiedades</p>
             </div>
             <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/propietarios']" class="contenedor-menu-dashoboard pagos">
-                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <img src="../../../assets/image/sideboard/copropiedades.png" alt="">
                 <p>Propietarios</p>
             </div>
             <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
-                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <img style="    filter: contrast(0.5);" src="../../../assets/image/sideboard/documents_files_icon_144654.png" alt="">
                 <p>Documento</p>
             </div>
             <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
-                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <img style="    filter: contrast(0.5);" src="../../../assets/image/sideboard/revision.png" alt="">
+
                 <p>Revisión / Visitas</p>
             </div>
             <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
@@ -37,11 +38,12 @@
         </ng-container>
         <ng-container *ngIf="propiedad">
             <div [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
-                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <img style="    filter: contrast(0.5);" src="../../../assets/image/sideboard/documents_files_icon_144654.png" alt="">
+
                 <p>Documentos</p>
             </div>
             <div [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
-                <img src="../../../assets/image/sideboard/pagos.png" alt="">
+                <img style="    filter: contrast(0.5);" src="../../../assets/image/sideboard/revision.png" alt="">
                 <p>Revisión / Visitas</p>
             </div>
             <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
@@ -53,10 +55,9 @@
                 <p>Buzón</p>
             </div>
         </ng-container>
-        
+
         <div (click)="services.cerrarSecion()" class="contenedor-menu-dashoboard cerrarsesion">
-            <img src="../../../assets/image/sideboard/buzon.png" alt="">
-            <p>Cerrar sesión</p>
+            <p> <b> Cerrar sesión </b></p>
         </div>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -67,4 +68,5 @@
 </mat-sidenav-container>
 
 <app-modal-crear-revision *ngIf="dataUser.conjunto == 1" [tipoRevision]="arrayTipoRevision" [tipoPropiedad]="arrayPropietarios"></app-modal-crear-revision>
-<app-modal-ver-info-propietario *ngIf="dataUser.conjunto == 1" [dataPropietario]="dataPropietario"></app-modal-ver-info-propietario>
+<app-modal-ver-info-propietario *ngIf="dataUser.conjunto == 1" [dataPropietario]="dataPropietario">
+</app-modal-ver-info-propietario>

@@ -66,7 +66,6 @@ export class CrearcopropiedadComponent implements OnInit {
     console.log(this.form);
     if (!this.form.invalid) {
       const data  = {
-        user: user.id,
         nombre: this.form.controls.nombre.value,
         direccion: this.form.controls.direccion.value,
         ciudad: this.form.controls.ciudad.value,

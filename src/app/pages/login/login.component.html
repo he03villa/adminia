@@ -47,13 +47,13 @@
                                 <label for="" *ngIf="formRegistro.controls.nombre.errors.required">El nombre está
                                     vacio</label>
                             </ng-container>
-                            <input type="date" formControlName="fecha" (keyup)="cambiarValidarMensajeRegistro()" class="form-control email" placeholder="Tu fecha de nacimiento" name="" id="">
+                            <!-- <input type="date" formControlName="fecha" (keyup)="cambiarValidarMensajeRegistro()" class="form-control email" placeholder="Tu fecha de nacimiento" name="" id="">
                             <ng-container *ngIf="formRegistro.controls.fecha.errors && !validarMensajeRegistro">
                                 <label for="" *ngIf="formRegistro.controls.fecha.errors.required">La fecha está
                                     vacio</label>
                                 <label for="" *ngIf="formRegistro.controls.fecha.errors.fecha">Solo se pueden registrar
                                     mayores de 18 años</label>
-                            </ng-container>
+                            </ng-container> -->
                             <input type="text" formControlName="email" (keyup)="cambiarValidarMensajeRegistro()" class="form-control email" placeholder="Tu email" name="" id="">
                             <ng-container *ngIf="formRegistro.controls.email.errors && !validarMensajeRegistro">
                                 <label for="" *ngIf="formRegistro.controls.email.errors.required">El email está

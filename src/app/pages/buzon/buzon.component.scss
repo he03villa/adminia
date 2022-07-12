@@ -1,5 +1,8 @@
 @import 'src/variables.scss';
 .row-tabla {
+    .contenedor-tabla {
+        height: 450px;
+    }
     padding: 16px;
     h5 {
         text-align: center;

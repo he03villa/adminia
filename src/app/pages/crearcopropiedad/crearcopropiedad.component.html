@@ -29,7 +29,7 @@
                 </div>
                 <div class="item-input">
                     <p> Contranseña del conjunto: </p>
-                    <input type="text" formControlName="password" (keyup)="cambiarValidarMensaje()" placeholder="">
+                    <input type="password" formControlName="password" (keyup)="cambiarValidarMensaje()" placeholder="">
                     <ng-container *ngIf="form.controls.password.errors && !validarMensaje">
                         <label for="" *ngIf="form.controls.password.errors.required">La contraseña de la propiedad está
                             vacio</label>

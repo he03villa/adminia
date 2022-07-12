@@ -10,21 +10,21 @@
             <div class="modal-body">
                 <form [formGroup]="form">
                     <div>
-                        <label for="">Tipo de documento</label>
+                        <label for="">Tipo de documento</label> <br>
                         <select name="" id="" formControlName="tipo_revicion">
                             <option value="">Seleccionar</option>
                             <option *ngFor="let item of arrayTipoRevision" [value]="item.id">{{ item.nombre }}</option>
                         </select>
                     </div>
                     <div>
-                        <label for="">Propiedad</label>
+                        <label for="">Propiedad</label> <br>
                         <select name="" id="" formControlName="propiedad">
                             <option value="">Seleccionar</option>
                             <option *ngFor="let item of arrayPropietarios" [value]="item.id">{{ item.nombre }}</option>
                         </select>
                     </div>
-                    <div>
-                        <input type="file" id="file" (change)="cambioArchivo($event)">
+                    <div class="custom-input-file">
+                        <input type="file" id="file" class="input-file" (change)="cambioArchivo($event)"> Subir fichero...
                     </div>
                 </form>
                 <button (click)="saveRevision()">Guardar</button>

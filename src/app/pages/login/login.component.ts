@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     });
     this.formRegistro = this.fb.group({
       nombre: ['', [Validators.required]],
-      fecha: ['', [Validators.required, this.services.validar18yead()]],
+      /* fecha: ['', [Validators.required, this.services.validar18yead()]], */
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       telefono: ['', [Validators.required]]
@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit {
       const data = {
         nombre: this.formRegistro.controls.nombre.value,
         email: this.formRegistro.controls.email.value,
-        fecha: this.formRegistro.controls.fecha.value,
+        fecha: '2022-07-12',
         password: this.formRegistro.controls.password.value,
         rol: 1,
         telefono: this.formRegistro.controls.telefono.value

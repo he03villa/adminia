@@ -9,29 +9,28 @@
             </div>
             <div class="modal-body" *ngIf="dataPropietario">
                 <div class="row">
-                    <div class="col-4">
-                        <label for="">Nombre</label>
+                    <div class="col-12">
+                        <label for=""><b> Nombre </b></label> <br>
                         <label for="">{{ dataPropietario.nombre_user }}</label>
                     </div>
-                    <div class="col-4">
-                        <label for="">Correo</label>
+                    <div class="col-sm-6">
+                        <label for=""><b> Correo </b></label>
                         <label for="">{{ dataPropietario.email_user }}</label>
                     </div>
-                    <div class="col-4">
-                        <label for="">Telefono</label>
-                        <a target="_blank" href="https://api.whatsapp.com/send?phone={{ dataPropietario.telefono_user }}">{{ dataPropietario.telefono_user }}</a>
+                    <div class="col-sm-6">
+                        <label for=""><b> Telefono </b></label> <br>
+                        <a target="_blank" href="https://api.whatsapp.com/send?phone={{ dataPropietario.telefono_user }}">{{
+                            dataPropietario.telefono_user }}</a>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4" *ngIf="dataPropietario.status == '0'">
+                    <div class="col-sm-6" *ngIf="dataPropietario.status == '0'">
                         <button (click)="aceptarPropietario($event)">Aceptar</button>
                     </div>
-                    <div class="col-4" *ngIf="dataPropietario.status == '0'">
+                    <div class="col-sm-6" *ngIf="dataPropietario.status == '0'">
                         <button (click)="removerPropietario($event)">Remover</button>
                     </div>
-                    <div class="col-4">
-                        <button data-dismiss="modal" aria-label="Close">Cerrar</button>
-                    </div>
+
                 </div>
             </div>
         </div>

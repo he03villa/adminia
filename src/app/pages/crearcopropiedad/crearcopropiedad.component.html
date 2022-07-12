@@ -91,47 +91,85 @@
                     </ng-container>
                 </div>
                 <div class="item-input">
-                    <p> Nombre de la propiedad </p>
-                    <input type="text" placeholder="" formControlName="nombre_nomezclatura" (keyup)="cambiarValidarMensaje();llenarArray()">
-                    <ng-container *ngIf="form.controls.nombre_nomezclatura.errors && !validarMensaje">
-                        <label for="" *ngIf="form.controls.nombre_nomezclatura.errors.required">El nombre postal de la
-                            propiedad
-                            está vacio</label>
-                    </ng-container>
-                </div>
-                <div class="item-input">
                     <p> Telefono de la propiedad </p>
-                    <input type="number" placeholder="" formControlName="telefono" (keyup)="cambiarValidarMensaje();llenarArray()">
+                    <input type="number" placeholder="" formControlName="telefono" (keyup)="cambiarValidarMensaje()">
                     <ng-container *ngIf="form.controls.telefono.errors && !validarMensaje">
                         <label for="" *ngIf="form.controls.telefono.errors.required">El telefono está vacio</label>
                     </ng-container>
                 </div>
-                <div class="item-input">
+            </form>
+            <div class="row contenedor-input" *ngIf="form.controls.tipo_propiedad_id.value == 1">
+                <div class="item-input col-4">
+                    <p> Nombre de la propiedad </p>
+                    <input type="text" placeholder="" [(ngModel)]="dataUbanizacionCasa.nombre_nomezclatura" (keyup)="cambiarValidarMensaje();llenarArray()">
+                    <!-- <ng-container *ngIf="form.controls.nombre_nomezclatura.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.nombre_nomezclatura.errors.required">El nombre postal de la
+                            propiedad
+                            está vacio</label>
+                    </ng-container> -->
+                </div>
+                <div class="item-input col-4">
                     <p> Cantidad de propiedades </p>
-                    <input type="number" placeholder="" formControlName="cantidad_propiedad" (keyup)="cambiarValidarMensaje();llenarArray()">
-                    <ng-container *ngIf="form.controls.cantidad_propiedad.errors && !validarMensaje">
+                    <input type="number" placeholder="" [(ngModel)]="dataUbanizacionCasa.cantidad_propiedad" (keyup)="cambiarValidarMensaje();llenarArray()">
+                    <!-- <ng-container *ngIf="form.controls.cantidad_propiedad.errors && !validarMensaje">
                         <label for="" *ngIf="form.controls.cantidad_propiedad.errors.required">El nombre postal de la
                             propiedad está
                             vacio</label>
-                    </ng-container>
+                    </ng-container> -->
                 </div>
-                <div class="item-input">
+                <div class="item-input col-4">
                     <p> Numero de inicio de la propiedad </p>
-                    <input type="number" placeholder="" formControlName="inicio_nomezclatura" (keyup)="cambiarValidarMensaje();llenarArray()">
-                    <ng-container *ngIf="form.controls.inicio_nomezclatura.errors && !validarMensaje">
+                    <input type="number" placeholder="" [(ngModel)]="dataUbanizacionCasa.inicio_nomezclatura" (keyup)="cambiarValidarMensaje();llenarArray()">
+                    <!-- <ng-container *ngIf="form.controls.inicio_nomezclatura.errors && !validarMensaje">
                         <label for="" *ngIf="form.controls.inicio_nomezclatura.errors.required">El nombre postal de la
                             propiedad
                             está vacio</label>
-                    </ng-container>
+                    </ng-container> -->
                 </div>
-                <div class="item-input vistaprevia-apar">
-                    <p> Vista previa </p>
-                    <div class="contenedorvistaprevia" *ngIf="form.controls.nombre_nomezclatura.value != '' && (form.controls.inicio_nomezclatura.value != '') && (form.controls.cantidad_propiedad.value != '')">
-                        <label *ngFor="let item of arrayNombre">{{ item }}</label><br>
-                        <!-- {{ form.controls.inicio_nomezclatura.value + indece }} -->
+            </div>
+            <div class="item-input vistaprevia-apar" *ngIf="form.controls.tipo_propiedad_id.value == 1">
+                <p> Vista previa </p>
+                <div class="contenedorvistaprevia" *ngIf="arrayNombre.length > 0">
+                    <label *ngFor="let item of arrayNombre">{{ item }}</label><br>
+                    <!-- {{ form.controls.inicio_nomezclatura.value + indece }} -->
+                </div>
+            </div>
+            <div class="row contenedor-input" *ngIf="form.controls.tipo_propiedad_id.value == 2">
+                <div class="item-input col-12">
+                    <p> Numero de torres </p>
+                    <input type="number" placeholder="" [(ngModel)]="dataEdificioPartamento.numero_torres" (keyup)="cambiarValidarMensaje();pushArrayNumeroPiso()" (change)="pushArrayNumeroPiso()">
+                </div>
+                <div class="item-input col-4" *ngFor="let item of dataEdificioPartamento.arrayNumeroPiso">
+                    <p> Numero de pisos </p>
+                    <input type="number" placeholder="" [(ngModel)]="item.piso" (keyup)="cambiarValidarMensaje();pushArrayNumeroPisoLlenar(item)" (change)="pushArrayNumeroPisoLlenar(item)">
+                    <div class="row" *ngFor="let item2 of item.data; let indice = index">
+                        <div class="col-12">
+                            <label for="">Piso {{ indice + 1 }}</label>
+                            <div class="item-input">
+                                <p> Inicio del numero de departamento </p>
+                                <input type="number" placeholder="" (change)="llenarArrayNombreEdificio()" (keyup)="llenarArrayNombreEdificio()" [(ngModel)]="item2.inicio_departamentos">
+                            </div>
+                            <div class="item-input">
+                                <p> Cantidad de departamento </p>
+                                <input type="number" placeholder="" (change)="llenarArrayNombreEdificio()" (keyup)="llenarArrayNombreEdificio()" [(ngModel)]="item2.cantidad">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </form>
+
+            </div>
+            <div class="item-input vistaprevia-apar" *ngIf="form.controls.tipo_propiedad_id.value == 2">
+                <p> Vista previa </p>
+                <div class="contenedorvistaprevia" *ngIf="arrayNombreEdificio.length > 0">
+                    <div class="row">
+                        <div class="col-4 edificio" *ngFor="let item of arrayNombreEdificio">
+                            <p>Torre {{ item.torre }}</p>
+                            <label *ngFor="let item2 of item.array">{{ item2.name }}</label>
+                        </div>
+                    </div>
+                    <!-- {{ form.controls.inicio_nomezclatura.value + indece }} -->
+                </div>
+            </div>
             <button class="btn" (click)="saveCopropiedad($event)">Registrar</button>
             <button class="btn" (click)="services.url('/login')">Atras</button>
         </div>

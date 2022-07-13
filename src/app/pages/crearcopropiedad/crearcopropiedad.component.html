@@ -140,22 +140,23 @@
                     <input type="number" placeholder="" [(ngModel)]="dataEdificioPartamento.numero_torres" (keyup)="cambiarValidarMensaje();pushArrayNumeroPiso()" (change)="pushArrayNumeroPiso()">
                 </div>
 
-                <div class="item-input col-4" *ngFor="let item of dataEdificioPartamento.arrayNumeroPiso; let indicet = index">
-                    <p> Numero de pisos torre {{ indicet + 1 }} </p>
-                    <input type="number" placeholder="" [(ngModel)]="item.piso" (keyup)="cambiarValidarMensaje();pushArrayNumeroPisoLlenar(item)" (change)="pushArrayNumeroPisoLlenar(item)">
-                    <div class="row" *ngFor="let item2 of item.data; let indice = index">
-                        <div class="col-12">
-                            <label for="">Piso {{ indice + 1 }}</label>
-                            <div class="item-input">
-                                <p> Inicio del numero de departamento </p>
-                                <input type="number" placeholder="" (change)="llenarArrayNombreEdificio()" (keyup)="llenarArrayNombreEdificio()" [(ngModel)]="item2.inicio_departamentos">
-                            </div>
-                            <div class="item-input">
-                                <p> Cantidad de departamento </p>
-                                <input type="number" placeholder="" (change)="llenarArrayNombreEdificio()" (keyup)="llenarArrayNombreEdificio()" [(ngModel)]="item2.cantidad">
-                            </div>
+                <div class="item-input col-12" *ngFor="let item of dataEdificioPartamento.arrayNumeroPiso; let indicet = index">
+                    <p> Pisos torre {{ indicet + 1 }} </p>
+                    <div class="edificio" *ngFor="let item2 of item; let indece = index">
+                        <div>
+                            <label for="">Del</label>
+                            <input type="number" placeholder="" [readonly]="item[indece - 1] ? true : false" [min]="item[indece - 1] ? item[indece - 1].piso_fin : 0" [(ngModel)]="item2.piso_inicio" (keyup)="llenarArrayNombreEdificio()" (change)="llenarArrayNombreEdificio()">
+                        </div>
+                        <div>
+                            <label for="">Al</label>
+                            <input type="number" placeholder="" [(ngModel)]="item2.piso_fin" (keyup)="llenarArrayNombreEdificio();llenarSiguiente(item)" (change)="llenarArrayNombreEdificio()">
+                        </div>
+                        <div>
+                            <label for="">Numero apartamento</label>
+                            <input type="number" placeholder="" [(ngModel)]="item2.cantdad" (keyup)="llenarArrayNombreEdificio()" (change)="llenarArrayNombreEdificio()">
                         </div>
                     </div>
+                    <button class="btn" (click)="pushArrayNumeroPisoLlenar(item)">Agregar</button>
                 </div>
 
             </div>
@@ -163,7 +164,7 @@
                 <p> Vista previa </p>
                 <div class="contenedorvistaprevia" *ngIf="arrayNombreEdificio.length > 0">
                     <div class="row">
-                        <div class="col-4 edificio" *ngFor="let item of arrayNombreEdificio">
+                        <div class="col-4 edificio2" *ngFor="let item of arrayNombreEdificio">
                             <p>Torre {{ item.torre }}</p>
                             <label *ngFor="let item2 of item.array">{{ item2.name }}</label>
                         </div>

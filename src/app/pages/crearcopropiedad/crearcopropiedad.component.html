@@ -139,8 +139,9 @@
                     <p> Numero de torres </p>
                     <input type="number" placeholder="" [(ngModel)]="dataEdificioPartamento.numero_torres" (keyup)="cambiarValidarMensaje();pushArrayNumeroPiso()" (change)="pushArrayNumeroPiso()">
                 </div>
-                <div class="item-input col-4" *ngFor="let item of dataEdificioPartamento.arrayNumeroPiso">
-                    <p> Numero de pisos </p>
+
+                <div class="item-input col-4" *ngFor="let item of dataEdificioPartamento.arrayNumeroPiso; let indicet = index">
+                    <p> Numero de pisos torre {{ indicet + 1 }} </p>
                     <input type="number" placeholder="" [(ngModel)]="item.piso" (keyup)="cambiarValidarMensaje();pushArrayNumeroPisoLlenar(item)" (change)="pushArrayNumeroPisoLlenar(item)">
                     <div class="row" *ngFor="let item2 of item.data; let indice = index">
                         <div class="col-12">

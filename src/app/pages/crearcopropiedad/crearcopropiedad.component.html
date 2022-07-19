@@ -13,6 +13,7 @@
                 <div class="item-input">
                     <p> Nombre del conjunto: </p>
                     <input type="text" formControlName="nombre" (keyup)="cambiarValidarMensaje()" placeholder="">
+
                     <ng-container *ngIf="form.controls.nombre.errors && !validarMensaje">
                         <label for="" *ngIf="form.controls.nombre.errors.required">El nombre de la propiedad está
                             vacio</label>

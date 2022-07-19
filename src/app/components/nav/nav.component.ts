@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { NotificacionService } from '../../services/notificacion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -15,10 +16,12 @@ export class NavComponent implements OnInit {
   arrayNotificaion = [];
   numeroNoVisto = 0;
 
+
   constructor(
     public services: ServicesService,
     private Dashboard: DashboardComponent,
-    private Notificacion: NotificacionService
+    private Notificacion: NotificacionService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,7 +32,7 @@ export class NavComponent implements OnInit {
 
   compartirWhatsapp() {
     /* https://api.whatsapp.com/send?text= */
-    const content = `https://api.whatsapp.com/send?text=${ this.dataUser.codigo }`;
+    const content = `https://api.whatsapp.com/send?text=${this.dataUser.codigo}`;
     this.services.abrir(content);
   }
 
@@ -41,7 +44,7 @@ export class NavComponent implements OnInit {
 
   async cargarNotificacion() {
     const user = JSON.parse(localStorage.getItem('dataUser'));
-    const res:any = await this.Notificacion.getAllNotificacionUser({ id: user.id });
+    const res: any = await this.Notificacion.getAllNotificacionUser({ id: user.id });
     this.arrayNotificaion = res.data;
     this.numeroNoVisto = this.arrayNotificaion.filter(f => f.visto == '0').length;
     console.log(this.numeroNoVisto);
@@ -51,6 +54,11 @@ export class NavComponent implements OnInit {
     const res = await this.Notificacion.ponerVisto({ user: this.dataUser.id });
     this.numeroNoVisto = 0;
     this.services.showModal('#modal-notificaion');
+  }
+
+
+  editarperfil() {
+    this.router.navigate(['dashboard/editar-perfil']);
   }
 
 }

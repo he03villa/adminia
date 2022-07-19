@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicesService } from 'src/app/services/services.service';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarPerfilComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public services: ServicesService
+  ) { }
 
   ngOnInit() {
+
   }
+
+  abrirModalcontrasena() {
+
+    this.services.showModal('#ModalCambiarcontrasena');
+  }
+
 
 }

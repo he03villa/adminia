@@ -1,16 +1,15 @@
-<p>perfil</p>
+<h2>Edición de perfil</h2>
 
-<div class="row">
+
+
+<form class="row  contenedor-input bordermix">
     <div class="col-sm-6">
         <p> Nombre completo </p>
         <input type="text" formControlName="nombre" placeholder="">
 
     </div>
-    <div class="col-sm-6">
-        <p> Nombre de usuario </p>
-        <input type="text" formControlName="nombre" placeholder="">
 
-    </div>
+
     <div class="col-sm-6">
         <p>
             Correo electronico </p>
@@ -24,9 +23,97 @@
 
     </div>
 
+    <div class="col-sm-6">
+
+        <p>
+            Teléfono de la propiedad</p>
+        <input type="text" formControlName="nombre" placeholder="">
+    </div>
 
 
 
+    <div class="col-12 my-3">
 
-    <button>guardar</button>
+        <button (click)="abrirModalcontrasena()">cambiar contraseña</button>
+        <button>guardar</button>
+
+    </div>
+
+</form>
+<form class="row  contenedor-input bordermix">
+    <div class="col-sm-6">
+        <p> Nombre completo </p>
+        <input type="text" formControlName="nombre" placeholder="">
+
+    </div>
+
+
+    <div class="col-sm-6">
+        <p>
+            Correo electronico </p>
+        <input type="text" formControlName="nombre" placeholder="">
+
+    </div>
+    <div class="col-sm-6">
+        <p>
+            Email</p>
+        <input type="text" formControlName="nombre" placeholder="">
+
+    </div>
+    <div class="col-sm-6">
+        <p>
+            Teléfono</p>
+        <input type="text" formControlName="nombre" placeholder="">
+
+    </div>
+
+
+
+    <div class="col-12 my-3">
+
+        <button (click)="abrirModalcontrasena()">cambiar contraseña</button>
+        <button>guardar</button>
+
+    </div>
+
+</form>
+
+
+
+<div class="modal content-login" id="ModalCambiarcontrasena" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cambiar contraseña</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"> <span aria-hidden="true"> ×
+                    </span> </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <p>
+                            contraseña antigua</p>
+                        <input type="text" formControlName="nombre" placeholder="">
+                    </div>
+                    <div class="col-sm-6">
+                        <p>
+                            contraseña nueva</p>
+                        <input type="text" formControlName="nombre" placeholder="">
+                    </div>
+                    <div class="col-sm-6">
+                        <p>
+                            repetir nueva contraseña </p>
+                        <input type="text" formControlName="nombre" placeholder="">
+                    </div>
+                    <div class="col-12">
+
+                        <button class="btn">cambiar</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -63,17 +63,21 @@ export class CrearcopropiedadComponent implements OnInit {
     this.dataEdificioPartamento.arrayNumeroPiso = [];
     if (this.dataEdificioPartamento.numero_torres > 0) {
       for (let x = 0; x < this.dataEdificioPartamento.numero_torres; x++) {
-        this.dataEdificioPartamento.arrayNumeroPiso.push({ piso: 0 });
+        this.dataEdificioPartamento.arrayNumeroPiso.push([{ piso_inicio: 0, piso_fin: 0, cantdad: 0 }]);
       }
     }
   }
 
   pushArrayNumeroPisoLlenar(item:any) {
-    item.data = [];
-    if (item.piso > 0) {
-      for (let x = 0; x < item.piso; x++) {
-        item.data.push({ inicio_departamentos: 0, cantidad: 0 });
-      }
+    console.log(item);
+    const res = item[0];
+    item.push({ piso_inicio: res.piso_fin + 1, piso_fin: 0, cantdad: 0 });
+  }
+
+  llenarSiguiente(item:any) {
+    console.log(item);
+    if (item[item.length - 2]) {
+      item[item.length - 1].piso_inicio = item[item.length - 2].piso_fin + 1
     }
   }
 
@@ -82,12 +86,18 @@ export class CrearcopropiedadComponent implements OnInit {
     if (this.dataEdificioPartamento.numero_torres > 0) {
       for (let y = 0; y < this.dataEdificioPartamento.numero_torres; y++) {
         this.arrayNombreEdificio.push({ torre: y + 1, array: [] });
-        if (this.dataEdificioPartamento.arrayNumeroPiso[y].piso > 0) {
-          for (let m = 0; m < this.dataEdificioPartamento.arrayNumeroPiso[y].piso; m++) {
-            if (this.dataEdificioPartamento.arrayNumeroPiso[y].data[m].inicio_departamentos > 0 && this.dataEdificioPartamento.arrayNumeroPiso[y].data[m].cantidad > 0) {
-              console.log(this.dataEdificioPartamento.arrayNumeroPiso[y].data[m]);
-              for (let k = 0; k < this.dataEdificioPartamento.arrayNumeroPiso[y].data[m].cantidad; k++) {
-                this.arrayNombreEdificio[y].array.push({ name: k + this.dataEdificioPartamento.arrayNumeroPiso[y].data[m].inicio_departamentos });
+      }
+      for (let x = 0; x < this.dataEdificioPartamento.arrayNumeroPiso.length; x++) {
+        const element = this.dataEdificioPartamento.arrayNumeroPiso[x];
+        for (let j = 0; j < element.length; j++) {
+          const elementi = element[j];
+          if (elementi.piso_inicio > 0 && elementi.cantdad > 0) {
+            const lent = elementi.piso_inicio >= elementi.piso_fin ? 1 : ((elementi.piso_fin - elementi.piso_inicio) + 1);
+            for (let i = 0; i < lent; i++) {
+              for (let b = 0; b < elementi.cantdad; b++) {
+                const numero = ((i + elementi.piso_inicio) * 100) + (b + 1);
+                const post = this.arrayNombreEdificio.findIndex(f => f.torre == x + 1);
+                this.arrayNombreEdificio[post].array.push({ name: numero });
               }
             }
           }
@@ -97,10 +107,10 @@ export class CrearcopropiedadComponent implements OnInit {
   }
 
   llenarArray() {
-    if (this.services.validarText(this.form.controls.nombre_nomezclatura.value) && this.services.validarNumero(this.form.controls.cantidad_propiedad.value) && this.services.validarNumero(this.form.controls.inicio_nomezclatura.value)) {
+    if (this.services.validarText(this.dataUbanizacionCasa.nombre_nomezclatura) && this.services.validarNumero(this.dataUbanizacionCasa.cantidad_propiedad) && this.services.validarNumero(this.dataUbanizacionCasa.inicio_nomezclatura)) {
       this.arrayNombre = [];
-      for (let index = 0; index < this.form.controls.cantidad_propiedad.value; index++) {
-        this.arrayNombre.push(this.form.controls.nombre_nomezclatura.value + ' ' + (this.form.controls.inicio_nomezclatura.value + index));
+      for (let index = 0; index < this.dataUbanizacionCasa.cantidad_propiedad; index++) {
+        this.arrayNombre.push(this.dataUbanizacionCasa.nombre_nomezclatura + ' ' + (this.dataUbanizacionCasa.inicio_nomezclatura + index));
       }
     } else {
       this.arrayNombre = [];

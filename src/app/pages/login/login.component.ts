@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
   abrirModal() {
     this.formRegistro.controls.nombre.setValue('');
     this.formRegistro.controls.email.setValue('');
-    this.formRegistro.controls.fecha.setValue('');
+    /* this.formRegistro.controls.fecha.setValue(''); */
     this.formRegistro.controls.password.setValue('');
     this.services.showModal('#ModalRegistro');
   }

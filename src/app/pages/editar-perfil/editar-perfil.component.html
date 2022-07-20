@@ -1,119 +1,91 @@
 <h2>Edición de perfil</h2>
-
-
-
-<form class="row  contenedor-input bordermix">
-    <div class="col-sm-6">
-        <p> Nombre completo </p>
-        <input type="text" formControlName="nombre" placeholder="">
-
-    </div>
-
-
-    <div class="col-sm-6">
-        <p>
-            Correo electronico </p>
-        <input type="text" formControlName="nombre" placeholder="">
-
-    </div>
-    <div class="col-sm-6">
-        <p>
-            Email</p>
-        <input type="text" formControlName="nombre" placeholder="">
-
-    </div>
-
-    <div class="col-sm-6">
-
-        <p>
-            Teléfono de la propiedad</p>
-        <input type="text" formControlName="nombre" placeholder="">
-    </div>
-
-
-
-    <div class="col-12 my-3">
-
-        <button (click)="abrirModalcontrasena()">cambiar contraseña</button>
-        <button>guardar</button>
-
-    </div>
-
-</form>
-<form class="row  contenedor-input bordermix">
-    <div class="col-sm-6">
-        <p> Nombre completo </p>
-        <input type="text" formControlName="nombre" placeholder="">
-
-    </div>
-
-
-    <div class="col-sm-6">
-        <p>
-            Correo electronico </p>
-        <input type="text" formControlName="nombre" placeholder="">
-
-    </div>
-    <div class="col-sm-6">
-        <p>
-            Email</p>
-        <input type="text" formControlName="nombre" placeholder="">
-
-    </div>
-    <div class="col-sm-6">
-        <p>
-            Teléfono</p>
-        <input type="text" formControlName="nombre" placeholder="">
-
-    </div>
-
-
-
-    <div class="col-12 my-3">
-
-        <button (click)="abrirModalcontrasena()">cambiar contraseña</button>
-        <button>guardar</button>
-
-    </div>
-
-</form>
-
-
-
-<div class="modal content-login" id="ModalCambiarcontrasena" role="dialog" tabindex="-1">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Cambiar contraseña</h5>
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button"> <span aria-hidden="true"> ×
-                    </span> </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-
-                    <div class="col-sm-6">
-                        <p>
-                            contraseña antigua</p>
-                        <input type="text" formControlName="nombre" placeholder="">
-                    </div>
-                    <div class="col-sm-6">
-                        <p>
-                            contraseña nueva</p>
-                        <input type="text" formControlName="nombre" placeholder="">
-                    </div>
-                    <div class="col-sm-6">
-                        <p>
-                            repetir nueva contraseña </p>
-                        <input type="text" formControlName="nombre" placeholder="">
-                    </div>
-                    <div class="col-12">
-
-                        <button class="btn">cambiar</button>
-                    </div>
-
-
-                </div>
-            </div>
+<ng-container *ngIf="dataUser.conjunto == 0">
+    <form [formGroup]="formUser" class="row  contenedor-input bordermix">
+        <div class="col-sm-6">
+            <p> Nombre completo </p>
+            <input type="text" formControlName="nombre" (keyup)="cambiarValidarMensaje()" placeholder="">
+            <ng-container *ngIf="formUser.controls.nombre.errors && !validarMensaje">
+                <label for="" *ngIf="formUser.controls.nombre.errors.required">El nombre de la propiedad está vacio</label>
+            </ng-container>
+    
         </div>
-    </div>
-</div>
+    
+    
+        <div class="col-sm-6">
+            <p>
+                Correo electronico </p>
+            <input type="text" [disabled]="true" [readOnly]="true" formControlName="email" placeholder="">
+    
+        </div>
+        <!-- <div class="col-sm-6">
+            <p>
+                Email</p>
+            <input type="text" formControlName="nombre" placeholder="">
+    
+        </div> -->
+    
+        <div class="col-sm-6">
+    
+            <p>
+                Teléfono de la propiedad</p>
+            <input type="number" formControlName="telefono" (keyup)="cambiarValidarMensaje()" placeholder="">
+            <ng-container *ngIf="formUser.controls.telefono.errors && !validarMensaje">
+                <label for="" *ngIf="formUser.controls.telefono.errors.required">El telefono de la propiedad está vacio</label>
+            </ng-container>
+        </div>
+    
+    
+    
+        <div class="col-12 my-3">
+    
+            <a class="btn" (click)="abrirModalcontrasena()">Cambiar contraseña</a>
+            <button (click)="updateUser($event)">Actualizar</button>
+    
+        </div>
+    
+    </form>
+</ng-container>
+<ng-container *ngIf="dataUser.conjunto == 1">
+    <form [formGroup]="formCojunto" class="row  contenedor-input bordermix">
+        <div class="col-sm-6">
+            <p> Nombre completo </p>
+            <input type="text" formControlName="nombre" placeholder="" (keyup)="cambiarValidarMensaje()">
+            <ng-container *ngIf="formCojunto.controls.nombre.errors && !validarMensaje">
+                <label for="" *ngIf="formCojunto.controls.nombre.errors.required">El nombre de la propiedad está vacio</label>
+            </ng-container>
+        </div>
+    
+    
+        <div class="col-sm-6">
+            <p>
+                Correo electronico </p>
+            <input type="text" formControlName="email" [disabled]="true" [readOnly]="true" placeholder="">
+    
+        </div>
+        <!-- <div class="col-sm-6">
+            <p>
+                Email</p>
+            <input type="text" formControlName="nombre" placeholder="">
+    
+        </div> -->
+        <div class="col-sm-6">
+            <p>
+                Teléfono</p>
+            <input type="number" formControlName="telefono" placeholder="" (keyup)="cambiarValidarMensaje()">
+            <ng-container *ngIf="formCojunto.controls.telefono.errors && !validarMensaje">
+                <label for="" *ngIf="formCojunto.controls.telefono.errors.required">El telefono está vacio</label>
+            </ng-container>
+    
+        </div>
+    
+    
+    
+        <div class="col-12 my-3">
+    
+            <button (click)="abrirModalcontrasena()">cambiar contraseña</button>
+            <button (click)="updateConjunto($event)">Actualizar</button>
+    
+        </div>
+    
+    </form>
+</ng-container>

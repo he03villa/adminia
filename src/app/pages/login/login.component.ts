@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
       /* fecha: ['', [Validators.required, this.services.validar18yead()]], */
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
+      confirmar_password: ['', [Validators.required]],
       telefono: ['', [Validators.required]]
     });
   }
@@ -94,6 +95,11 @@ export class LoginComponent implements OnInit {
   async registrar(event) {
     this.services.addLoading(event.submitter);
     if (!this.formRegistro.invalid) {
+      if (this.formRegistro.controls.password.value != this.formRegistro.controls.confirmar_password.value) {
+        this.services.Alert('error', '', 'Las contraseñas no coinciden', 'Aceptar', '');
+        this.services.removeLoading(event.submitter);
+        return false;
+      }
       const data = {
         nombre: this.formRegistro.controls.nombre.value,
         email: this.formRegistro.controls.email.value,

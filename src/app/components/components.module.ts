@@ -11,12 +11,26 @@ import { NoDataComponent } from './no-data/no-data.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalVerInfoPropietarioComponent } from './modal-ver-info-propietario/modal-ver-info-propietario.component';
 import { ModalNotificacionComponent } from './modal-notificacion/modal-notificacion.component';
+import { ModalCambiarPasswordComponent } from './modal-cambiar-password/modal-cambiar-password.component';
 
 
 
 @NgModule({
-  declarations: [NavComponent, ModalCrearRevisionComponent, NoDataComponent, ModalVerInfoPropietarioComponent, ModalNotificacionComponent],
-  exports: [NavComponent, ModalCrearRevisionComponent, NoDataComponent, ModalVerInfoPropietarioComponent],
+  declarations: [
+    NavComponent, 
+    ModalCrearRevisionComponent, 
+    NoDataComponent, 
+    ModalVerInfoPropietarioComponent, 
+    ModalNotificacionComponent, 
+    ModalCambiarPasswordComponent
+  ],
+  exports: [
+    NavComponent, 
+    ModalCrearRevisionComponent, 
+    NoDataComponent, 
+    ModalVerInfoPropietarioComponent, 
+    ModalCambiarPasswordComponent
+  ],
   imports: [
     CommonModule,
     MatSidenavModule,

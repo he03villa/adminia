@@ -54,4 +54,14 @@ export class PropiedadService {
     const url = `${ this.servicios.ApiURL }/propiedad/removerPropietario.php`;
     return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
+
+  updatePropietario(data) {
+    const url = `${ this.servicios.ApiURL }/propiedad/updateConjunto.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  updatePassword(data) {
+    const url = `${ this.servicios.ApiURL }/propiedad/updatePassword.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
 }

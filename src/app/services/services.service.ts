@@ -348,6 +348,12 @@ export class ServicesService {
     }
   }
 
+  /* validarPasswords(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+
+    }
+  } */
+
   cargarQr(address, id) {
     const out = new Event('build');
     localStorage.setItem('valueQR', address);

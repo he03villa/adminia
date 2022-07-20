@@ -42,8 +42,8 @@ export class CrearcopropiedadComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       /* inicio_nomezclatura: [0, [Validators.required]],
-      cantidad_propiedad: [0, [Validators.required]],
-      nombre_nomezclatura: ['', [Validators.required]], */
+      cantidad_propiedad: [0, [Validators.required]], */
+      confirmar_password: ['', [Validators.required]],
       telefono: ['', [Validators.required]],
     });
     this.cargarTipo();
@@ -122,6 +122,11 @@ export class CrearcopropiedadComponent implements OnInit {
     this.services.addLoading(event.target);
     console.log(this.form);
     if (!this.form.invalid) {
+      if (this.form.controls.password.value != this.form.controls.confirmar_password.value) {
+        this.services.Alert('error', '', 'Las contraseñas no coinciden', 'Aceptar', '');
+        this.services.removeLoading(event.target);
+        return false;
+      }
       const data  = {
         nombre: this.form.controls.nombre.value,
         direccion: this.form.controls.direccion.value,

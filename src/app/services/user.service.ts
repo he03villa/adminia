@@ -38,6 +38,16 @@ export class UserService {
     return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
 
+  updateUser(data) {
+    const url = `${ this.servicios.ApiURL }/usuario/updateUser.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  updatePassword(data) {
+    const url = `${ this.servicios.ApiURL }/usuario/updatePassword.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
   activarPropiedad(data) {
     const url = `${ this.servicios.ApiURL }/propiedad/activarPropiedad.php`;
     return this.servicios.Promet(this.Data.metodoPost(url, data));

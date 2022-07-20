@@ -37,6 +37,14 @@
                     </ng-container>
                 </div>
                 <div class="item-input">
+                    <p> Confirmar contranseña del conjunto: </p>
+                    <input type="password" formControlName="confirmar_password" (keyup)="cambiarValidarMensaje()" placeholder="">
+                    <ng-container *ngIf="form.controls.confirmar_password.errors && !validarMensaje">
+                        <label for="" *ngIf="form.controls.confirmar_password.errors.required">La contraseña de la propiedad está
+                            vacio</label>
+                    </ng-container>
+                </div>
+                <div class="item-input">
 
                     <p> Tipo de la propiedad </p>
                     <select name="" id="" formControlName="tipo_propiedad_id" (change)="cambiarValidarMensaje()">

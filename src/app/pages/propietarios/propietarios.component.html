@@ -1,6 +1,10 @@
 <div class="row row-tabla">
     <div class="col-12">
         <h2>Listado de Propietarios</h2>
+        <label *ngIf="arrayTorre.length > 0">Torres</label>
+        <select *ngIf="arrayTorre.length > 0" [(ngModel)]="selectTorre" (change)="cambiarTorre()">
+            <option *ngFor="let item of arrayTorre" [value]="item.id">{{ item.nombre }}</option>
+        </select>
     </div>
     <div class="col-12 contenedor-tabla">
 

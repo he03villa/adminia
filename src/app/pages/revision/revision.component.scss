@@ -1,0 +1,43 @@
+.row {
+    >div {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+button {
+    width: 256px;
+}
+
+.inputfile {
+    position: absolute;
+    left: -999999999px;
+}
+
+.flexto {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: scroll;
+    height: 249px;
+}
+
+.contenedor-foto {
+    margin-top: 10px;
+    width: 200px;
+    height: auto;
+    max-width: 100%;
+    max-height: 150px;
+    background: #fff;
+    border-radius: 3px;
+    label {
+        cursor: pointer;
+    }
+    .imagen-foto {
+        background: #fff;
+        border-radius: 3px;
+        object-fit: cover;
+        width: 100%;
+    }
+}

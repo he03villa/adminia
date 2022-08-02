@@ -31,4 +31,14 @@ export class RevicionService {
     const url = `${ this.servicios.ApiURL }/revision/saveRevicion.php`;
     return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
+
+  saveRevicionVisita(data) {
+    const url = `${ this.servicios.ApiURL }/revision/saveRevicionVisita.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  saveRevicionVisita2(data) {
+    const url = `${ this.servicios.ApiURL }/revision/saveRevicionVisita2.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
 }

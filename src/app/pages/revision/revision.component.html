@@ -1,240 +1,173 @@
 <h2>Revisiones / visitas 1</h2>
 
-<form action="" method="post">
+<div class="border-solid"></div>
 
+<div class="row">
+    <div class="col-sm-6">
+        <label for="">Hora*</label>
+        <input type="time" [(ngModel)]="dataRevicion1.horaInicio" name="" id="">
+    </div>
+
+    <!-- <div class="col-12">
+
+        <label for="">supervisión*</label>
+        <select name="" id="">
+            <option value="">Seleccionar supervisor</option>
+            <option value="">2</option>
+            <option value="">3</option>
+        </select>
+    </div> -->
+
+
+    <div class="col-12">
+        Detalle de la visita
+    </div>
     <div class="border-solid"></div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <label for="">Hora*</label>
-            <input type="time" name="" id="">
-        </div>
+    <div class="col-sm-6">
+        <label for="">Sector*</label>
+        <select name="" id="" [(ngModel)]="dataRevicion1.sector">
+            <option *ngFor="let item of arrayPropietarios" [value]="item.mezclaId">{{ item.mezclaNombre }}</option>
+        </select>
+    </div>
+    <div class="col-sm-6">
+        <label for="">Objeto de la visita*</label>
+        <select name="" id="" [(ngModel)]="dataRevicion1.observacion_visita">
+            <option value="Supervisar">Supervisar</option>
+        </select>
+    </div>
 
-        <!-- <div class="col-12">
+    <div class="col-12">
+        Anexos
+    </div>
+    <div class="border-solid"></div>
 
-            <label for="">supervisión*</label>
-            <select name="" id="">
-                <option value="">Seleccionar supervisor</option>
-                <option value="">2</option>
-                <option value="">3</option>
-            </select>
-        </div> -->
+    <div class="col-12">
+        <label for="">Objetivo general*</label>
+        <textarea name="" id="" cols="30" rows="10" [(ngModel)]="dataRevicion1.observacion_general"></textarea>
+    </div>
+    <div class="col-12">
+        Anexos
+    </div>
+    <div class="border-solid"></div>
 
+    <div class="col-12" *ngFor="let item of dataRevicion1.anexo; let indece = index">
+        <label for="">Actividad {{ indece + 1}}*</label>
+        <textarea name="" id="" cols="30" rows="10" [(ngModel)]="item.observacion"></textarea>
+    </div>
 
-        <div class="col-12">
-            Detalle de la visita
-        </div>
-        <div class="border-solid"></div>
+    <div class="col-12 my-3">
+        <button type="submit" (click)="addAnexo()"> Agregar anexo </button>
+    </div>
 
-        <div class="col-sm-6">
-            <label for="">Sector*</label>
-            <select name="" id="">
-                <option value="">Parcelaciones</option>
-                <option value="">2</option>
-                <option value="">3</option>
-            </select>
-        </div>
-        <div class="col-sm-6">
-            <label for="">Objeto de la visita*</label>
-            <select name="" id="">
-                <option value="">Supervisar</option>
-                <option value="">2</option>
-                <option value="">3</option>
-            </select>
-        </div>
-
-        <div class="col-12">
-            Anexos
-        </div>
-        <div class="border-solid"></div>
-
-        <div class="col-12">
-            <label for="">Objetivo general*</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-        </div>
-        <div class="col-12">
-            Anexos
-        </div>
-        <div class="border-solid"></div>
-
-        <div class="col-12">
-            <label for="">Actividad 1*</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-        </div>
-
-        <div class="col-12 my-3">
-
-
-            <input type="time" name="" id="">
-
-
-
-        </div>
-        <div class="col-12 my-3">
-
-
-
-
-
-            <button type="submit"> Terminar </button>
-        </div>
-
-
-
+    <div class="col-12 my-3">
+        <input type="time" name="" id="" [(ngModel)]="dataRevicion1.horaFin">
+    </div>
+    <div class="col-12 my-3">
+        <button type="submit" (click)="saveRevicion1($event)"> Terminar </button>
     </div>
 
 
 
-
-
-
-</form>
+</div>
+<!-- <form action="" method="post">
+</form> -->
 <h2>Revisiones / visitas 2</h2>
+<div class="border-solid"></div>
 
+<div class="row">
+    <div class="col-sm-6">
+        <label for="">Hora*</label>
+        <input type="time" [(ngModel)]="dataRevicion2.hora" name="" id="">
+    </div>
+    <div class="col-sm-6">
+        <label for="">Elaboró*</label>
 
-<form action="" method="post">
+        <select [(ngModel)]="dataRevicion2.elaborado" name="" id="">
+            <option value="NPI">NPI</option>
+        </select>
+    </div>
+
+    <!-- 
+    <div class="col-12">
+
+        <label for="">supervisión*</label>
+        <select name="" id="">
+            <option value="">Seleccionar supervisor</option>
+            <option value="">2</option>
+            <option value="">3</option>
+        </select>
+    </div> -->
+
+    <div class="col-sm-6">
+        <label for="">Sector</label>
+        <select name="" id="" [(ngModel)]="dataRevicion2.sector">
+            <option *ngFor="let item of arrayPropietarios" [value]="item.mezclaId">{{ item.mezclaNombre }}</option>
+        </select>
+    </div>
 
     <div class="border-solid"></div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <label for="">Hora*</label>
-            <input type="time" name="" id="">
-        </div>
-        <div class="col-sm-6">
-            <label for="">Elaboró*</label>
-
-            <select name="" id="">
-                <option value="">NPI</option>
-            </select>
-        </div>
-
-        <!-- 
-        <div class="col-12">
-
-            <label for="">supervisión*</label>
-            <select name="" id="">
-                <option value="">Seleccionar supervisor</option>
-                <option value="">2</option>
-                <option value="">3</option>
-            </select>
-        </div> -->
-
-        <div class="col-sm-6">
-            <label for="">Sector</label>
-            <select name="" id="">
-                <option value="">Parcelacion</option>
-                <option value="">2</option>
-                <option value="">3</option>
-            </select>
-        </div>
-
-        <div class="border-solid"></div>
 
 
-
-        <div class="col-12">
-            <label for="">Dirigido a*</label>
-            <input type="text">
-        </div>
-
-
-        <div class="col-12">
-            <h2>Comunicado</h2>
-        </div>
-        <div class="border-solid"></div>
-
-
-        <div class="col-12">
-            <label for="">Asunto</label>
-            <input type="text" name="" id="">
-        </div>
-        <div class="col-12">
-            <label for="">Contenido</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-        </div>
-
-
-        <div class="col-12">
-            <label for="">Objetivo general*</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-        </div>
-        <div class="col-12">
-            Fotos y observaciones
-        </div>
-        <div class="border-solid"></div>
-
-        <div class="col-sm-6">
-            <label for="">observacion 1*</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-        </div>
-        <div class="col-sm-6">
-            <label for="">foto 1*</label>
-            <div class="flexto">
-
-                <div class="contenedor-foto">
-
-                    <label for="imagen">
-                        <img class="imagen-foto" src="assets/image/dashboard/Background.png" alt="">
-                    </label>
-                    <input class="inputfile" type="file" id="imagen" name="imagen" multiple>
-                </div>
-                <div class="contenedor-foto">
-
-                    <label for="imagen2">
-                        <img class="imagen-foto" src="assets/image/dashboard/Background.png" alt="">
-                    </label>
-                    <input class="inputfile" type="file" id="imagen2" name="imagen2" multiple>
-                </div>
-
-
-
-
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <label for="">observacion 2*</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-        </div>
-        <div class="col-sm-6">
-            <label for="">foto 2*</label>
-            <div class="flexto">
-
-                <div class="contenedor-foto">
-                    <img class="imagen-foto" src="assets/image/dashboard/Background.png" alt="">
-
-                </div>
-                <div class="contenedor-foto">
-                    <img class="imagen-foto" src="assets/image/dashboard/Background.png" alt="">
-
-                </div>
-                <div class="contenedor-foto">
-                    <img class="imagen-foto" src="assets/image/dashboard/Background.png" alt="">
-
-                </div>
-
-                <div class="contenedor-foto">
-                    <img class="imagen-foto" src="assets/image/dashboard/Background.png" alt="">
-
-                </div>
-                <div class="contenedor-foto">
-                    <img class="imagen-foto" src="assets/image/dashboard/Background.png" alt="">
-
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col-12">
-            <button type="submit"> Terminar </button>
-        </div>
-
+    <div class="col-12">
+        <label for="">Dirigido a*</label>
+        <input type="text" [(ngModel)]="dataRevicion2.dirigido">
     </div>
 
 
+    <div class="col-12">
+        <h2>Comunicado</h2>
+    </div>
+    <div class="border-solid"></div>
+
+
+    <div class="col-12">
+        <label for="">Asunto</label>
+        <input type="text" name="" id="" [(ngModel)]="dataRevicion2.asunto">
+    </div>
+    <div class="col-12">
+        <label for="">Contenido</label>
+        <textarea name="" id="" cols="30" rows="10" [(ngModel)]="dataRevicion2.contenido"></textarea>
+    </div>
+
+
+    <div class="col-12">
+        <label for="">Objetivo general*</label>
+        <textarea name="" id="" cols="30" rows="10" [(ngModel)]="dataRevicion2.obgetivo_general"></textarea>
+    </div>
+    <div class="col-12">
+        Fotos y observaciones
+    </div>
+    <div class="border-solid"></div>
+
+    <ng-container *ngFor="let item of dataRevicion2.foto_observacion; let indece = index">
+        <div class="col-sm-6">
+            <label for="">observacion {{ indece + 1 }}*</label>
+            <textarea name="" id="" cols="30" rows="10" [(ngModel)]="item.observacion"></textarea>
+        </div>
+        <div class="col-sm-6">
+            <label for="">foto {{ indece + 1 }}*</label>
+            <div class="flexto">
+
+                <div class="contenedor-foto" *ngFor="let item2 of item.foto; let indeice2 = index">
+                    <label for="imagen-{{ indeice2 }}">
+                        <img class="imagen-foto" [src]="services.validarText(item2) ? item2 : 'assets/image/dashboard/Background.png'" alt="">
+                    </label>
+                    <input class="inputfile" (change)="cambiarFoto($event, indece, indeice2)" type="file" id="imagen-{{ indeice2 }}" name="imagen">
+                </div>
+            </div>
+        </div>
+    </ng-container>
 
 
 
+    <div class="col-12">
+        <button type="submit" (click)="addObservacionFoto()"> Agregar </button>
+    </div>
 
-</form>
+    <div class="col-12">
+        <button type="submit" (click)="saveRevicion2($event)"> Terminar </button>
+    </div>
+
+</div>

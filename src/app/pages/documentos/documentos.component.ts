@@ -35,7 +35,8 @@ export class DocumentosComponent implements OnInit {
   }
 
   async cargarListarTipo() {
-    const res:any = await this.Revicion.getAllTipoRevision();
+    const data = { tipo: [1, 2] }
+    const res:any = await this.Revicion.getAllTipoRevision(data);
     console.log(res);
     this.arrayTipoRevision = res.data;
   }

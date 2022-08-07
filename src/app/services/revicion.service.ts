@@ -12,9 +12,9 @@ export class RevicionService {
     private servicios: ServicesService
   ) { }
 
-  getAllTipoRevision() {
+  getAllTipoRevision(data) {
     const url = `${ this.servicios.ApiURL }/revision/getAllTipoRevision.php`;
-    return this.servicios.Promet(this.Data.metodoGet(url));
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
 
   getRevision(data) {
@@ -29,6 +29,16 @@ export class RevicionService {
 
   saveRevicion(data) {
     const url = `${ this.servicios.ApiURL }/revision/saveRevicion.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  saveRevicionVisita(data) {
+    const url = `${ this.servicios.ApiURL }/revision/saveRevicionVisita.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  saveRevicionVisita2(data) {
+    const url = `${ this.servicios.ApiURL }/revision/saveRevicionVisita2.php`;
     return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
 }

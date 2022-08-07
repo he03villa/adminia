@@ -1,0 +1,44 @@
+.contenedor-carpeta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid #8275f4;
+    padding: 50px 0px;
+    border-radius: 8px;
+    margin-bottom: 32px;
+    &:hover {
+        background: #282b3b;
+        h6 {
+            color: #fff;
+        }
+    }
+    img {
+        width: 100px;
+        margin: auto;
+    }
+    h6 {
+        margin-top: 8px;
+        color: #8275f4;
+        display: flex;
+        flex-direction: column;
+        word-break: break-all;
+        padding: 9px 16px;
+    }
+}
+
+.contenedor-botones {
+    text-align: center;
+    button {
+        margin: 0 8px;
+        background-color: #8275f4;
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        letter-spacing: 1px;
+        padding: 9px 16px;
+        font-weight: bold;
+    }
+}

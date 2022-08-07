@@ -43,6 +43,9 @@ export class ModalCrearRevisionComponent implements OnInit {
     this.arrayPropietarios = change['tipoPropiedad'].currentValue;
     this.arrayTipoRevision = change['tipoRevision'].currentValue;
     this.limpiar();
+    if (this.form.controls.propiedad) {
+      this.form.controls.propiedad.setValue(this.arrayPropietarios[0].id ? this.arrayPropietarios[0].id : '');
+    }
     console.log(this.arrayPropietarios, this.arrayTipoRevision);
   }
 

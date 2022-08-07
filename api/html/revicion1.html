@@ -1,0 +1,50 @@
+<style>
+    .content-hora, .content-sector {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 220px;
+    }
+
+    .content-hora .hora, .objetico_general, .actividad {
+        border: 1px solid #8275F4;
+        padding: 4px 15px;
+    }
+
+    .content-actividad {
+        width: 250px;
+    }
+
+    .content-sector {
+        width: 500px;
+    }
+    
+</style>
+<page backtop="7mm" backbottom="7mm" backleft="10mm" backright="10mm">
+    <!-- <img src="https://vino.intermediosdigital.com/assets/image/admina.png" alt="" srcset=""> -->
+    <div class="content-hora">
+        <label for="">Hora Inicio</label>
+        <label for="" class="hora">@hora_inicio@</label>
+    </div>
+    <div class="content-sector">
+        <label for="">Sector</label>
+        <label for="" class="hora">@secto@</label>
+        <label for="">Objeto de la visita</label>
+        <label for="" class="hora">@objeto@</label>
+    </div>
+    <div>
+        <h1>Detalle de la visita</h1>
+        <h3>Objetivo general</h3>
+        <p class="objetico_general">@objetico_general@</p>
+    </div>
+    <div>
+        <h1>Actividad a corregir</h1>
+        <div class="content-actividad">
+            @actividad@
+        </div>
+    </div>
+    <div class="content-hora">
+        <label for="">Hora Fin</label>
+        <label for="" class="hora">@hora_fin@</label>
+    </div>
+</page>

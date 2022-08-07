@@ -14,7 +14,7 @@ export class EditarPerfilComponent implements OnInit {
   formUser: FormGroup = new FormGroup({});
   formCojunto: FormGroup = new FormGroup({});
   validarMensaje = true;
-  dataUser;
+  dataUser:any;
 
   constructor(
     public services: ServicesService,
@@ -34,8 +34,7 @@ export class EditarPerfilComponent implements OnInit {
       });
     } else if (this.dataUser.conjunto == 1) {
       this.formCojunto = this.fb.group({
-        nombre: [user.nombre, [Validators.required]],
-        email: [user.correo, [Validators.required]],
+        nombre: [user.nombre_propietario, [Validators.required]],
         telefono: [user.telefono, [Validators.required]],
       });
     }
@@ -48,6 +47,19 @@ export class EditarPerfilComponent implements OnInit {
 
   cambiarValidarMensaje() {
     this.validarMensaje = true;
+  }
+
+  addCuenta() {
+    this.dataUser.cuentas_bancarias.push({ nombre: '', cuenta: '' });
+  }
+
+  async removeCuenta(indece) {
+    if (this.dataUser.cuentas_bancarias[indece].id) {
+      const res = await this.Propiedad.deleteCuentas({ id: this.dataUser.cuentas_bancarias[indece].id });
+      console.log(res);
+    }
+    this.dataUser.cuentas_bancarias.splice(indece, 1);
+    localStorage.setItem('dataUser', JSON.stringify(this.dataUser));
   }
 
   async updateUser(event) {
@@ -84,7 +96,7 @@ export class EditarPerfilComponent implements OnInit {
       const res:any = await this.Propiedad.updatePropietario(data);
       this.services.Alert(res.status, '', res.message, 'Aceptar', '');
       if (res.status == 'success') {
-        this.dataUser.nombre = data.nombre;
+        this.dataUser.nombre_propietario = data.nombre;
         this.dataUser.telefono = data.telefono;
         localStorage.setItem('dataUser', JSON.stringify(this.dataUser));
       }
@@ -94,5 +106,27 @@ export class EditarPerfilComponent implements OnInit {
     }
   }
 
+  async saveCuenta(event) {
+    this.services.addLoading(event.target);
+    const cantidad = this.dataUser.cuentas_bancarias.filter(f => !this.services.validarText(f.nombre) && !this.services.validarText(f.cuenta)).length;
+    console.log(cantidad);
+    if (cantidad == 0) {
+      const data = { cuentas_bancarias: this.dataUser.cuentas_bancarias, cojunto: this.dataUser.id };
+      console.log(data);
+      const res:any = await this.Propiedad.saveCuentas(data);
+      console.log(res);
+      this.dataUser.cuentas_bancarias = res.data;
+      localStorage.setItem('dataUser', JSON.stringify(this.dataUser));
+      if (res.error.length > 0) {
+        this.services.Alert('error', '', `La cuentas ${ res.error.toString() } ya existen`, 'aceptar', '');
+      } else if (res.status == 'success') {
+        this.services.Alert('success', '', res.mensaje, 'aceptar', '');
+      }
+      this.services.removeLoading(event.target);
+    } else {
+      this.services.Alert('warning', '', 'Hay cuneta que estan en vacío', 'aceptar', '');
+      this.services.removeLoading(event.target);
+    }
+  }
 
 }

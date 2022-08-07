@@ -17,7 +17,7 @@
             box-shadow: 7px 6px 13px -6px rgba(130, 117, 244, 1);
             display: flex;
             flex-wrap: wrap;
-            width: 60%;
+            width: 100%;
         }
         @media (max-width: 575px) {
             width: 100%;
@@ -29,7 +29,8 @@
             margin-top: 16px;
         }
         input,
-        select {
+        select,
+        label {
             margin: 5px 0 0 2px;
             font-size: 12px;
             width: 80%;
@@ -37,6 +38,7 @@
             border-radius: 7px;
             border: solid 1px $primary;
             color: $body;
+            background-color: white;
         }
         .contenedorvistaprevia {
             max-height: 100px;

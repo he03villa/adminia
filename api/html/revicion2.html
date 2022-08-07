@@ -1,0 +1,55 @@
+<style>
+    .content-hora, .content-sector {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 220px;
+    }
+
+    .content-hora .hora, .objetico_general, .actividad {
+        border: 1px solid #8275F4;
+        padding: 4px 15px;
+    }
+
+    .content-actividad {
+        width: 250px;
+    }
+
+    .content-sector {
+        width: 500px;
+    }
+
+    .content-foto-observacion {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .content-imagen img {
+        width: 100px;
+        height: 100px;
+    }
+    
+</style>
+<page backtop="7mm" backbottom="7mm" backleft="10mm" backright="10mm">
+    <div class="content-sector">
+        <label for="">Hora</label>
+        <label for="" class="hora">@hora@</label>
+        <label for="">Elaboró</label>
+        <label for="" class="hora">@elaboro@</label>
+    </div>
+    <div class="content-sector">
+        <label for="">Dirigido a</label>
+        <label for="" class="hora">@dirigido@</label>
+    </div>
+    <div>
+        <h1>Comunicado</h1>
+        <h3>Asunto</h3>
+        <p class="objetico_general">@asunto@</p>
+        <h3>Contenido</h3>
+        <p class="objetico_general">@contenido@</p>
+        <h3>Objetivo general</h3>
+        <p class="objetico_general">@objetivo_general@</p>
+        <h3>Fotos y observaciones</h3>
+        @actividad@
+    </div>
+</page>

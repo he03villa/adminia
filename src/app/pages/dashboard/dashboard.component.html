@@ -20,12 +20,11 @@
             </div>
             <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
                 <img style="    filter: contrast(0.5);" src="../../../assets/image/sideboard/documents_files_icon_144654.png" alt="">
-                <p>Documento</p>
+                <p>Documentos</p>
             </div>
-            <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
+            <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard/historial-reviciones']" class="contenedor-menu-dashoboard pagos">
                 <img style="    filter: contrast(0.5);" src="../../../assets/image/sideboard/revision.png" alt="">
-
-                <p>Revisión / Visitas</p>
+                <p>Reviciones de administración</p>
             </div>
             <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
                 <img src="../../../assets/image/sideboard/pagos.png" alt="">
@@ -42,9 +41,9 @@
 
                 <p>Documentos</p>
             </div>
-            <div [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
+            <div [routerLink]="['/dashboard/historial-reviciones']" class="contenedor-menu-dashoboard pagos">
                 <img style="    filter: contrast(0.5);" src="../../../assets/image/sideboard/revision.png" alt="">
-                <p>Revisión / Visitas</p>
+                <p>Reviciones de administración</p>
             </div>
             <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
                 <img src="../../../assets/image/sideboard/pagos.png" alt="">

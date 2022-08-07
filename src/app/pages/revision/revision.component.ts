@@ -148,7 +148,8 @@ export class RevisionComponent implements OnInit {
       const res:any = await this.Revicion.saveRevicionVisita2(data);
       console.log(res);
       if (res.status == 'success') {
-        this.limpiarRevision1();
+        this.services.url('/dashboard/historial-reviciones');
+        this.limpiarRevision2();
       }
       this.services.removeLoading(event.target);
     } else {

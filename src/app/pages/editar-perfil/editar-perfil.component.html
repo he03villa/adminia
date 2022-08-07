@@ -1,5 +1,5 @@
-<h2>Edición de perfil</h2>
 <ng-container *ngIf="dataUser.conjunto == 0">
+    <h2>Perfil del propietario</h2>
     <form [formGroup]="formUser" class="row  contenedor-input bordermix">
         <div class="col-sm-6">
             <p> Nombre completo </p>
@@ -27,8 +27,9 @@
         <div class="col-sm-6">
     
             <p>
-                Teléfono de la propiedad</p>
+                Teléfono del propietario</p>
             <input type="number" formControlName="telefono" (keyup)="cambiarValidarMensaje()" placeholder="">
+            <label for="">Este telefono va ir vinculado a whatsapp <i class="fa fa-whatsapp" aria-hidden="true"></i></label>
             <ng-container *ngIf="formUser.controls.telefono.errors && !validarMensaje">
                 <label for="" *ngIf="formUser.controls.telefono.errors.required">El telefono de la propiedad está vacio</label>
             </ng-container>
@@ -45,47 +46,132 @@
     
     </form>
 </ng-container>
-<ng-container *ngIf="dataUser.conjunto == 1">
-    <form [formGroup]="formCojunto" class="row  contenedor-input bordermix">
-        <div class="col-sm-6">
-            <p> Nombre completo </p>
-            <input type="text" formControlName="nombre" placeholder="" (keyup)="cambiarValidarMensaje()">
-            <ng-container *ngIf="formCojunto.controls.nombre.errors && !validarMensaje">
-                <label for="" *ngIf="formCojunto.controls.nombre.errors.required">El nombre de la propiedad está vacio</label>
+<div class="row" *ngIf="dataUser.conjunto == 1">
+    <div class="col-6">
+        <h2>Perfil del administrador</h2>
+        <form [formGroup]="formCojunto" class="row  contenedor-input bordermix">
+            <div class="col-sm-6">
+                <p> Nombre completo </p>
+                <input type="text" formControlName="nombre" placeholder="Nombre completo" (keyup)="cambiarValidarMensaje()">
+                <ng-container *ngIf="formCojunto.controls.nombre.errors && !validarMensaje">
+                    <label for="" *ngIf="formCojunto.controls.nombre.errors.required">El nombre de la propiedad está vacio</label>
+                </ng-container>
+            </div>
+        
+        
+            <div class="col-sm-6">
+                <p>
+                    Correo electronico </p>
+                <!-- <input type="text" formControlName="email" [disabled]="true" [readOnly]="true" placeholder=""> -->
+                <label for="">{{ dataUser.correo }}</label>
+        
+            </div>
+            <!-- <div class="col-sm-6">
+                <p>
+                    Email</p>
+                <input type="text" formControlName="nombre" placeholder="">
+        
+            </div> -->
+            <div class="col-sm-6">
+                <p>
+                    Teléfono</p>
+                <input type="number" formControlName="telefono" placeholder="" (keyup)="cambiarValidarMensaje()">
+                <label for="">Este telefono va ir vinculado a whatsapp <i class="fab fa-whatsapp"></i></label>
+                <ng-container *ngIf="formCojunto.controls.telefono.errors && !validarMensaje">
+                    <label for="" *ngIf="formCojunto.controls.telefono.errors.required">El telefono está vacio</label>
+                </ng-container>
+        
+            </div>
+        
+        
+        
+            <div class="col-12 my-3">
+        
+                <!-- <button (click)="abrirModalcontrasena()">cambiar contraseña</button> -->
+                <button (click)="updateConjunto($event)">Actualizar</button>
+        
+            </div>
+        
+        </form>
+
+        <h2>Cuenta bancarias</h2>
+        <div class="row contenedor-input bordermix">
+            <ng-container *ngFor="let item of dataUser.cuentas_bancarias; let indice = index">
+                <div class="col-5">
+                    <p> Banco </p>
+                    <select [(ngModel)]="item.nombre" name="" id="">
+                        <option value="">Seleccione el banco</option>
+                        <option value="Bancolombia">Bancolombia</option>
+                        <option value="Banco de bogota">Banco de bogota</option>
+                    </select>
+                </div>
+                <div class="col-5">
+                    <p> Cuenta </p>
+                    <input type="text" [(ngModel)]="item.cuenta" placeholder="Numero de la cuenta">
+                </div>
+                <div class="col-2" style="margin: auto;">
+                    <i (click)="removeCuenta(indice)" style="cursor: pointer" class="fas fa-trash-alt"></i>
+                </div>
             </ng-container>
+            <div class="col-12 my-3">
+                <button (click)="addCuenta()">Agregar cuenta bancaria</button>
+                <button (click)="saveCuenta($event)">Actualizar</button>
+            </div>
         </div>
+    </div>
+    <div class="col-6">
+        <h2>Perfil de la propiedad</h2>
+        <form class="row  contenedor-input bordermix">
+            <div class="col-sm-6">
+                <p> Nombre de la propiedad </p>
+                <label for="">{{ dataUser.nombre }}</label>
+            </div>
+        
+        
+            <div class="col-sm-6">
+                <p>Correo electronico </p>
+                <label for="">{{ dataUser.correo }}</label>
+            </div>
+            <!-- <div class="col-sm-6">
+                <p>
+                    Email</p>
+                <input type="text" formControlName="nombre" placeholder="">
+        
+            </div> -->
+            <div class="col-sm-6">
+                <p>Tipo de la propiedad</p>
+                <label for="">{{ dataUser.nombre_tipo_propiedad }}</label>
+            </div>
     
+            <div class="col-sm-6">
+                <p>Dirección propiedad:</p>
+                <label for="">{{ dataUser.direccion }}</label>
+            </div>
     
-        <div class="col-sm-6">
-            <p>
-                Correo electronico </p>
-            <input type="text" formControlName="email" [disabled]="true" [readOnly]="true" placeholder="">
+            <div class="col-sm-6">
+                <p>Departamento:</p>
+                <label for="">{{ dataUser.departamento }}</label>
+            </div>
     
-        </div>
-        <!-- <div class="col-sm-6">
-            <p>
-                Email</p>
-            <input type="text" formControlName="nombre" placeholder="">
-    
-        </div> -->
-        <div class="col-sm-6">
-            <p>
-                Teléfono</p>
-            <input type="number" formControlName="telefono" placeholder="" (keyup)="cambiarValidarMensaje()">
-            <ng-container *ngIf="formCojunto.controls.telefono.errors && !validarMensaje">
-                <label for="" *ngIf="formCojunto.controls.telefono.errors.required">El telefono está vacio</label>
-            </ng-container>
-    
-        </div>
-    
-    
-    
-        <div class="col-12 my-3">
-    
-            <button (click)="abrirModalcontrasena()">cambiar contraseña</button>
-            <button (click)="updateConjunto($event)">Actualizar</button>
-    
-        </div>
-    
-    </form>
-</ng-container>
+            <div class="col-sm-6">
+                <p>Ciudad:</p>
+                <label for="">{{ dataUser.ciudad }}</label>
+            </div>
+            
+            <div class="col-sm-6">
+                <p>Código postal:</p>
+                <label for="">{{ dataUser.codigo_postal }}</label>
+            </div>
+        
+        
+        
+            <div class="col-12 my-3">
+        
+                <button (click)="abrirModalcontrasena()">cambiar contraseña</button>
+                <!-- <button (click)="updateConjunto($event)">Actualizar</button> -->
+        
+            </div>
+        
+        </form>
+    </div>
+</div>

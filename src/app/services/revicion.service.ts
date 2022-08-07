@@ -12,9 +12,9 @@ export class RevicionService {
     private servicios: ServicesService
   ) { }
 
-  getAllTipoRevision() {
+  getAllTipoRevision(data) {
     const url = `${ this.servicios.ApiURL }/revision/getAllTipoRevision.php`;
-    return this.servicios.Promet(this.Data.metodoGet(url));
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
 
   getRevision(data) {

@@ -100,7 +100,7 @@
                     </ng-container>
                 </div>
                 <div class="item-input">
-                    <p> Telefono de la propiedad </p>
+                    <p> Telefono del administrador actual </p>
                     <input type="number" placeholder="" formControlName="telefono" (keyup)="cambiarValidarMensaje()">
                     <ng-container *ngIf="form.controls.telefono.errors && !validarMensaje">
                         <label for="" *ngIf="form.controls.telefono.errors.required">El telefono está vacio</label>

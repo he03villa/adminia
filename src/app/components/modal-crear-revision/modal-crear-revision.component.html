@@ -16,13 +16,13 @@
                             <option *ngFor="let item of arrayTipoRevision" [value]="item.id">{{ item.nombre }}</option>
                         </select>
                     </div>
-                    <div>
+                    <!-- <div>
                         <label for="">Propiedad</label> <br>
                         <select name="" id="" formControlName="propiedad">
                             <option value="">Seleccionar</option>
                             <option *ngFor="let item of arrayPropietarios" [value]="item.id">{{ item.nombre }}</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="custom-input-file">
                         <input type="file" id="file" class="input-file" (change)="cambioArchivo($event)"> Subir fichero...
                     </div>

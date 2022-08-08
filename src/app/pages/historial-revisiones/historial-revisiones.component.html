@@ -33,6 +33,6 @@
 </div>
 
 <div class="contenedor-botones">
-    <button (click)="services.url('dashboard/revision')">Crear revición</button>
+    <button ngIf="!propiedad" (click)="services.url('dashboard/revision')">Crear revición</button>
     <button (click)="atras()" *ngIf="documento">Atras</button>
 </div>

@@ -12,6 +12,7 @@ export class HistorialRevisionesComponent implements OnInit {
   arrayTipoRevision = [];
   arrayDocumento = [];
   documento = false;
+  propiedad = false;
 
   constructor(
     public services: ServicesService,
@@ -19,6 +20,8 @@ export class HistorialRevisionesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const propiedad = JSON.parse(sessionStorage.getItem('dataPropiedad'));
+    this.propiedad = propiedad ? true : false;
     this.cargarListarTipo();
   }
 

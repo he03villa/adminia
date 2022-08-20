@@ -9,8 +9,8 @@ declare var $ : any;
 })
 export class ServicesService {
 
-  ApiURL = 'https://vino.intermediosdigital.com/api/controllers';
-  urlRevicion = 'http://vino.intermediosdigital.com';
+  ApiURL = 'https://admina.com.co/api/controllers';
+  urlRevicion = 'http://admina.com.co';
 
   urlPaginas = {
     '/dashboard': 'dashoboard'

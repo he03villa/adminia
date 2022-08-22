@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import { DashboardHomeRoutingModule } from './dashboard-home-routing.module';
 import { DashboardHomeComponent } from './dashboard-home.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -10,6 +11,7 @@ import { DashboardHomeComponent } from './dashboard-home.component';
   imports: [
     CommonModule,
     MatIconModule,
+    FormsModule,
     DashboardHomeRoutingModule
   ]
 })

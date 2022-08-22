@@ -4,28 +4,32 @@
             <div class="row">
                 <div class="col-8">
                     <div class="conten-propiedades">
-                        <input type="text">
-                        <textarea name="" id="" style="width: 100%; max-height: 200px">
-                    esto es el muro
+                        <textarea name="" id="" [(ngModel)]="descripcionMuro" style="width: 100%; max-height: 200px">
+                            esto es el muro
 
-                 </textarea>
-                        <h6>usuario </h6>
-                        <small>19/08/2022 12:30pm</small>
-                        <div>
-                            comentario del muro
-                        </div>
+                        </textarea>
+                        <button (click)="saveMuro($event)">Publicar</button>
+                        <ng-container *ngFor="let item of arrayMuro">
+                            <h6>{{ item.nombre_user }}</h6>
+                            <small>{{ item.fecha_creacion }}</small>
+                            <div>
+                                {{ item.descripcion }}
+                            </div>
+                            <input type="text" [(ngModel)]="comentario">
+                            <button (click)="saveComentario($event, item.id)">Comentar</button>
+                        </ng-container>
                     </div>
                 </div>
-                <div class="col-4">
+                <!-- <div class="col-4">
                     <div class="contect-comunidad">
                         <img src="../../../assets/image/dashboard/Humaaan.png" alt="">
                         <h6>Comunicados</h6>
                         <button>Crear nuevo <mat-icon>add</mat-icon></button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
-        <div class="col-4">
+        <!-- <div class="col-4">
             <div class="conten-buzon">
                 <h2>Buzón de mensajes</h2>
                 <div class="conten-buzon-mensaje">
@@ -91,6 +95,6 @@
                 <hr>
                 <a>Ver todos los mensajes <mat-icon>arrow_forward</mat-icon></a>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

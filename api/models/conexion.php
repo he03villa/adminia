@@ -1,10 +1,10 @@
 <?php
     class Conexion{
         private $conexion;
-        private $usuario='intermed_zabiro2';
-        private $clave='Sawadatsunayoshi1234';
+        private $usuario='u322424575_zabiro';
+        private $clave='Sawadatsunayoshi1';
         private $server='localhost';
-        private $db='intermed_luchomix2';
+        private $db='u322424575_Adminabq';
         private $rutaService = '';
         /* private $usuario='root';
         private $clave='';

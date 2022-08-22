@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      email: ['prueba1@prueba.com', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
     });
     this.formRegistro = this.fb.group({
       nombre: ['', [Validators.required]],
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       this.services.removeLoading(event.target);
       if (res['status'] == 'success') {
         localStorage.setItem('dataUser', JSON.stringify(res['data']));
-        this.services.url('dashboard');
+        this.services.url('dashboard/copropiedades');
       } else {
         this.services.Alert('error', '', res['message'], 'Aceptar', '', false);
       }
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
       this.services.removeLoading(event.target);
       if (res['status'] == 'success') {
         localStorage.setItem('dataUser', JSON.stringify(res['data']));
-        this.services.url('dashboard/propietarios');
+        this.services.url('dashboard');
       } else {
         this.services.Alert('error', '', res['message'], 'Aceptar', '', false);
       }

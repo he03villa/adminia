@@ -24,7 +24,7 @@ const routes: Routes = [
       { path: 'revision', loadChildren: () => import('./pages/revision/revision.module').then(m => m.RevisionModule) },
       { path: 'editar-perfil', loadChildren: () => import('./pages/editar-perfil/editar-perfil.module').then(m => m.EditarPerfilModule) },
       { path: 'historial-reviciones', loadChildren: () => import('./pages/historial-revisiones/historial-revisiones.module').then(m => m.HistorialRevisionesModule) },
-      { path: '**', redirectTo: '' },
+      { path: '**', redirectTo: 'copropiedades' },
     ]
   },
   {

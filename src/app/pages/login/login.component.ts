@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       this.services.removeLoading(event.target);
       if (res['status'] == 'success') {
         localStorage.setItem('dataUser', JSON.stringify(res['data']));
-        this.services.url('dashboard');
+        this.services.url('dashboard/copropiedades');
       } else {
         this.services.Alert('error', '', res['message'], 'Aceptar', '', false);
       }
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
       this.services.removeLoading(event.target);
       if (res['status'] == 'success') {
         localStorage.setItem('dataUser', JSON.stringify(res['data']));
-        this.services.url('dashboard/propietarios');
+        this.services.url('dashboard');
       } else {
         this.services.Alert('error', '', res['message'], 'Aceptar', '', false);
       }

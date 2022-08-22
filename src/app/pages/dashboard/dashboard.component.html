@@ -6,7 +6,7 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" opened>
         <ng-container *ngIf="!propiedad">
-            <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard']" class="contenedor-menu-dashoboard dashoboard">
+            <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard']" class="contenedor-menu-dashoboard dashoboard">
                 <img src="../../../assets/image/sideboard/dashboard.png" alt="">
                 <p>Dashboard</p>
             </div>
@@ -36,6 +36,10 @@
             </div>
         </ng-container>
         <ng-container *ngIf="propiedad">
+            <div [routerLink]="['/dashboard']" class="contenedor-menu-dashoboard dashoboard">
+                <img src="../../../assets/image/sideboard/dashboard.png" alt="">
+                <p>Dashboard</p>
+            </div>
             <div [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
                 <img style="    filter: contrast(0.5);" src="../../../assets/image/sideboard/documents_files_icon_144654.png" alt="">
 

@@ -15,8 +15,8 @@
                             <div>
                                 {{ item.descripcion }}
                             </div>
-                            <input type="text" [(ngModel)]="comentario">
-                            <button (click)="saveComentario($event, item.id)">Comentar</button>
+                            <input type="text" [(ngModel)]="item.comentario">
+                            <button (click)="saveComentario($event, item.id, item.comentario)">Comentar</button>
                         </ng-container>
                     </div>
                 </div>

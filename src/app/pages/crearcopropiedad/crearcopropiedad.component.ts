@@ -151,7 +151,7 @@ export class CrearcopropiedadComponent implements OnInit {
         this.services.url('/login');
         /* this.services.url('dashboard/copropiedades'); */
       } else {
-        this.services.Alert('success', '', res.message, 'Aceptar', '');
+        this.services.Alert('error', '', res.message, 'Aceptar', '');
       }
       this.services.removeLoading(event.target);
     } else {

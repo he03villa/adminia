@@ -21,52 +21,57 @@
         }
 
         public function savePropiedad($propiedad) {
-            parent::conectar();
-            $codigo = "sha1(concat(sha1('$propiedad[email]'), sha1(current_timestamp)))";
-            $password = "sha1(concat(sha1('$propiedad[email]'), sha1('$propiedad[password]')))";
-            $consultar1 = "INSERT Into cojunto(nombre, direccion, ciudad, departamento, codigo_postal, codigo, tipo_propiedad_id, fecha_creacion, correo, password, telefono) Value ('$propiedad[nombre]', '$propiedad[direccion]', '$propiedad[ciudad]', '$propiedad[departamento]', '$propiedad[codigo_postal]', $codigo, $propiedad[tipo_propiedad_id], current_timestamp, '$propiedad[email]', $password, '$propiedad[telefono]')";
-            $preId = parent::queryRegistro($consultar1);
-            if ($preId) {
-                if ($propiedad['tipo_propiedad_id'] == '1' || $propiedad['tipo_propiedad_id'] == 1) {
-                    $urbanizacion = $propiedad['urbanizacion'];
-                    for ($i = 0; $i < $urbanizacion['cantidad_propiedad']; $i++) { 
-                        $nombre = $urbanizacion['nombre_nomezclatura'] . ' ' . ($i + $urbanizacion['inicio_nomezclatura']);
-                        $consultar2 = "INSERT Into propiedad(nombre, fecha, cojunto_id) Value('$nombre', current_timestamp, $preId)";
-                        parent::query($consultar2);
-                    }
-                } else if ($propiedad['tipo_propiedad_id'] == '2' || $propiedad['tipo_propiedad_id'] == 2) {
-                    $edificion = $propiedad['edificion'];
-                    for ($i=0; $i < $edificion['numero_torres']; $i++) {
-                        $nombre = 'Torre ' . ($i + 1);
-                        $consultar2 = "INSERT Into torre(nombre, fecha, cojunto_id) Value('$nombre', current_timestamp, $preId)";
-                        $preTorreId = parent::queryRegistro($consultar2);
-                        $element = $edificion['arrayNumeroPiso'][$i];
-                        for ($j=0; $j < count($element); $j++) { 
-                            $elementi = $element[$j];
-                            if ((int)$elementi['piso_inicio'] > 0 && (int)$elementi['cantdad'] > 0) {
-                                $lent = (int)$elementi['piso_inicio'] >= (int)$elementi['piso_fin'] ? 1 : (((int)$elementi['piso_fin'] - (int)$elementi['piso_inicio']) + 1);
-                                for ($m=0; $m < $lent; $m++) {
-                                    for ($k=0; $k < (int)$elementi['cantdad']; $k++) { 
-                                        $numero = (($m + (int)$elementi['piso_inicio']) * 100) + ($k + 1);
-                                        $consultar3 = "INSERT Into propiedad(nombre, fecha, cojunto_id, torre_id) Value('$numero', current_timestamp, $preId, $preTorreId)";
-                                        /* echo $consultar3; */
-                                        parent::queryRegistro($consultar3);
+            $existe = $this->getPropiedadEmail($propiedad['email']);
+            if ($existe['data'] != null) {
+                $resul = array('status' => 'errorUser', 'message' => 'El usuairo ya existe');
+            } else {
+                parent::conectar();
+                $codigo = "sha1(concat(sha1('$propiedad[email]'), sha1(current_timestamp)))";
+                $password = "sha1(concat(sha1('$propiedad[email]'), sha1('$propiedad[password]')))";
+                $consultar1 = "INSERT Into cojunto(nombre, direccion, ciudad, departamento, codigo_postal, codigo, tipo_propiedad_id, fecha_creacion, correo, password, telefono) Value ('$propiedad[nombre]', '$propiedad[direccion]', '$propiedad[ciudad]', '$propiedad[departamento]', '$propiedad[codigo_postal]', $codigo, $propiedad[tipo_propiedad_id], current_timestamp, '$propiedad[email]', $password, '$propiedad[telefono]')";
+                $preId = parent::queryRegistro($consultar1);
+                if ($preId) {
+                    if ($propiedad['tipo_propiedad_id'] == '1' || $propiedad['tipo_propiedad_id'] == 1) {
+                        $urbanizacion = $propiedad['urbanizacion'];
+                        for ($i = 0; $i < $urbanizacion['cantidad_propiedad']; $i++) { 
+                            $nombre = $urbanizacion['nombre_nomezclatura'] . ' ' . ($i + $urbanizacion['inicio_nomezclatura']);
+                            $consultar2 = "INSERT Into propiedad(nombre, fecha, cojunto_id) Value('$nombre', current_timestamp, $preId)";
+                            parent::query($consultar2);
+                        }
+                    } else if ($propiedad['tipo_propiedad_id'] == '2' || $propiedad['tipo_propiedad_id'] == 2) {
+                        $edificion = $propiedad['edificion'];
+                        for ($i=0; $i < $edificion['numero_torres']; $i++) {
+                            $nombre = 'Torre ' . ($i + 1);
+                            $consultar2 = "INSERT Into torre(nombre, fecha, cojunto_id) Value('$nombre', current_timestamp, $preId)";
+                            $preTorreId = parent::queryRegistro($consultar2);
+                            $element = $edificion['arrayNumeroPiso'][$i];
+                            for ($j=0; $j < count($element); $j++) { 
+                                $elementi = $element[$j];
+                                if ((int)$elementi['piso_inicio'] > 0 && (int)$elementi['cantdad'] > 0) {
+                                    $lent = (int)$elementi['piso_inicio'] >= (int)$elementi['piso_fin'] ? 1 : (((int)$elementi['piso_fin'] - (int)$elementi['piso_inicio']) + 1);
+                                    for ($m=0; $m < $lent; $m++) {
+                                        for ($k=0; $k < (int)$elementi['cantdad']; $k++) { 
+                                            $numero = (($m + (int)$elementi['piso_inicio']) * 100) + ($k + 1);
+                                            $consultar3 = "INSERT Into propiedad(nombre, fecha, cojunto_id, torre_id) Value('$numero', current_timestamp, $preId, $preTorreId)";
+                                            /* echo $consultar3; */
+                                            parent::queryRegistro($consultar3);
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    $propiedad['id'] = $preId;
+                    $this->enviarCorreoRegistro($propiedad);
+                    parent::cerrar();
+                    /* $consultar3 = "SELECT * from cojunto where id = $preId";
+                    $data = parent::consultarArreglo($consultar3); */
+                    /* $res = $this->login($propiedad); */
+                    $res = array('status' => 'success', 'message' => 'La propiedad se registro');
+                } else {
+                    $res = array('status' => 'error', 'message' => 'Error en el servidor', 'sql' => $consultar1);
+                    parent::cerrar();
                 }
-                $propiedad['id'] = $preId;
-                $this->enviarCorreoRegistro($propiedad);
-                parent::cerrar();
-                /* $consultar3 = "SELECT * from cojunto where id = $preId";
-                $data = parent::consultarArreglo($consultar3); */
-                /* $res = $this->login($propiedad); */
-                $res = array('status' => 'success', 'message' => 'La propiedad se registro');
-            } else {
-                $res = array('status' => 'error', 'message' => 'Error en el servidor', 'sql' => $consultar1);
-                parent::cerrar();
             }
             return $res;
         }
@@ -134,7 +139,7 @@
         public function getPropiedadEmail($email)
         {
             parent::conectar();
-            $consultar = "SELECT * from cojunto where correo = '$email' or id = $email";
+            $consultar = "SELECT * from cojunto where correo = '$email' or id = '$email'";
             $user = parent::consultaTodo($consultar);
             parent::cerrar();
             return $resul = array('status' => 'success', 'message' => 'El usuairo', 'data' => $user);

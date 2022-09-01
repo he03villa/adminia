@@ -85,7 +85,7 @@ export class CopropiedadesComponent implements OnInit {
     if (item.status == '1') {
       this.Dashboard.propiedad = item;
       sessionStorage.setItem('dataPropiedad', JSON.stringify(item));
-      this.services.url('/dashboard/documento');
+      this.services.url('/dashboard');
     } else {
       this.services.Alert('warning', '', 'No tiene permiso entrar a la propiedad hasta que el administrado lo admite', 'Aceptar', '');
     }

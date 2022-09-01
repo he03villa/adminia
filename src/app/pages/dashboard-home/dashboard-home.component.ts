@@ -44,12 +44,13 @@ export class DashboardHomeComponent implements OnInit {
       const data = {
         conjunto: user.conjunto,
         descripcion: this.descripcionMuro,
-        cojunto: this.propiedad.cojunto_id,
+        cojunto: this.propiedad ? this.propiedad.cojunto_id : user.id,
         user: user.id
       };
       const res:any = await this.Muro.saveMuro(data);
       this.services.Alert(res.status, '', res.message, 'Aceptar', '');
       if (res.status == 'success') {
+        this.descripcionMuro = '';
         this.arrayMuro.unshift(res.data);
       }
       this.services.removeLoading(event.target);
@@ -58,13 +59,13 @@ export class DashboardHomeComponent implements OnInit {
     }
   }
 
-  async saveComentario(event, muro) {
+  async saveComentario(event, muro, comentario) {
     this.services.addLoading(event.target);
-    if (this.validarComentario()) {
+    if (this.validarComentario(comentario)) {
       const user = JSON.parse(localStorage.getItem('dataUser'));
       const data = {
         conjunto: user.conjunto,
-        comentario: this.comentario,
+        comentario: comentario,
         muro: muro,
         user: user.id
       };
@@ -72,7 +73,8 @@ export class DashboardHomeComponent implements OnInit {
       this.services.Alert(res.status, '', res.message, 'Aceptar', '');
       if (res.status == 'success') {
         const post = this.arrayMuro.findIndex(f => f.id == muro);
-        this.arrayMuro[post].comentario.unshift(res.data);
+        this.arrayMuro[post].comentario = '';
+        this.arrayMuro[post].comentarios.unshift(res.data);
       }
       this.services.removeLoading(event.target);
     } else {
@@ -88,8 +90,8 @@ export class DashboardHomeComponent implements OnInit {
     return true;
   }
 
-  validarComentario() {
-    if (!this.services.validarText(this.comentario)) {
+  validarComentario(comentario) {
+    if (!this.services.validarText(comentario)) {
       this.services.Alert('warning', '', 'La descripción de la publicación está vacía', 'Aceptar', '');
       return false;
     }

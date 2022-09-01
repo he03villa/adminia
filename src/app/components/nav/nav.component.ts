@@ -39,7 +39,7 @@ export class NavComponent implements OnInit {
   atras() {
     this.Dashboard.propiedad = undefined;
     sessionStorage.removeItem('dataPropiedad');
-    this.services.url('/dashboard');
+    this.services.url('/dashboard/copropiedades');
   }
 
   async cargarNotificacion() {

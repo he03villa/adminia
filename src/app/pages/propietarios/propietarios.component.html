@@ -14,7 +14,7 @@
                     <th>Nombre</th>
                     <th>Propietario</th>
                     <th>Estado</th>
-                    <th>Fecha</th>
+                    <!-- <th>Fecha</th> -->
                     <th>Detalles</th>
                 </tr>
             </thead>
@@ -23,7 +23,7 @@
                     <td>{{ item.nombre }}</td>
                     <td (click)="services.validarText(item.nombre_user) ? verInfoPropietario(item) : ''">{{ services.validarText(item.nombre_user) ? item.nombre_user : '-' }}</td>
                     <td>{{ services.validarNumeroConCero(item.status) ? item.status == '0' ? 'Falta por aprobar' : 'Aprobado' : '-' }}</td>
-                    <td>{{ item.fecha }}</td>
+                    <!-- <td>{{ item.fecha }}</td> -->
                     <td *ngIf="services.validarText(item.nombre_user)" (click)="verInfoPropietario(item)" class="cursorpointer">Ver información</td>
                 </tr>
             </tbody>

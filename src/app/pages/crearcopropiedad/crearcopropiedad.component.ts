@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ServicesService } from '../../services/services.service';
 import { PropiedadService } from '../../services/propiedad.service';
+import { AutocompleteService } from '../../services/autocomplete.service';
 
 @Component({
   selector: 'app-crearcopropiedad',
   templateUrl: './crearcopropiedad.component.html',
   styleUrls: ['./crearcopropiedad.component.scss']
 })
-export class CrearcopropiedadComponent implements OnInit {
+export class CrearcopropiedadComponent implements OnInit, OnDestroy {
 
   form: FormGroup = new FormGroup({});
   validarMensaje = true;
+  $_autoComplete;
   arrayTipo = [];
   arrayNombre = [];
   arrayNombreEdificio = [];
@@ -28,10 +30,11 @@ export class CrearcopropiedadComponent implements OnInit {
   constructor(
     public services: ServicesService,
     private fb: FormBuilder,
-    private Propiedad: PropiedadService
+    private Propiedad: PropiedadService,
+    private autoComplete: AutocompleteService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.form = this.fb.group({
       nombre: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
@@ -47,6 +50,19 @@ export class CrearcopropiedadComponent implements OnInit {
       telefono: ['', [Validators.required]],
     });
     this.cargarTipo();
+    this.autoComplete.cargarAutoComplete('pac-input');
+    this.$_autoComplete = this.autoComplete.autoCompleto.subscribe(res => {
+      this.form.controls.direccion.setValue(res.direccion);
+      this.form.controls.ciudad.setValue(res.ciudad);
+      this.form.controls.departamento.setValue(res.departamento);
+      this.form.controls.codigo_postal.setValue(res.codigoPos);
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.$_autoComplete) {
+      this.$_autoComplete.unsubscribe();
+    }
   }
 
   async cargarTipo() {

@@ -1,13 +1,26 @@
 <div class="row" *ngIf="!documento">
-    <div class="col-sm-3" *ngFor="let item of arrayTipoRevision">
-        <div class="contenedor-carpeta" (click)="verDocumento(item)">
-            <img src="assets/image/documentos/carpeta.png" alt="">
-            <h6>
-
-                {{ item.nombre }}
-            </h6>
+    <ng-container *ngIf="arrayTipoRevision.length > 0">
+        <div class="col-sm-3" *ngFor="let item of arrayTipoRevision">
+            <div class="content-opcion">
+                <i class="fas fa-pencil-alt" (click)="abrirModalCrearCarpeta(item)"></i>
+                <i class="fas fa-trash-alt" (click)="deleteCarpeta(item)"></i>
+            </div>
+            <div class="contenedor-carpeta" (click)="verDocumento(item)">
+                <img src="assets/image/documentos/carpeta.png" alt="">
+                <h6>
+    
+                    {{ item.nombre }}
+                </h6>
+            </div>
         </div>
-    </div>
+    </ng-container>
+    <ng-container *ngIf="arrayTipoRevision.length == 0">
+        <div class="col-sm-12">
+            <div class="contenedor-carpeta">
+                <app-no-data></app-no-data>
+            </div>
+        </div>
+    </ng-container>
 </div>
 
 <div class="row" *ngIf="documento">
@@ -59,5 +72,6 @@
 
 <div class="contenedor-botones">
     <button *ngIf="!propiedad" data-toggle="modal" data-target="#modal-save-documento" (click)="abrirModal()">Agregar</button>
+    <button *ngIf="!propiedad" (click)="abrirModalCrearCarpeta()">Agregar nuevo documento</button>
     <button (click)="atras()" *ngIf="documento">Atras</button>
 </div>

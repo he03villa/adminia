@@ -28,6 +28,20 @@
     }
 }
 
+.content-opcion {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    position: absolute;
+    right: 25px;
+    top: 9px;
+    i {
+        margin: 5px 0px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+}
+
 .contenedor-botones {
     text-align: center;
     button {

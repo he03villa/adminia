@@ -1,6 +1,13 @@
 <div class="row row-tabla">
     <div class="col-12" *ngIf="!propiedad">
         <h2>Listado de Propietarios</h2>
+        <label *ngIf="arrayTorre.length > 0">Torres</label>
+        <select *ngIf="arrayTorre.length > 0" [(ngModel)]="selectTorre" (change)="cambiarTorre()">
+            <option *ngFor="let item of arrayTorre" [value]="item.id">{{ item.nombre }}</option>
+        </select>
+    </div>
+    <div class="col-12" *ngIf="!propiedad">
+        <h2>Listado de Propietarios</h2>
     </div>
     <div class="col-12 contenedor-tabla" *ngIf="!propiedad">
 
@@ -10,7 +17,7 @@
                     <th>Nombre</th>
                     <th>Propietario</th>
                     <th>Estado</th>
-                    <th>Fecha</th>
+                    <!-- <th>Fecha</th> -->
                     <th>Contacto via whatsapp</th>
                 </tr>
             </thead>
@@ -20,7 +27,7 @@
                     <td>{{ services.validarText(item.nombre_user) ? item.nombre_user : '-' }}</td>
                     <td style="cursor: pointer;" (click)="services.validarText(item.telefono_user) ? compartirWhatsapp(item.telefono_user) : ''">
                         {{ services.validarText(item.telefono_user) ? item.telefono_user : '-' }}</td>
-                    <td>{{ item.fecha }}</td>
+                    <!-- <td>{{ item.fecha }}</td> -->
                     <td style="cursor: pointer;" *ngIf="services.validarText(item.telefono_user)" (click)="compartirWhatsapp(item.telefono_user)">Contactar</td>
                 </tr>
             </tbody>

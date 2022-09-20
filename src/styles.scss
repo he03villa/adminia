@@ -95,3 +95,15 @@ body {
 .conten-nav {
     background: #fafafa;
 }
+
+.pac-container{
+    width: 325px !important;
+}
+
+.content-group-form {
+    .group-form {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+}

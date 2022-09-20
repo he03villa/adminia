@@ -41,4 +41,19 @@ export class RevicionService {
     const url = `${ this.servicios.ApiURL }/revision/saveRevicionVisita2.php`;
     return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
+
+  saveTipoRevicion(data) {
+    const url = `${ this.servicios.ApiURL }/revision/saveTipoRevicion.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  updateTipoRevicion(data) {
+    const url = `${ this.servicios.ApiURL }/revision/updateTipoRevicion.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  deleteTipoRevicion(data) {
+    const url = `${ this.servicios.ApiURL }/revision/deleteTipoRevicion.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
 }

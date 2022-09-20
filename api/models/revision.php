@@ -10,16 +10,72 @@
         public function getAllTipoRevision($revicion) {
             parent::conectar();
             $in = '';
-            for ($i=0; $i < count($revicion["tipo"]); $i++) { 
-                $in = $in.$revicion["tipo"][$i];
-                if ($i < (count($revicion["tipo"]) - 1)) {
-                    $in = $in.',';
+            $win = '';
+            $wcojunto = '';
+            if (isset($revicion["tipo"])) {
+                for ($i=0; $i < count($revicion["tipo"]); $i++) { 
+                    $in = $in.$revicion["tipo"][$i];
+                    if ($i < (count($revicion["tipo"]) - 1)) {
+                        $in = $in.',';
+                    }
                 }
+                $win = "id in($in)";
             }
-            $consultar = "SELECT * from tipo_revision where id in($in)";
+            if (isset($revicion["cojunto"])) {
+                $wcojunto = "cojunto_id = $revicion[cojunto]";
+            }
+            $consultar = "SELECT * from tipo_revision where $win $wcojunto";
             $lista = parent::consultaTodo($consultar);
             parent::cerrar();
             return array('status' => 'success', 'data' => $lista);
+        }
+
+        public function saveTipoRevicion($revicion) {
+            parent::conectar();
+            $res;
+            $consultar1 = "INSERT into tipo_revision (nombre, descripcion, fecha, cojunto_id) Value ('$revicion[nombre]', '$revicion[descripcion]', current_time, $revicion[cojunto])";
+            $preId = parent::queryRegistro($consultar1);
+            if ($preId > 0) {
+                $consultar2 = "SELECT * from tipo_revision where id = $preId";
+                $data = parent::consultarArreglo($consultar2);
+                $res = array('status' => 'success', 'message' => 'Se registro la carpeta correctamente', 'data' => $data);
+            } else {
+                $res = array('status' => 'error', 'message' => 'Ocurrio un error');
+            }
+            parent::cerrar();
+            return $res;
+        }
+
+        public function updateTipoRevicion($revicion) {
+            $res;
+            $existe = $this->getTipoRevicion($revicion);
+            if ($existe['data'] == null) {
+                $res = array('status' => 'errorTipoRevicion', 'message' => 'La carpeta no existe');
+            } else {
+                parent::conectar();
+                $consultar1 = "UPDATE tipo_revision SET nombre = '$revicion[nombre]', descripcion = '$revicion[descripcion]' where id = $revicion[id]";
+                $preId = parent::query($consultar1);
+                $consultar2 = "SELECT * from tipo_revision where id = $revicion[id]";
+                $data = parent::consultarArreglo($consultar2);
+                $res = array('status' => 'success', 'message' => 'Se actualizo la carpeta', 'data' => $data);
+                parent::cerrar();
+            }
+            return $res;
+        }
+
+        public function deleteTipoRevicion($revicion) {
+            $res;
+            $existe = $this->getTipoRevicion($revicion);
+            if ($existe['data'] == null) {
+                $res = array('status' => 'errorTipoRevicion', 'message' => 'La carpeta no existe');
+            } else {
+                parent::conectar();
+                $consultar1 = "DELETE FROM tipo_revision where id = $revicion[id]";
+                $preId = parent::query($consultar1);
+                $res = array('status' => 'success', 'message' => 'Se elimino la carpeta');
+                parent::cerrar();
+            }
+            return $res;
         }
 
         public function getRevision($revision) {
@@ -229,5 +285,13 @@
                 parent::cerrar();
                 return $formatter->getHtmlMessage();
             }
+        }
+
+        public function getTipoRevicion($revicion) {
+            parent::conectar();
+            $consultar = "SELECT * from tipo_revision where id = '$revicion[id]'";
+            $user = parent::consultarArreglo($consultar);
+            parent::cerrar();
+            return $resul = array('status' => 'success', 'message' => 'El tipo de revicion', 'data' => $user);
         }
     }

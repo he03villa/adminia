@@ -10,7 +10,10 @@ import { PropiedadService } from '../../services/propiedad.service';
 export class BuzonComponent implements OnInit {
 
   arrayPropietarios = [];
+  auxArrayPropietarios = [];
+  arrayTorre = [];
   propiedad;
+  selectTorre = '0';
 
   constructor(
     public services: ServicesService,
@@ -28,7 +31,14 @@ export class BuzonComponent implements OnInit {
 
   async listarPropietarios(propiedad) {
     const res:any = await this.Propiedad.getAllPropiedad({ id: propiedad });
-    this.arrayPropietarios = res.data;
+    this.arrayTorre = res.torre;
+    if (this.arrayTorre.length > 0) {
+      this.selectTorre = this.arrayTorre[0].id;
+      this.auxArrayPropietarios = res.data;
+      this.arrayPropietarios = this.auxArrayPropietarios.filter(f => f.torre_id == this.selectTorre);
+    } else {
+      this.arrayPropietarios = res.data;
+    }
   }
 
   compartirWhatsapp(numero) {

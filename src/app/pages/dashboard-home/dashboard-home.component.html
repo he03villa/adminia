@@ -1,34 +1,40 @@
 <div class="container">
+
     <div class="row">
         <div class="col-8">
-            <div class="row">
-                <div class="col-8">
-                    <div class="conten-propiedades">
-                        <textarea name="" id="" [(ngModel)]="descripcionMuro" style="width: 100%; max-height: 200px">
+            <div class="conten-propiedades">
+
+                <textarea name="" id="" [(ngModel)]="descripcionMuro" style="width: 100%; max-height: 200px">
                             esto es el muro
 
                         </textarea>
-                        <button (click)="saveMuro($event)">Publicar</button>
-                        <ng-container *ngFor="let item of arrayMuro">
-                            <h6>{{ item.nombre_user }}</h6>
-                            <small>{{ item.fecha_creacion }}</small>
-                            <div>
-                                {{ item.descripcion }}
-                            </div>
+                <button (click)="saveMuro($event)">Publicar</button>
+                <div class="contenedor-comentario">
+
+                    <ng-container *ngFor="let item of arrayMuro">
+                        <hr>
+                        <h6>{{ item.nombre_user }}</h6>
+                        <small>{{ item.fecha_creacion }}</small>
+                        <div>
+                            {{ item.descripcion }}
+                        </div>
+                        <div class="botonini">
+
                             <input type="text" [(ngModel)]="item.comentario">
                             <button (click)="saveComentario($event, item.id, item.comentario)">Comentar</button>
-                        </ng-container>
-                    </div>
+                        </div>
+                    </ng-container>
                 </div>
-                <!-- <div class="col-4">
+
+            </div>
+        </div>
+        <!-- <div class="col-4">
                     <div class="contect-comunidad">
                         <img src="../../../assets/image/dashboard/Humaaan.png" alt="">
                         <h6>Comunicados</h6>
                         <button>Crear nuevo <mat-icon>add</mat-icon></button>
                     </div>
                 </div> -->
-            </div>
-        </div>
         <!-- <div class="col-4">
             <div class="conten-buzon">
                 <h2>Buzón de mensajes</h2>

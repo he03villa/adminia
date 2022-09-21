@@ -55,6 +55,12 @@ a:hover {
     color: #8275F4!important;
 }
 
+.resaltar {
+    text-decoration: underline;
+    color: #8275F4!important;
+    font-weight: bold;
+}
+
 .labelhover:hover {
     color: #8275F4!important;
 }
@@ -96,7 +102,7 @@ body {
     background: #fafafa;
 }
 
-.pac-container{
+.pac-container {
     width: 325px !important;
 }
 

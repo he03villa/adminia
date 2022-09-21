@@ -6,9 +6,7 @@
             <option *ngFor="let item of arrayTorre" [value]="item.id">{{ item.nombre }}</option>
         </select>
     </div>
-    <div class="col-12" *ngIf="!propiedad">
-        <h2>Listado de Propietarios</h2>
-    </div>
+
     <div class="col-12 contenedor-tabla" *ngIf="!propiedad">
 
         <table>
@@ -34,6 +32,6 @@
         </table>
     </div>
     <div class="col-12" *ngIf="propiedad">
-        <p>Comunicate con el administrado <span (click)="compartirWhatsapp(propiedad.telefono)">aquí</span></p>
+        <p>Comunicate con el administrado <span class="resaltar" (click)="compartirWhatsapp(propiedad.telefono)">aquí</span></p>
     </div>
 </div>

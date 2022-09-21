@@ -39,12 +39,12 @@ export class DocumentosComponent implements OnInit {
     const user = JSON.parse(localStorage.getItem('dataUser'));
     const propiedad = JSON.parse(sessionStorage.getItem('dataPropiedad'));
     const data = { cojunto: propiedad ? propiedad.cojunto_id : user.id };
-    const res:any = await this.Revicion.getAllTipoRevision(data);
+    const res: any = await this.Revicion.getAllTipoRevision(data);
     this.arrayTipoRevision = res.data;
   }
 
   async listarPropietarios(propiedad) {
-    const res:any = await this.Propiedad.getAllPropiedad({ id: propiedad });
+    const res: any = await this.Propiedad.getAllPropiedad({ id: propiedad });
     this.arrayPropietarios = res.data;
   }
 
@@ -56,14 +56,14 @@ export class DocumentosComponent implements OnInit {
   async verDocumento(item) {
     if (!this.propiedad) {
       const user = JSON.parse(localStorage.getItem('dataUser'));
-      const data  = { cojunto: user.id, tipo_revision: item.id };
-      const res:any = await this.Revicion.getRevisionPropiedad(data);
+      const data = { cojunto: user.id, tipo_revision: item.id };
+      const res: any = await this.Revicion.getRevisionPropiedad(data);
       this.documento = true;
       this.arrayDocumento = res.data;
     } else {
       const propiedad = JSON.parse(sessionStorage.getItem('dataPropiedad'));
-      const data  = { propiedad: propiedad.id, tipo_revision: item.id };
-      const res:any = await this.Revicion.getRevision(data);
+      const data = { propiedad: propiedad.id, tipo_revision: item.id };
+      const res: any = await this.Revicion.getRevision(data);
       this.documento = true;
       this.arrayDocumento = res.data;
     }
@@ -84,15 +84,15 @@ export class DocumentosComponent implements OnInit {
     console.log(data);
     let html = `
       <div class="group-form">
-        <label>Nombre</label>
-        <input type="text" id="carpeta-nombre" value="${ data.nombre }">
+        <label class="labelbonito">Nombre</label>
+        <input class="inputbonito" type="text" id="carpeta-nombre" value="${data.nombre}">
       </div>
       <div class="group-form">
-        <label>Descripción</label>
-        <input type="text" id="carpeta-descripcion" value="${ data.descripcion }">
+        <label class="labelbonito">Descripción</label>
+        <input class="inputbonito" type="text" id="carpeta-descripcion" value="${data.descripcion}">
       </div>
     `;
-    const dato:any = await Swal.fire({
+    const dato: any = await Swal.fire({
       title: 'Carpeta',
       html: html,
       showCancelButton: true,
@@ -113,7 +113,7 @@ export class DocumentosComponent implements OnInit {
         }
         const user = JSON.parse(localStorage.getItem('dataUser'));
         const datos = { nombre, descripcion, cojunto: user.id };
-        let res:any;
+        let res: any;
         if (!item) {
           res = await this.Revicion.saveTipoRevicion(datos);
         } else {
@@ -139,10 +139,10 @@ export class DocumentosComponent implements OnInit {
   }
 
   async deleteCarpeta(item) {
-    const res:any = await this.services.Alert('info', '', 'Esta seguro en eliminar esta carpeta', 'Aceptar', 'Canselar', true);
+    const res: any = await this.services.Alert('info', '', 'Esta seguro en eliminar esta carpeta', 'Aceptar', 'Canselar', true);
     if (res.isConfirmed) {
       const data = { id: item.id };
-      const resp:any = await this.Revicion.deleteTipoRevicion(data);
+      const resp: any = await this.Revicion.deleteTipoRevicion(data);
       this.services.Alert(resp.status == 'success' ? 'success' : 'error', '', resp.message, 'Aceptar', '');
       if (resp.status == 'success') {
         const post = this.arrayTipoRevision.findIndex(f => f.id == data.id);

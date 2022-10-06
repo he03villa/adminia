@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg  contenedornavlanding">
+    <div class="container-fluid ">
+
+        <a class="navbar-brand" href="#">
+            <img class="logo" src="/assets/image/admina.png" alt="">
+        </a>
+
+        <div [routerLink]="['/login']" routerLinkActive="router-link-active" class="iniciarsesion">
+            Iniciar Sesión
+        </div>
+
+
+    </div>
+</nav>
+
+<div class="contenedor-landing">
+    <div class="row infolandingslogan">
+        <div class="col-sm-6">
+            <h1>
+                <strong> Centraliza la administración de tu <br> propiedad horizontal </strong>
+            </h1>
+            <img class="logo" src="/assets/image/dashboard/Humaaan.png" alt="">
+        </div>
+        <div class="col-sm-6">
+            <h2>
+                <strong> Dejanos tus datos y espera nuestra llamada</strong>
+            </h2>
+            <form action="">
+
+                <input type="text" formControlName="nombre" (keyup)="cambiarValidarMensaje()" class="form-control name" placeholder="Tu nombre" name="" id="">
+                <input type="text" formControlName="email" (keyup)="cambiarValidarMensaje()" class="form-control email" placeholder="Tu email" name="" id="">
+                <ng-container *ngIf="form.controls.email.errors && !validarMensaje">
+                    <label for="" *ngIf="form.controls.email.errors.required">El email está vacio</label>
+                    <label for="" *ngIf="form.controls.email.errors.email">El email no es valido</label>
+                </ng-container>
+                <input type="text" formControlName="ciudad" (keyup)="cambiarValidarMensaje()" class="form-control ciudad" placeholder="Tu ciudad" name="" id="">
+                <input type="text" formControlName="telefono" (keyup)="cambiarValidarMensaje()" class="form-control telefono" placeholder="Tu telefóno" name="" id="">
+
+                <button class="btn mb-3">Envíar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row unaherramienta">
+
+    <div class="col-12 ">
+        <h5>Una herramienta <strong>ideal</strong> para <br> adminsitrar tu conjunto en la <strong>nube</strong>
+        </h5>
+    </div>
+</div>
+
+<div class="contenedor-landing">
+    <div class="row beneficios">
+
+        <div class="col-sm-4 item-beneficio">
+            <h6> comunicacion inmediata </h6>
+        </div>
+        <div class="col-sm-4 item-beneficio">
+            <h6> pagos digitales </h6>
+        </div>
+        <div class="col-sm-4 item-beneficio">
+            <h6> Unificación y almacenamiento de datos </h6>
+        </div>
+    </div>
+    <div class="row solicdemosos">
+
+        <div class="col-sm-6 solicitardemo">
+            <button>
+                Solicita tus demos
+
+            </button>
+        </div>
+        <div class="col-sm-6 text-center">
+            <img class=" metodospago " src="assets/image/footer/metodos.png " alt=" ">
+
+        </div>
+    </div>
+</div>
+
+
+<footer>
+
+    <div class="text-center ">
+        ©2022 Admina S.A.S
+    </div>
+</footer>

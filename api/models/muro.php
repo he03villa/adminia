@@ -66,14 +66,14 @@
             $consultar = "INSERT INTO muro (descripcion, fecha_creacion, nombre_user, cojunto_id, $key_user) VALUE ('$muro[descripcion]', current_time, '$dataU[nombre]', $muro[cojunto], $muro[user])";
             $prevID = parent::queryRegistro($consultar);
             if ($prevID > 0) {
-                $consultar2 = "SELECT * from muro where id = $prevID";
+                $consultar2 = "SELECT *, '' as comentario from muro where id = $prevID";
                 $data =  parent::consultarArreglo($consultar2);
                 $consultar3 = "
                     SELECT * from comentario c
                     where muro_id = $prevID
                     order by c.fecha_creacion desc;
                 ";
-                $data['comentario'] = parent::consultaTodo($consultar3);
+                $data['comentarios'] = parent::consultaTodo($consultar3);
                 $resul = array('status' => 'success', 'message' => 'Se ha publicado', 'data' => $data);
             } else {
                 $resul = array('status' => 'error', 'message' => 'Ocurrio un error en el servidor');

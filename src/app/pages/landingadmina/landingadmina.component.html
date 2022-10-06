@@ -25,16 +25,13 @@
             <h2>
                 <strong> Dejanos tus datos y espera nuestra llamada</strong>
             </h2>
-            <form action="">
+            <form>
 
-                <input type="text" formControlName="nombre" (keyup)="cambiarValidarMensaje()" class="form-control name" placeholder="Tu nombre" name="" id="">
-                <input type="text" formControlName="email" (keyup)="cambiarValidarMensaje()" class="form-control email" placeholder="Tu email" name="" id="">
-                <ng-container *ngIf="form.controls.email.errors && !validarMensaje">
-                    <label for="" *ngIf="form.controls.email.errors.required">El email está vacio</label>
-                    <label for="" *ngIf="form.controls.email.errors.email">El email no es valido</label>
-                </ng-container>
-                <input type="text" formControlName="ciudad" (keyup)="cambiarValidarMensaje()" class="form-control ciudad" placeholder="Tu ciudad" name="" id="">
-                <input type="text" formControlName="telefono" (keyup)="cambiarValidarMensaje()" class="form-control telefono" placeholder="Tu telefóno" name="" id="">
+                <input type="text" class="form-control name" placeholder="Tu nombre" name="" id="">
+                <input type="text" class="form-control email" placeholder="Tu email" name="" id="">
+
+                <input type="text" class="form-control ciudad" placeholder="Tu ciudad" name="" id="">
+                <input type="text" class="form-control telefono" placeholder="Tu telefóno" name="" id="">
 
                 <button class="btn mb-3">Envíar</button>
             </form>

@@ -7,9 +7,11 @@ import { AutPropiedadService } from './services/aut-propiedad.service';
 import { NoAuthService } from './services/no-auth.service';
 import { ActivarUserService } from './services/activar-user.service';
 import { ActivarPropiedadService } from './services/activar-propiedad.service';
+import { LandingadminaComponent } from './pages/landingadmina/landingadmina.component';
 
 
 const routes: Routes = [
+  { path: 'landing', component: LandingadminaComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,

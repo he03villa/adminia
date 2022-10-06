@@ -1,0 +1,114 @@
+@import 'src/variables.scss';
+.contenedornavlanding {
+    background-color: $primary;
+    margin-bottom: 16px;
+    img {
+        filter: brightness(0) invert(1);
+    }
+    .iniciarsesion {
+        color: $white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+.contenedor-landing {
+    width: min(100% -32px, 1200px);
+    margin-inline: auto;
+    h1 {
+        @media (max-width: 575px) {
+            line-height: 1;
+            font-size: 1.5em;
+        }
+    }
+    h2 {
+        @media (max-width: 575px) {
+            line-height: 1;
+            font-size: 1.2em;
+            margin-top: 1rem;
+        }
+    }
+    .infolandingslogan {
+        margin: 50px 0;
+    }
+    form {
+        button {
+            background: $primary;
+            color: white;
+            border-radius: 10px;
+            margin: 15px 0px 0;
+            width: 100%;
+            padding: 11px 0;
+        }
+        input {
+            margin-bottom: 16px;
+        }
+    }
+    .beneficios {
+        div.item-beneficio {
+            margin: 40px 0;
+            h6 {
+                border: 2px solid #4087D3;
+                border-radius: 8px;
+                padding: 16px 32px;
+                height: 140px;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                font-size: 32px;
+                text-align: center;
+                @media (max-width: 575px) {
+                    height: 80px;
+                    font-size: 1rem;
+                }
+            }
+            @media (max-width: 575px) {
+                margin: 16px 0;
+            }
+        }
+    }
+    .solicitardemo {
+        button {
+            background: $primary;
+            color: white;
+            border-radius: 10px;
+            width: 100%;
+            padding: 11px 0;
+        }
+    }
+    .metodospago {
+        @media (max-width: 575px) {
+            width: 100%;
+            margin-top: 56px;
+        }
+        object-fit: contain;
+    }
+}
+
+.unaherramienta {
+    text-align: center;
+    background-color: $primary;
+    color: $white;
+    padding: 32px;
+    margin-top: 50px;
+    @media (max-width: 575px) {
+        h5 {
+            br {
+                display: none;
+            }
+        }
+    }
+}
+
+.solicdemosos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    background-color: $primary;
+    color: $white;
+    margin-top: 100px;
+    padding: 16px 32px;
+}

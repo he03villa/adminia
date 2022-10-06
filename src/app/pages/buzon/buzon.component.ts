@@ -47,4 +47,8 @@ export class BuzonComponent implements OnInit {
     this.services.abrir(content);
   }
 
+  cambiarTorre() {
+    this.arrayPropietarios = this.auxArrayPropietarios.filter(f => f.torre_id == this.selectTorre);
+  }
+
 }

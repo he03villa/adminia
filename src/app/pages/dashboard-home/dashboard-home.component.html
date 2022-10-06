@@ -27,47 +27,16 @@
                         <div class="contenedor-respuesta">
                             <div class="contenedormi">
 
-                                <div class="respuestacomentarios">
+                                <div class="respuestacomentarios" *ngFor="let item2 of item.comentarios">
                                     <div class="comentario">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita quae blanditiis ipsa nemo, cum laboriosam esse velit soluta facere numquam ab architecto dolores autem rerum voluptatibus magni laudantium itaque doloribus?
+                                        {{ item2.comentario }}
                                     </div>
                                     <div>
-                                        <h6>usuario</h6>
-                                        <small>fecha</small>
+                                        <h6>{{ item2.nombre_user }}</h6>
+                                        <small>{{ item2.fecha_creacion }}</small>
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="respuestacomentarios">
-                                    <div class="comentario">
-                                        respuesta
-                                    </div>
-                                    <div>
-                                        <h6>usuario</h6>
-                                        <small>fecha</small>
-                                    </div>
-                                </div>
-                                <hr>
-
-                                <div class="respuestacomentarios">
-                                    <div class="comentario">
-                                        respuesta
-                                    </div>
-                                    <div>
-                                        <h6>usuario</h6>
-                                        <small>fecha</small>
-                                    </div>
-                                </div>
-                                <hr>
-
-                                <div class="respuestacomentarios">
-                                    <div class="comentario">
-                                        respuesta
-                                    </div>
-                                    <div>
-                                        <h6>usuario</h6>
-                                        <small>fecha</small>
-                                    </div>
-                                </div>
                             </div>
 
                         </div>

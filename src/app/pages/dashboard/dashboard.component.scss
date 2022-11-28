@@ -2,6 +2,10 @@
 mat-sidenav {
     background: $soft-grey;
 }
+mat-sidenav-content {
+    background: $soft-grey;
+    padding: 0;
+}
 
 .contenedor-menu-dashoboard {
     display: flex;

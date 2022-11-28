@@ -6,10 +6,10 @@
     padding-right: 17px;
     .conten-nav-img {
         img {
-            background: $soft-grey;
+            background: $white;
             display: block;
             margin: auto;
-            padding: 12px;
+            padding: 32px;
         }
     }
     .conten-nav-menu {
@@ -17,7 +17,7 @@
         align-items: center;
         justify-content: space-between;
         .conten-nav-menu-group {
-            background: $soft-grey;
+            background: $white;
             border-radius: 25px;
             padding: 0 11px;
             display: flex;
@@ -90,23 +90,96 @@
     }
 }
 
-.content-cargar-qr {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    .text-qr {
-        margin-top: -20px;
-    }
-}
+#exampleModalCenter {
+    .modal-dialog {
+        .modal-content {
+            border-radius: 14px;
+            .modal-header {
+                border: none;
+                align-items: center;
+                justify-content: center;
+                display: flex;
 
-.contenedor-img {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    img {
-        width: 40px;
-        height: auto;
-        object-fit: contain;
+                h5 {
+                    font-family: 'Montserrat', sans-serif;
+                    font-weight: bold;
+                    color: #282B3B;
+                }
+
+                button {
+                    margin: 0;
+                    position: absolute;
+                    right: 10px;
+                    top: 5px;
+                    font-size: 19px;
+                    background: $primary;
+                    padding: 2px 11px;
+                    border-radius: 22px;
+                    color: $white;
+                    border: none;
+                }
+            }
+
+            .modal-body {
+                .content-cargar-qr {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    .content-qr {
+                        border: 1px solid $primary;
+                        padding: 15px;
+                        border-radius: 25px;
+                    }
+                    .contemt-text-copy {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-evenly;
+                        margin-top: 15px;
+                        .text-qr {
+                            background: $primary;
+                            color: $white;
+                            border: none;
+                            border-radius: 9px;
+                            padding: 2px 12px;
+                        }
+                        i {
+                            color: $primary;
+                            margin: 0px 5px;
+                            cursor: pointer;
+                            font-size: 18px;
+                        }
+                    }
+                }
+
+                .contenedor-img {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    img {
+                        width: 50px;
+                        height: auto;
+                        object-fit: contain;
+                    }
+                }
+
+                .content-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+                    button {
+                        border: none;
+                        color: $white;
+                        background: $primary;
+                        font-size: 16px;
+                        font-family: 'Montserrat', sans-serif;
+                        font-weight: bold;
+                        border-radius: 20px;
+                        padding: 8px 36px;
+                    }
+                }
+            }
+        }
     }
 }

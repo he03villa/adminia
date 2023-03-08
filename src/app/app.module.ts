@@ -9,14 +9,12 @@ import { ComponentsModule } from './components/components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LandingadminaComponent } from './pages/landingadmina/landingadmina.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContentComponent,
-    DashboardComponent,
-    LandingadminaComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

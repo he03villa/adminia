@@ -1,19 +1,24 @@
 <div id="copropiedades" class="row ">
     <div class="col-12 containeritemcopropiedades">
         <div class="row">
-            <div class="col-sm-3 ">
+            <div class="col-12">
+                <h2>Documentos</h2>
+            </div>
+            <div class="col-sm-2">
                 <div (click)="abrirModalAgregarPropiedad()" class="itemcopropiedades crearcoso ">
 
-                    <img src="../../../assets/image/copropiedades/plus.png" alt="">
+                    <!-- <img src="../../../assets/image/copropiedades/plus.png" alt=""> -->
+                    <i class="fa-solid fa-plus"></i>
                     <h6>Agregar Propiedad</h6>
                 </div>
             </div>
-            <div class="col-sm-3" *ngFor="let item of arrayPropiedad">
+            <div class="col-sm-2" *ngFor="let item of arrayPropiedad">
                 <div class="itemcopropiedades" (click)="abrirOpcionPropiedad(item)">
 
-                    <img src="../../../assets/image/copropiedades/{{ item.tipo_propiedad_id == 1 ? 'casa' : 'edificio' }}.png" alt="">
+                    <!-- <img src="../../../assets/image/copropiedades/{{ item.tipo_propiedad_id == 1 ? 'casa' : 'edificio' }}.png" alt=""> -->
+                    <i class="fa-solid" [ngClass]="item.tipo_propiedad_id == 1 ? 'fa-house' : 'fa-city'"></i>
                     <h6>{{ item.nombre }}</h6>
-                    <label for="">{{ item.codigo }}</label>
+                    <!-- <label for="">{{ item.codigo }}</label> -->
                 </div>
             </div>
             <!-- <div class="col-6 ">

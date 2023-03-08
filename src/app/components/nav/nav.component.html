@@ -47,26 +47,32 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Compartir</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
                 </button>
             </div>
             <div class="modal-body" *ngIf="dataUser.conjunto == 1" #referido>
 
                 <div class="content-cargar-qr">
                     <div class="content-qr" id="propiedad-qr"></div>
-                    <div class="text-qr">{{ dataUser.codigo }}</div>
+                    <div class="contemt-text-copy">
+                        <div class="text-qr">{{ dataUser.codigo }}</div>
+                        <i class="fas fal fa-copy" ngxClipboard [cbContent]="dataUser.codigo" [container]="referido" (cbOnSuccess)="services.Toast('success', 'Se copio con exito')"></i>
+                    </div>
                 </div>
 
-                <h6 class="text-center">Haz click y comparte </h6>
+                <!-- <h6 class="text-center">Haz click y comparte </h6> -->
 
                 <div class="contenedor-img">
 
                     <a (click)="compartirWhatsapp()"> <img src="/assets\image\compartir/ws.png" alt=""> </a>
                     <!-- <a href=""> <img src="/assets\image\compartir/tw.png" alt=""> </a>
                     <a href=""> <img src="/assets\image\compartir/fb.png" alt=""> </a> -->
-                    <button class="btn" ngxClipboard [cbContent]="dataUser.codigo" [container]="referido" (cbOnSuccess)="services.Toast('success', 'Se copio con exito')"> <img
-                            src="/assets\image\compartir/copiar.png" alt=""> </button>
+                    <!-- <button class="btn" ngxClipboard [cbContent]="dataUser.codigo" [container]="referido" (cbOnSuccess)="services.Toast('success', 'Se copio con exito')"> <img
+                            src="/assets\image\compartir/copiar.png" alt=""> </button> -->
+                </div>
+                <div class="content-btn">
+                    <button data-dismiss="modal" aria-label="Close">Cerrar</button>
                 </div>
             </div>
 

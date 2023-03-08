@@ -1,12 +1,16 @@
 <div class="row" *ngIf="!documento">
+    <div class="col-12">
+        <h2>Documentos</h2>
+    </div>
     <ng-container *ngIf="arrayTipoRevision.length > 0">
-        <div class="col-sm-3" *ngFor="let item of arrayTipoRevision">
+        <div class="col-sm-2" *ngFor="let item of arrayTipoRevision">
             <div class="content-opcion" *ngIf="!propiedad">
                 <i class="fas fa-pencil-alt" (click)="abrirModalCrearCarpeta(item)"></i>
                 <i class="fas fa-trash-alt" (click)="deleteCarpeta(item)"></i>
             </div>
             <div class="contenedor-carpeta" (click)="verDocumento(item)">
-                <img src="assets/image/documentos/carpeta.png" alt="">
+                <!-- <img src="assets/image/documentos/carpeta.png" alt=""> -->
+                <i class="fa-solid fa-folder-open"></i>
                 <h6>
                     {{ item.nombre }}
                 </h6>
@@ -23,19 +27,25 @@
 </div>
 
 <div class="row" *ngIf="documento">
+    <div class="col-12">
+        <label (click)="atras()" *ngIf="documento" for=""><i class="fa-solid fa-arrow-left"></i> Regresar</label>
+        <h2>{{ nameDocumento }}</h2>
+    </div>
     <ng-container *ngIf="arrayDocumento.length > 0">
         <div class="col-sm-3" *ngFor="let item of arrayDocumento; ">
-            <div class="contenedor-carpeta" (click)="services.openURL(services.urlRevicion+''+item.ruta)">
+            <div class="contenedor-file" (click)="services.openURL(services.urlRevicion+''+item.ruta)">
     
                 <img src="assets/image/documentos/pdf.png" alt="">
-                <h6>
-    
-                    {{ item.nombre }} {{ item.fecha }}
-    
-                </h6>
-                <h6 *ngIf="!propiedad">
-                    {{ item.nombre_propiedad }}
-                </h6>
+                <div class="contenedor-titulos">
+                    <h6>
+        
+                        {{ item.nombre }} {{ item.fecha }}
+        
+                    </h6>
+                    <h6 *ngIf="!propiedad">
+                        Apto - {{ item.nombre_propiedad }}
+                    </h6>
+                </div>
             </div>
         </div>
     </ng-container>
@@ -71,6 +81,6 @@
 
 <div class="contenedor-botones">
     <button *ngIf="!propiedad" data-toggle="modal" data-target="#modal-save-documento" (click)="abrirModal()">Agregar</button>
-    <button *ngIf="!propiedad" (click)="abrirModalCrearCarpeta(undefined)">Agregar nuevo documento</button>
-    <button (click)="atras()" *ngIf="documento">Atras</button>
+    <button *ngIf="!propiedad" (click)="abrirModalCrearCarpeta(undefined)">Crear nuevo documento</button>
+    <!-- <button (click)="atras()" *ngIf="documento">Atras</button> -->
 </div>

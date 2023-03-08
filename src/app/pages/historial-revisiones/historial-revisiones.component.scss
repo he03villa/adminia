@@ -1,30 +1,42 @@
+@import 'src/variables.scss';
+.row {
+    padding: 16px;
+    h2 {
+        font-weight: bold;
+        font-size: 16px;
+        color: $heading;
+        margin-bottom: 25px;
+    }
+}
 .contenedor-carpeta {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    justify-content: center;
     text-align: center;
-    border: 1px solid #8275f4;
-    padding: 50px 0px;
-    border-radius: 8px;
+    border: none;
+    background-color: $white;
+    padding: 15px 0px;
     margin-bottom: 32px;
-    &:hover {
-        background: #282b3b;
-        h6 {
-            color: #fff;
-        }
-    }
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    cursor: pointer;
     img {
         width: 100px;
         margin: auto;
     }
+    i {
+        color: $primary;
+        font-size: 50px;
+    }
     h6 {
         margin-top: 8px;
-        color: #8275f4;
+        color: $heading;
         display: flex;
         flex-direction: column;
         word-break: break-all;
         padding: 9px 16px;
+        font-family: 'Montserrat';
+        font-size: 12px;
     }
 }
 
@@ -32,13 +44,14 @@
     text-align: center;
     button {
         margin: 0 8px;
-        background-color: #8275f4;
+        background-color: $primary;
         color: #fff;
-        font-size: 16px;
+        font-size: 14px;
         border: none;
-        border-radius: 8px;
+        border-radius: 20px;
         letter-spacing: 1px;
         padding: 9px 16px;
         font-weight: bold;
+        font-family: 'Montserrat';
     }
 }

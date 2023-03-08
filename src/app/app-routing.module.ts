@@ -11,7 +11,6 @@ import { LandingadminaComponent } from './pages/landingadmina/landingadmina.comp
 
 
 const routes: Routes = [
-  { path: '', component: LandingadminaComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -31,13 +30,14 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'login',
+    path: '',
     component: ContentComponent,
     canActivate: [NoAuthService],
     children: [
-      { path: '', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), canActivate: [ActivarUserService, ActivarPropiedadService] },
+      { path: '', loadChildren: () => import('./pages/landingadmina/landingadmina.module').then(m => m.LandingadminaModule) },
+      { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), canActivate: [ActivarUserService, ActivarPropiedadService] },
       { path: 'registro-propiedad', loadChildren: () => import('./pages/crearcopropiedad/crearcopropiedad.module').then(m => m.CrearcopropiedadModule) },
-      { path: '**', redirectTo: 'login' }
+      { path: '**', redirectTo: '' }
     ]
   },
   { path: '**', redirectTo: '' },

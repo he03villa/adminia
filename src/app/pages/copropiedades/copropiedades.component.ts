@@ -34,7 +34,6 @@ export class CopropiedadesComponent implements OnInit {
     const { value: url } = await Swal.fire({
       showCloseButton: true,
       input: 'text',
-      icon: "warning",
       title: "Agregar código",
       inputPlaceholder: 'Agregar código',
       customClass: {

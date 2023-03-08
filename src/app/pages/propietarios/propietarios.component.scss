@@ -1,33 +1,59 @@
-    @import 'src/variables.scss';
-    .contenedor-tabla {
-        height: 450px;
+@import 'src/variables.scss';
+.contenedor-tabla {
+    height: 450px;
+}
+
+.row-tabla {
+    padding: 16px;
+    h2, h4 {
+        font-weight: bold;
+        /* font-family: 'Montserrat'; */
     }
-    
-    select {
-        border-radius: 8px;
-        margin-left: 16px;
+    h2 {
+        font-size: 16px;
+        color: $heading;
+    }
+    h4 {
         font-size: 13px;
+        color: $heading-live;
     }
-    
-    .row-tabla {
-        padding: 16px;
-        h5 {
-            text-align: center;
-            color: $heading;
-            font-weight: bold;
+    select {
+        background-color: $select;
+        color: $heading;
+        font-family: 'Montserrat';
+        font-weight: normal;
+        font-size: 12px;
+        border-radius: 6px;
+        border: none;
+        padding: 4px 13px;
+    }
+    h5 {
+        text-align: center;
+        color: $heading;
+        font-weight: bold;
+        span {
+            color: $primary;
+        }
+    }
+    table {
+        table-layout: fixed;
+        th,
+        td {
+            width: 300px;
+            padding: 9px 6px;
             span {
-                color: $primary;
+                padding: 0px 7px;
+                border-radius: 25px;
+                &.active {
+                    background-color: $grey;
+                }
+                &.pending {
+                    background-color: $orange;
+                }
             }
         }
-        table {
-            table-layout: fixed;
-            th,
-            td {
-                width: 300px;
-                padding: 9px 6px;
-            }
-            th {
-                border-bottom: 1px solid;
-            }
+        th {
+            border-bottom: 1px solid;
         }
     }
+}

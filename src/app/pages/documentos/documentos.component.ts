@@ -17,6 +17,7 @@ export class DocumentosComponent implements OnInit {
   arrayDocumento = [];
   documento = false;
   propiedad = false;
+  nameDocumento = '';
 
   constructor(
     public services: ServicesService,
@@ -54,6 +55,7 @@ export class DocumentosComponent implements OnInit {
   }
 
   async verDocumento(item) {
+    this.nameDocumento = item.nombre;
     if (!this.propiedad) {
       const user = JSON.parse(localStorage.getItem('dataUser'));
       const data = { cojunto: user.id, tipo_revision: item.id };

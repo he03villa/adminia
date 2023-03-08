@@ -13,6 +13,7 @@ export class BuzonComponent implements OnInit {
   auxArrayPropietarios = [];
   arrayTorre = [];
   propiedad;
+  dataUser;
   selectTorre = '0';
 
   constructor(
@@ -22,6 +23,7 @@ export class BuzonComponent implements OnInit {
 
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem('dataUser'));
+    this.dataUser = user;
     const propiedad = JSON.parse(sessionStorage.getItem('dataPropiedad'));
     this.propiedad = propiedad;
     if (!this.propiedad) {

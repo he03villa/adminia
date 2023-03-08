@@ -1,11 +1,12 @@
+@import 'src/variables.scss';
 #copropiedades {
     margin: 16px;
     height: 100vh;
     overflow: scroll;
     .containeritemcopropiedades {
         .itemcopropiedades {
-            width: 240px;
-            height: 240px;
+            /* width: 240px;
+            height: 240px; */
             background: #FFFFFF;
             border: 1px solid #EFEFEF;
             box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
@@ -18,15 +19,25 @@
             align-items: center;
             position: relative;
             cursor: pointer;
-            label {
+            label, h6 {
                 width: 100%;
                 word-break: break-word;
-                text-align: center
+                text-align: center;
+                color: #282B3B;
+                font-family: 'Montserrat';
+                font-weight: normal;
+                font-size: 12px;
             }
             img {
                 margin-bottom: 16px;
             }
-            &::before {
+            i {
+                font-size: 60px;
+                color: $primary;
+                margin: auto;
+                margin-bottom: 20px;
+            }
+            /* &::before {
                 content: "";
                 width: 0;
                 height: 100%;
@@ -48,7 +59,7 @@
                 width: max-content h6 {
                     color: #fff;
                 }
-            }
+            } */
         }
     }
     .contenedor-notificaciones {

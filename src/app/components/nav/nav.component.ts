@@ -44,7 +44,7 @@ export class NavComponent implements OnInit {
 
   async cargarNotificacion() {
     const user = JSON.parse(localStorage.getItem('dataUser'));
-    const res: any = await this.Notificacion.getAllNotificacionUser({ id: user.id });
+    const res: any = await this.Notificacion.getAllNotificacionUser({ id: user.id, cojunto: user.conjunto });
     this.arrayNotificaion = res.data;
     this.numeroNoVisto = this.arrayNotificaion.filter(f => f.visto == '0').length;
     console.log(this.numeroNoVisto);

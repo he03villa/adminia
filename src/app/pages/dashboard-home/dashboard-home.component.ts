@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MuroService } from '../../services/muro.service';
 import { ServicesService } from '../../services/services.service';
+declare var $ : any;
 
 @Component({
   selector: 'app-dashboard-home',
@@ -13,6 +14,7 @@ export class DashboardHomeComponent implements OnInit {
   arrayMuro = [];
   descripcionMuro = '';
   comentario = '';
+  dataComentario;
   propiedad;
 
   constructor(
@@ -22,6 +24,13 @@ export class DashboardHomeComponent implements OnInit {
 
   ngOnInit() {
     this.cargarMuro(1);
+  }
+
+  cargaDatarMuro(item, id) {
+    this.dataComentario = item;
+    console.log($(`#${id}`));
+    $('.content-muro').removeClass('active');
+    $(`#${id}`).addClass('active');
   }
 
   async cargarMuro(page) {
@@ -35,6 +44,9 @@ export class DashboardHomeComponent implements OnInit {
     };
     const res:any = await this.Muro.getListPropietario(data);
     this.arrayMuro = res.data;
+    setTimeout(() => {
+      this.cargaDatarMuro(this.arrayMuro[0], 0);
+    }, 1000);
   }
 
   async saveMuro(event) {
@@ -75,6 +87,8 @@ export class DashboardHomeComponent implements OnInit {
         const post = this.arrayMuro.findIndex(f => f.id == muro);
         this.arrayMuro[post].comentario = '';
         this.arrayMuro[post].comentarios.unshift(res.data);
+        /* this.dataComentario.comentarios.unshift(res.data); */
+        this.comentario = '';
       }
       this.services.removeLoading(event.target);
     } else {

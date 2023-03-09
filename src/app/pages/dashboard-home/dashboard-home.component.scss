@@ -196,3 +196,179 @@
         }
     }
 }
+
+.conten-muro-scroll {
+    height: auto;
+    max-height: 100vh;
+    overflow: scroll;
+}
+
+.content-muro {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid #EEF5F9;
+    padding: 4px 12px;
+    border-bottom: none;
+    cursor: pointer;
+
+    .content-muro-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        label {
+            color: #ABAFB3;
+            font-family: 'Montserrat';
+            font-weight: normal;
+            &:nth-child(1) {
+                font-size: 14px;
+            }
+            &:nth-child(2) {
+                font-size: 9px;
+            }
+        }
+    }
+
+    .content-muro-body {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        label, p {
+            font-family: 'Montserrat';
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 13px;
+            color: #6A707E;
+        }
+
+        p {
+            font-weight: normal;
+            font-size: 12px;
+            color: #ABAFB3;
+        }
+    }
+
+    &.active {
+        background-color: $primary;
+        .content-muro-head, .content-muro-body {
+            label, p {
+                color: $white;
+            }
+        }
+    }
+}
+
+.contenedor-comentario {
+    label, p {
+        font-family: 'Montserrat';
+    }
+
+    .contenedor-comentario-head {
+        label, span {
+            font-family: 'Circular Std Book';
+            font-weight: normal;
+            font-size: 10px;
+        }
+        label {
+            color: $primary;
+            margin: 0px;
+        }
+        span {
+            color: #ABAFB3;
+        }
+    }
+
+    .contenedor-comentario-body {
+        .contenedor-comentario-body-scroll {
+            height: auto;
+            max-height: 50vh;
+            overflow: scroll;
+            .contenedor-comentario-body-head-titulo {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                label {
+                    color: $primary;
+                    font-size: 13px;
+                    font-weight: bold;
+                }
+                span {
+                    font-size: 9px;
+                    font-family: 'Circular Std Book';
+                    color: #ABAFB3;
+                }
+            }
+            p {
+                font-size: 13px;
+                font-weight: normal;
+                color: #6A707E;
+                text-align: justify;
+            }
+        }
+    }
+
+    .contenedor-comentario-footer {
+        textarea {
+            font-family: 'Circular Std Book';
+            border: 1px solid #E9EAEB;
+            color: #ABAFB3;
+            font-weight: normal;
+            font-size: 14px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        button {
+            font-family: 'Circular Std Book';
+            font-size: 11px;
+            border-radius: 20px;
+            font-weight: normal;
+            width: auto;
+            margin: 0;
+            padding: 5px 30px;
+            float: right
+        }
+    }
+}
+
+.contenedor-publicar {
+    label, p, textarea {
+        font-family: 'Montserrat';
+    }
+    .contenedor-publicar-head {
+        label {
+            font-weight: bold;
+            font-size: 14px;
+            color: $primary
+        }
+        p {
+            font-weight: normal;
+            font-size: 12px;
+            color: #282B3B;
+        }
+    }
+    .contenedor-publicar-body {
+        textarea {
+            border: 1px solid #E9EAEB;
+            color: #ABAFB3;
+            font-weight: normal;
+            font-size: 14px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        button {
+            font-family: 'Circular Std Book';
+            font-size: 11px;
+            border-radius: 20px;
+            font-weight: normal;
+            width: auto;
+            margin: 0;
+            padding: 5px 30px;
+            float: right
+        }
+    }
+}

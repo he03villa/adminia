@@ -28,7 +28,6 @@ export class DashboardHomeComponent implements OnInit {
 
   cargaDatarMuro(item, id) {
     this.dataComentario = item;
-    console.log($(`#${id}`));
     $('.content-muro').removeClass('active');
     $(`#${id}`).addClass('active');
   }

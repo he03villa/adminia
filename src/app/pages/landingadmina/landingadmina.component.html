@@ -5,9 +5,17 @@
             <img class="logo" src="/assets/image/admina.png" alt="">
         </a>
 
-        <div [routerLink]="['/login']" routerLinkActive="router-link-active" class="iniciarsesion">
-            Iniciar Sesión
+        <div class="contenedor-inicio">
+            <div [routerLink]="['/login']" routerLinkActive="router-link-active" class="iniciarsesion">
+                <i class="fa-solid fa-user"></i>
+                Inicia como propietario
+            </div>
+            <div [routerLink]="['/login']" routerLinkActive="router-link-active" class="iniciarsesion">
+                <i class="fa-solid fa-city"></i>
+                Inicia como propiedad
+            </div>
         </div>
+
 
 
     </div>
@@ -41,25 +49,66 @@
 <div class="row unaherramienta">
 
     <div class="col-12 ">
-        <h5>Una herramienta <strong>ideal</strong> para <br> adminsitrar tu conjunto en la <strong>nube</strong>
-        </h5>
+        <p>
+            Desde edificios hasta urbanizaciones<br>
+            <img src="/assets/image/admina.png" alt=""> es tu herramienta <span>ideal</span><br>
+            para administrar tu conjunto en la nube
+        </p>
     </div>
 </div>
 
 <div class="contenedor-landing">
     <div class="row beneficios">
 
-        <div class="col-sm-4 item-beneficio">
-            <h6> comunicacion inmediata </h6>
+        <div class="col-sm-4">
+            <div class="item-beneficio">
+                <i class="fa-brands fa-whatsapp"></i>
+                <h6> COMUNICACIÓN<br> INMEDIATA </h6>
+                <p>Integración vía<br> whatsapp.</p>
+            </div>
         </div>
-        <div class="col-sm-4 item-beneficio">
-            <h6> pagos digitales </h6>
+        <div class="col-sm-4">
+            <div class="item-beneficio">
+                <i class="fa-solid fa-cloud"></i>
+                <h6> ALMACENAMIENTO<br> DE DATOS </h6>
+                <p>Analiza los datos del<br> conjunto en tiempo real.</p>
+            </div>
         </div>
-        <div class="col-sm-4 item-beneficio">
-            <h6> Unificación y almacenamiento de datos </h6>
+        <div class="col-sm-4">
+            <div class="item-beneficio">
+                <i class="fa-solid fa-money-bill"></i>
+                <h6> PAGOS<br> DIGITALES </h6>
+                <p>Cobra de manera<br> automática y recibe los<br> pagos por medio de la<br> plataforma.</p>
+            </div>
         </div>
     </div>
-    <div class="row solicdemosos">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="contenedor-ningun-valor">
+                <p><span>Crear tu cuenta no tiene ningún valor!!</span><br> Regístrate y encuentra como <img src="/assets/image/admina.png" alt=""> te soluciona tu día a día.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row beneficios max">
+
+        <div class="col-sm-6">
+            <div class="item-beneficio">
+                <h6>¿AÚN NO TIENES UN CONJUNTO<br> CREADO?</h6>
+                <i class="fa-solid fa-city"></i>
+                <p>En este espacio podrás administrar<br> tu conjunto residencial.</p>
+                <button class="btn">Crea tu propiedad</button>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="item-beneficio">
+                <h6> TUS VECINOS YA CREARON SU<br> USUARIO PERO TU AÚN NO? </h6>
+                <i class="fa-solid fa-user"></i>
+                <p>Aquí podrás estar al tanto de<br> toda la información relevante<br> de tu conjunto.</p>
+                <button class="btn">Crea tu usuario como propietario</button>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row solicdemosos">
 
         <div class="col-sm-6 solicitardemo">
             <button>
@@ -71,9 +120,18 @@
             <img class=" metodospago " src="assets/image/footer/metodos.png " alt=" ">
 
         </div>
+    </div> -->
+</div>
+<div class="preguntas">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Preguntas frecuentes</h2>
+            </div>
+            <div class="col-12"></div>
+        </div>
     </div>
 </div>
-
 
 <footer>
 

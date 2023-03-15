@@ -1,12 +1,16 @@
 @import 'src/variables.scss';
+p,
+h1,
+h2,
+div {
+    color: $text;
+}
+
 .contenedornavlanding {
-    background-color: $primary;
+    background-color: $white;
     margin-bottom: 16px;
-    img {
-        filter: brightness(0) invert(1);
-    }
+    box-shadow: 0px 3px 6px #00000017;
     .iniciarsesion {
-        color: $white;
         font-weight: bold;
         cursor: pointer;
     }
@@ -30,6 +34,14 @@
     }
     .infolandingslogan {
         margin: 50px 0;
+        .quiero {
+            background: #d9d5fa 0% 0% no-repeat padding-box;
+            color: #3431A0;
+            border-radius: 80px;
+            border: none;
+            padding: 9px 32px;
+            font-weight: bold;
+        }
     }
     form {
         button {
@@ -45,25 +57,42 @@
         }
     }
     .beneficios {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        gap: 44px;
+        img {}
         div.item-beneficio {
             margin: 40px 0;
+            box-shadow: 0px 3px 10px #00000029;
+            border-radius: 20px;
+            border: none;
+            width: 33.3%;
+            align-items: center;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            padding: 16px 32px;
+            height: 310px;
             h6 {
-                border: 2px solid #4087D3;
-                border-radius: 8px;
-                padding: 16px 32px;
-                height: 140px;
-                align-items: center;
-                display: flex;
-                justify-content: center;
-                font-size: 32px;
+                font-size: 24px;
                 text-align: center;
+                font-weight: bold;
+                margin: 16px 0;
                 @media (max-width: 575px) {
                     height: 80px;
                     font-size: 1rem;
                 }
             }
+            p {
+                font-size: 24px;
+                text-align: center;
+            }
             @media (max-width: 575px) {
                 margin: 16px 0;
+            }
+            &.conjunyo {
+                width: 50%;
             }
         }
     }
@@ -87,8 +116,7 @@
 
 .unaherramienta {
     text-align: center;
-    background-color: $primary;
-    color: $white;
+    background-color: $white;
     padding: 32px;
     margin-top: 50px;
     @media (max-width: 575px) {

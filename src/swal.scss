@@ -1,0 +1,52 @@
+@import 'src/variables.scss';
+.swal2-close {
+    background-color: $primary !important;
+    color: $white !important;
+    border-radius: 20px !important;
+    opacity: 1;
+    padding: 15px !important;
+    font-weight: initial;
+    line-height: 0;
+    font-size: 19px !important;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.swal2-title {
+    font-family: 'Montserrat';
+    font-weight: bold !important;
+    font-size: 20px !important;
+    color: #282B3B !important;
+    margin-bottom: 30px !important;
+}
+
+.swal2-input {
+    border: 1px solid #E9EAEB !important;
+    font-family: 'Montserrat';
+    font-weight: normal !important;
+    font-size: 14px !important;
+    color: #6A707E !important;
+    &:focus {
+        box-shadow: none !important;
+    }
+}
+
+.swal2-actions {
+    flex-direction: row-reverse;
+    justify-content: space-around !important;
+    width: 100% !important;
+
+    button {
+        font-family: 'Montserrat';
+        font-weight: bold !important;
+        font-size: 14px !important;
+        padding: 10px 25px;
+        border-radius: 20px !important;
+    }
+
+    .swal2-cancel {
+        background-color: #C5CBCE !important;
+        color: #6A707E !important;
+    }
+}

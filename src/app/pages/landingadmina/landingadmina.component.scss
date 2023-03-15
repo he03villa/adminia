@@ -1,18 +1,23 @@
 @import 'src/variables.scss';
-p,
-h1,
-h2,
-div {
-    color: $text;
-}
-
 .contenedornavlanding {
-    background-color: $white;
+    /* background-color: $primary; */
     margin-bottom: 16px;
-    box-shadow: 0px 3px 6px #00000017;
-    .iniciarsesion {
-        font-weight: bold;
-        cursor: pointer;
+    /* img {
+        filter: brightness(0) invert(1);
+    } */
+    .contenedor-inicio {
+        display: flex;
+        .iniciarsesion {
+            color: $heading;
+            font-weight: normal;
+            font-size: 14px;
+            margin: 0 9px;
+            cursor: pointer;
+            i {
+                color: $primary;
+                margin: 0 5px;
+            }
+        }
     }
 }
 
@@ -34,6 +39,14 @@ div {
     }
     .infolandingslogan {
         margin: 50px 0;
+        align-items: center;
+        overflow: hidden;
+        height: 422px;
+        img {
+            width: 100%;
+            position: relative;
+            right: -156px;
+        }
         .quiero {
             background: #d9d5fa 0% 0% no-repeat padding-box;
             color: #3431A0;
@@ -57,32 +70,43 @@ div {
         }
     }
     .beneficios {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        gap: 44px;
-        img {}
-        div.item-beneficio {
-            margin: 40px 0;
-            box-shadow: 0px 3px 10px #00000029;
-            border-radius: 20px;
-            border: none;
-            width: 33.3%;
-            align-items: center;
+        .item-beneficio {
+            box-shadow: 0px 3px 6px #00000029;
+            border-radius: 10px;
             display: flex;
-            justify-content: flex-start;
             flex-direction: column;
-            padding: 16px 32px;
-            height: 310px;
+            /* justify-content: center; */
+            align-items: center;
+            padding: 15px 0px;
+            height: 350px;
+            /* width: 330px; */
+            i {
+                color: $primary;
+                font-size: 77px;
+                margin: 10px 0;
+            }
             h6 {
+                color: $heading;
+                padding: 9px 16px;
+                font-family: 'Montserrat';
                 font-size: 24px;
-                text-align: center;
                 font-weight: bold;
-                margin: 16px 0;
-                @media (max-width: 575px) {
-                    height: 80px;
-                    font-size: 1rem;
-                }
+                text-align: center;
+            }
+            p {
+                color: #6A707E;
+                font-family: 'Montserrat';
+                font-size: 24px;
+                font-weight: normal;
+                text-align: center;
+            }
+            button {
+                color: $white;
+                font-weight: bold;
+                font-size: 16px;
+                background-color: $primary;
+                border-radius: 30px;
+                padding: 10px 30px;
             }
             p {
                 font-size: 24px;
@@ -93,6 +117,11 @@ div {
             }
             &.conjunyo {
                 width: 50%;
+            }
+        }
+        &.max {
+            .item-beneficio {
+                height: 400px;
             }
         }
     }
@@ -112,15 +141,55 @@ div {
         }
         object-fit: contain;
     }
+    .contenedor-ningun-valor {
+        text-align: center;
+        margin: 60px 0;
+        p {
+            background-color: #d9d5fc;
+            border-radius: 60px;
+            padding: 10px 20px;
+            font-size: 36px;
+            color: #3431A0;
+            span {
+                font-weight: bold;
+            }
+            img {
+                margin-top: -14px;
+            }
+        }
+    }
+}
+
+.preguntas {
+    background-color: #F5FAFF;
+    margin: 40px 0;
+    h2 {
+        color: #282B3B;
+        font-size: 36px;
+        text-align: center;
+        font-weight: bold;
+    }
 }
 
 .unaherramienta {
     text-align: center;
-    background-color: $white;
+    /* background-color: $primary; */
+    color: $heading;
     padding: 32px;
     margin-top: 50px;
+    font-weight: bold;
+    font-size: 36px;
+    img {
+        margin-top: -14px;
+    }
+    span {
+        background-color: $primary;
+        color: $white;
+        border-radius: 30px;
+        padding: 0 8px;
+    }
     @media (max-width: 575px) {
-        h5 {
+        p {
             br {
                 display: none;
             }
@@ -135,8 +204,16 @@ div {
 }
 
 footer {
-    background-color: $primary;
+    background-color: #282b3b;
     color: $white;
     margin-top: 100px;
-    padding: 16px 32px;
+    padding: 16px 0px 0;
+    img {
+        margin-bottom: 32px;
+    }
+    .redessociales {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
 }

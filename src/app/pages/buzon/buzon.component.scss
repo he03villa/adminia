@@ -1,16 +1,32 @@
 @import 'src/variables.scss';
 .contenedor-tabla {
-    height: 450px;
-}
-
-select {
-    border-radius: 8px;
-    margin-left: 16px;
-    font-size: 13px;
+    /* height: 450px; */
 }
 
 .row-tabla {
     padding: 16px;
+    h2, h4 {
+        font-weight: bold;
+        /* font-family: 'Montserrat'; */
+    }
+    h2 {
+        font-size: 16px;
+        color: $heading;
+    }
+    h4 {
+        font-size: 13px;
+        color: $heading-live;
+    }
+    select {
+        background-color: $select;
+        color: $heading;
+        font-family: 'Montserrat';
+        font-weight: normal;
+        font-size: 12px;
+        border-radius: 6px;
+        border: none;
+        padding: 4px 13px;
+    }
     h5 {
         text-align: center;
         color: $heading;
@@ -25,6 +41,16 @@ select {
         td {
             width: 300px;
             padding: 9px 6px;
+            .btn-contactar {
+                font-family: 'Montserrat';
+                font-weight: bold;
+                color: $white;
+                background-color: $primary;
+                border-radius: 20px;
+                padding: 5px 20px;
+                cursor: pointer;
+                font-size: 12px;
+            }
         }
         th {
             border-bottom: 1px solid;

@@ -1,13 +1,13 @@
 <div class="row row-tabla">
     <div class="col-12">
         <h2>Listado de Propietarios</h2>
-        <label *ngIf="arrayTorre.length > 0">Torres</label>
+        <h4>{{ dataUser ? dataUser.nombre : '' }}</h4>
+        <!-- <label *ngIf="arrayTorre.length > 0">Torres</label> -->
         <select *ngIf="arrayTorre.length > 0" [(ngModel)]="selectTorre" (change)="cambiarTorre()">
             <option *ngFor="let item of arrayTorre" [value]="item.id">{{ item.nombre }}</option>
         </select>
     </div>
     <div class="col-12 contenedor-tabla">
-
         <table>
             <thead>
                 <tr>
@@ -22,9 +22,10 @@
                 <tr *ngFor="let item of arrayPropietarios">
                     <td>{{ item.nombre }}</td>
                     <td (click)="services.validarText(item.nombre_user) ? verInfoPropietario(item) : ''">{{ services.validarText(item.nombre_user) ? item.nombre_user : '-' }}</td>
-                    <td>{{ services.validarNumeroConCero(item.status) ? item.status == '0' ? 'Falta por aprobar' : 'Aprobado' : '-' }}</td>
+                    <td><span *ngIf="services.validarText(item.nombre_user)" [ngClass]="item.status == '0' ? 'pending' : 'active'"></span>{{ services.validarNumeroConCero(item.status) ? item.status == '0' ? 'Falta por aprobar' : 'Aprobado' : '-' }}</td>
                     <!-- <td>{{ item.fecha }}</td> -->
                     <td *ngIf="services.validarText(item.nombre_user)" (click)="verInfoPropietario(item)" class="cursorpointer">Ver información</td>
+                    <td *ngIf="!services.validarText(item.nombre_user)">-</td>
                 </tr>
             </tbody>
         </table>

@@ -2,29 +2,28 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="perfilusuarioLongTitle">Notificaion</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="perfilusuarioLongTitle">Notificaciones</h5>
             </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                x
+            </button>
             <div class="modal-body">
-                <table class="table" *ngIf="arrayNotificaion.length > 0">
-                    <thead>
-                        <tr>
-                            <th>Notificaion</th>
-                            <th>Fecha</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of arrayNotificaion">
-                            <td>{{ item.mensaje }}</td>
-                            <td>{{ item.fecha }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="contenedor-notificacion" *ngIf="arrayNotificaion.length > 0">
+                    <ng-container *ngFor="let item of arrayNotificaion">
+                        <!-- <div class="contenedor-notificacion-imagen"></div> -->
+                        <div class="contenedor-notificacion-body">
+                            <!-- <label for="">Lorem ipsum dolor sit</label> -->
+                            <p>{{ item.mensaje }}</p>
+                            <span>{{ item.fecha }}</span>
+                        </div>
+                        <!-- <div class="contenedor-notificacion-opciones"></div> -->
+                    </ng-container>
+                </div>
                 <app-no-data *ngIf="arrayNotificaion.length == 0"></app-no-data>
             </div>
-
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal">Cerrar</button>
+            </div>
         </div>
     </div>
 </div>

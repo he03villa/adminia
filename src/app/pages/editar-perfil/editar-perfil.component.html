@@ -1,4 +1,4 @@
-<ng-container *ngIf="dataUser.conjunto == 0">
+<!-- <ng-container *ngIf="dataUser.conjunto == 0">
     <h2>Perfil del propietario</h2>
     <form [formGroup]="formUser" class="row  contenedor-input bordermix">
         <div class="col-sm-6">
@@ -17,12 +17,6 @@
             <input type="text" [disabled]="true" [readOnly]="true" formControlName="email" placeholder="">
     
         </div>
-        <!-- <div class="col-sm-6">
-            <p>
-                Email</p>
-            <input type="text" formControlName="nombre" placeholder="">
-    
-        </div> -->
     
         <div class="col-sm-6">
     
@@ -49,129 +43,200 @@
 <div class="row" *ngIf="dataUser.conjunto == 1">
     <div class="col-6">
         <h2>Perfil del administrador</h2>
-        <form [formGroup]="formCojunto" class="row  contenedor-input bordermix">
-            <div class="col-sm-6">
-                <p> Nombre completo </p>
-                <input type="text" formControlName="nombre" placeholder="Nombre completo" (keyup)="cambiarValidarMensaje()">
-                <ng-container *ngIf="formCojunto.controls.nombre.errors && !validarMensaje">
-                    <label for="" *ngIf="formCojunto.controls.nombre.errors.required">El nombre de la propiedad está vacio</label>
-                </ng-container>
-            </div>
         
-        
-            <div class="col-sm-6">
-                <p>
-                    Correo electronico </p>
-                <!-- <input type="text" formControlName="email" [disabled]="true" [readOnly]="true" placeholder=""> -->
-                <label for="">{{ dataUser.correo }}</label>
-        
-            </div>
-            <!-- <div class="col-sm-6">
-                <p>
-                    Email</p>
-                <input type="text" formControlName="nombre" placeholder="">
-        
-            </div> -->
-            <div class="col-sm-6">
-                <p>
-                    Teléfono</p>
-                <input type="number" formControlName="telefono" placeholder="" (keyup)="cambiarValidarMensaje()">
-                <label for="">Este telefono va ir vinculado a whatsapp <i class="fab fa-whatsapp"></i></label>
-                <ng-container *ngIf="formCojunto.controls.telefono.errors && !validarMensaje">
-                    <label for="" *ngIf="formCojunto.controls.telefono.errors.required">El telefono está vacio</label>
-                </ng-container>
-        
-            </div>
-        
-        
-        
-            <div class="col-12 my-3">
-        
-                <!-- <button (click)="abrirModalcontrasena()">cambiar contraseña</button> -->
-                <button (click)="updateConjunto($event)">Actualizar</button>
-        
-            </div>
-        
-        </form>
 
         <h2>Cuenta bancarias</h2>
-        <div class="row contenedor-input bordermix">
-            <ng-container *ngFor="let item of dataUser.cuentas_bancarias; let indice = index">
-                <div class="col-5">
-                    <p> Banco </p>
-                    <select [(ngModel)]="item.nombre" name="" id="">
-                        <option value="">Seleccione el banco</option>
-                        <option value="Bancolombia">Bancolombia</option>
-                        <option value="Banco de bogota">Banco de bogota</option>
-                    </select>
-                </div>
-                <div class="col-5">
-                    <p> Cuenta </p>
-                    <input type="text" [(ngModel)]="item.cuenta" placeholder="Numero de la cuenta">
-                </div>
-                <div class="col-2" style="margin: auto;">
-                    <i (click)="removeCuenta(indice)" style="cursor: pointer" class="fas fa-trash-alt"></i>
-                </div>
-            </ng-container>
-            <div class="col-12 my-3">
-                <button (click)="addCuenta()">Agregar cuenta bancaria</button>
-                <button (click)="saveCuenta($event)">Actualizar</button>
-            </div>
-        </div>
+        
     </div>
     <div class="col-6">
         <h2>Perfil de la propiedad</h2>
-        <form class="row  contenedor-input bordermix">
-            <div class="col-sm-6">
-                <p> Nombre de la propiedad </p>
-                <label for="">{{ dataUser.nombre }}</label>
+        
+    </div>
+</div> -->
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation" *ngIf="dataUser.conjunto == 1">
+                <button class="nav-link active" [ngClass]="dataUser.conjunto == 1 ? 'active': ''" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Perfil del administrador</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" [ngClass]="dataUser.conjunto == 0 ? 'active': ''" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Perfil de la propiedad</button>
+            </li>
+            <li class="nav-item" role="presentation" *ngIf="dataUser.conjunto == 1">
+                <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Datos bancarios</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="cambiar-tab" data-toggle="tab" data-target="#cambiar" type="button" role="tab" aria-controls="cambiar-tab" aria-selected="false">Cambiar contraseña</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade" [ngClass]="dataUser.conjunto == 1 ? 'show active': ''" *ngIf="dataUser.conjunto == 1" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <form [formGroup]="formCojunto" class="row  contenedor-input bordermix">
+                    <div class="group-input">
+                        <p> Nombre completo </p>
+                        <input type="text" formControlName="nombre" placeholder="Nombre completo" (keyup)="cambiarValidarMensaje()">
+                        <ng-container *ngIf="formCojunto.controls.nombre.errors && !validarMensaje">
+                            <label for="" *ngIf="formCojunto.controls.nombre.errors.required">El nombre de la propiedad está vacio</label>
+                        </ng-container>
+                    </div>
+                    <div class="group-input">
+                        <p>Correo electronico </p>
+                        <!-- <input type="text" formControlName="email" [disabled]="true" [readOnly]="true" placeholder=""> -->
+                        <label for="">{{ dataUser.correo }}</label>
+                    </div>
+                    <!-- <div class="group-input">
+                        <p>
+                            Email</p>
+                        <input type="text" formControlName="nombre" placeholder="">
+                
+                    </div> -->
+                    <div class="group-input">
+                        <p>
+                            Teléfono</p>
+                        <input type="number" formControlName="telefono" placeholder="" (keyup)="cambiarValidarMensaje()"><br/>
+                        <span>*Este teléfono va ir vinculado a WhatsApp</span>
+                        <ng-container *ngIf="formCojunto.controls.telefono.errors && !validarMensaje">
+                            <label for="" *ngIf="formCojunto.controls.telefono.errors.required">El telefono está vacio</label>
+                        </ng-container>
+                    </div>
+                    <div class="col-12 my-3">
+                        <!-- <button (click)="abrirModalcontrasena()">cambiar contraseña</button> -->
+                        <button (click)="updateConjunto($event)">Actualizar</button>
+                    </div>
+                </form>
             </div>
-        
-        
-            <div class="col-sm-6">
-                <p>Correo electronico </p>
-                <label for="">{{ dataUser.correo }}</label>
+            <div class="tab-pane fade" [ngClass]="dataUser.conjunto == 0 ? 'show active': ''" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <form *ngIf="dataUser.conjunto == 1" class="row  contenedor-input bordermix flex-direction">
+                    <div class="col-sm-6">
+                        <div class="group-input">
+                            <p> Nombre de la propiedad </p>
+                            <label for="">{{ dataUser.nombre }}</label>
+                        </div>
+                        <div class="group-input">
+                            <p>Correo electronico </p>
+                            <label for="">{{ dataUser.correo }}</label>
+                        </div>
+                        <div class="group-input">
+                            <p>Departamento:</p>
+                            <label for="">{{ dataUser.departamento }}</label>
+                        </div>
+                        <div class="group-input">
+                            <p>Código postal:</p>
+                            <label for="">{{ dataUser.codigo_postal }}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="group-input">
+                            <p>Tipo de la propiedad</p>
+                            <label for="">{{ dataUser.nombre_tipo_propiedad }}</label>
+                        </div>
+                        <div class="group-input">
+                            <p>Dirección propiedad:</p>
+                            <label for="">{{ dataUser.direccion }}</label>
+                        </div>
+                        <div class="group-input">
+                            <p>Ciudad:</p>
+                            <label for="">{{ dataUser.ciudad }}</label>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12 my-3">
+                        <button (click)="abrirModalcontrasena()">cambiar contraseña</button>
+                        <button (click)="updateConjunto($event)">Actualizar</button>
+                    </div> -->
+                </form>
+                <form *ngIf="dataUser.conjunto == 0" [formGroup]="formUser" class="row contenedor-input bordermix">
+                    <div class="group-input">
+                        <p> Nombre completo </p>
+                        <input type="text" formControlName="nombre" (keyup)="cambiarValidarMensaje()" placeholder="">
+                        <ng-container *ngIf="formUser.controls.nombre.errors && !validarMensaje">
+                            <label for="" *ngIf="formUser.controls.nombre.errors.required">El nombre de la propiedad está vacio</label>
+                        </ng-container>
+                
+                    </div>
+                
+                
+                    <div class="group-input">
+                        <p>
+                            Correo electronico </p>
+                        <input type="text" [disabled]="true" [readOnly]="true" formControlName="email" placeholder="">
+                
+                    </div>
+                
+                    <div class="group-input">
+                
+                        <p>
+                            Teléfono del propietario</p>
+                        <input type="number" formControlName="telefono" (keyup)="cambiarValidarMensaje()" placeholder=""><br/>
+                        <span>*Este teléfono va ir vinculado a WhatsApp</span>
+                        <ng-container *ngIf="formUser.controls.telefono.errors && !validarMensaje">
+                            <label for="" *ngIf="formUser.controls.telefono.errors.required">El telefono de la propiedad está vacio</label>
+                        </ng-container>
+                    </div>
+                    <div class="col-12 my-3">
+                        <!-- <a class="btn" (click)="abrirModalcontrasena()">Cambiar contraseña</a> -->
+                        <button (click)="updateUser($event)">Actualizar</button>
+                    </div>
+                </form>
             </div>
-            <!-- <div class="col-sm-6">
-                <p>
-                    Email</p>
-                <input type="text" formControlName="nombre" placeholder="">
-        
-            </div> -->
-            <div class="col-sm-6">
-                <p>Tipo de la propiedad</p>
-                <label for="">{{ dataUser.nombre_tipo_propiedad }}</label>
+            <div class="tab-pane fade" id="contact" *ngIf="dataUser.conjunto == 1" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="row contenedor-input bordermix">
+                    <ng-container *ngFor="let item of dataUser.cuentas_bancarias; let indice = index">
+                        <div class="group-input">
+                            <p> Banco </p>
+                            <select [(ngModel)]="item.nombre" name="" id="">
+                                <option value="">Seleccione el banco</option>
+                                <option value="Bancolombia">Bancolombia</option>
+                                <option value="Banco de bogota">Banco de bogota</option>
+                            </select>
+                        </div>
+                        <div class="group-input">
+                            <p> Cuenta </p>
+                            <input type="text" [(ngModel)]="item.cuenta" placeholder="Numero de la cuenta">
+                        </div>
+                        <!-- <div class="col-2" style="margin: auto;">
+                            <i (click)="removeCuenta(indice)" style="cursor: pointer" class="fas fa-trash-alt"></i>
+                        </div> -->
+                    </ng-container>
+                    <div class="col-12 my-3">
+                        <div class="contec-btn">
+                            <button (click)="addCuenta()">Agregar cuenta bancaria</button>
+                            <button (click)="saveCuenta($event)">Actualizar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-    
-            <div class="col-sm-6">
-                <p>Dirección propiedad:</p>
-                <label for="">{{ dataUser.direccion }}</label>
+            <div class="tab-pane fade" id="cambiar" role="tabpanel" aria-labelledby="cambiar-tab">
+                <form [formGroup]="formPasswors" (submit)="updatePassword($event)" class="row contenedor-input bordermix">
+
+                    <div class="group-input">
+                        <p>Contraseña antigua</p>
+                        <input type="password" formControlName="passwors" placeholder="" (keyup)="cambiarValidarMensaje()">
+                        <ng-container *ngIf="formPasswors.controls.passwors.errors && !validarMensaje">
+                            <label for="" *ngIf="formPasswors.controls.passwors.errors.required">La contraseña está
+                                vacio</label>
+                        </ng-container>
+                    </div>
+                    <div class="group-input">
+                        <p>Contraseña nueva</p>
+                        <input type="password" formControlName="new_passwors" placeholder="" (keyup)="cambiarValidarMensaje()">
+                        <ng-container *ngIf="formPasswors.controls.new_passwors.errors && !validarMensaje">
+                            <label for="" *ngIf="formPasswors.controls.new_passwors.errors.required">La contraseña está
+                                vacio</label>
+                        </ng-container>
+                    </div>
+                    <div class="group-input">
+                        <p>Repetir nueva contraseña </p>
+                        <input type="password" formControlName="confirmar_passwors" placeholder="" (keyup)="cambiarValidarMensaje()">
+                        <ng-container *ngIf="formPasswors.controls.confirmar_passwors.errors && !validarMensaje">
+                            <label for="" *ngIf="formPasswors.controls.confirmar_passwors.errors.required">La contraseña
+                                está vacio</label>
+                        </ng-container>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn">Cambiar</button>
+                    </div>
+                </form>
             </div>
-    
-            <div class="col-sm-6">
-                <p>Departamento:</p>
-                <label for="">{{ dataUser.departamento }}</label>
-            </div>
-    
-            <div class="col-sm-6">
-                <p>Ciudad:</p>
-                <label for="">{{ dataUser.ciudad }}</label>
-            </div>
-            
-            <div class="col-sm-6">
-                <p>Código postal:</p>
-                <label for="">{{ dataUser.codigo_postal }}</label>
-            </div>
-        
-        
-        
-            <div class="col-12 my-3">
-        
-                <button (click)="abrirModalcontrasena()">cambiar contraseña</button>
-                <!-- <button (click)="updateConjunto($event)">Actualizar</button> -->
-        
-            </div>
-        
-        </form>
+        </div>
     </div>
 </div>

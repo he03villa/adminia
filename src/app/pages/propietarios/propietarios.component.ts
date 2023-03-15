@@ -14,6 +14,7 @@ export class PropietariosComponent implements OnInit {
   auxArrayPropietarios = [];
   arrayTorre = [];
   selectTorre = '0';
+  dataUser;
 
   constructor(
     public services: ServicesService,
@@ -23,6 +24,7 @@ export class PropietariosComponent implements OnInit {
 
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem('dataUser'));
+    this.dataUser = user;
     this.listarPropietarios(user.id);
   }
 

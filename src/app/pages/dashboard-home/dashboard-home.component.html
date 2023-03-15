@@ -1,16 +1,59 @@
 <div class="container">
-
     <div class="row">
+        <div class="col-md-6 ">
+            <div class="conten-muro-scroll">
+                <div class="content-muro" [id]="indice" *ngFor="let item of arrayMuro; let indice = index" (click)="cargaDatarMuro(item, indice)">
+                    <div class="content-muro-head">
+                        <label for="">{{ item.nombre_user }}</label>
+                        <label for="">{{ item.fecha_creacion }}</label>
+                    </div>
+                    <div class="content-muro-body">
+                        <!-- <label for="">Lorem ipsum dolor sit amet, consetetur</label> -->
+                        <p>{{ item.descripcion }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="contenedor-comentario" *ngIf="dataComentario">
+                <div class="contenedor-comentario-head">
+                    <label for="">{{ dataComentario.nombre_user }}</label><br>
+                    <span>{{ dataComentario.fecha_creacion }}</span>
+                </div>
+                <div class="contenedor-comentario-body">
+                    <div class="contenedor-comentario-body-scroll">
+                        <ng-container *ngFor="let item of dataComentario.comentarios; let indice = index">
+                            <div class="contenedor-comentario-body-head-titulo">
+                                <label for="">{{ item.nombre_user }}</label>
+                                <span>{{ item.fecha_creacion }}</span>
+                            </div>
+                            <p>{{ item.comentario }}</p>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="contenedor-comentario-footer">
+                    <textarea name="" id="" [(ngModel)]="comentario" placeholder="Escribe tu comentario...."></textarea>
+                    <button (click)="saveComentario($event, dataComentario.id, comentario)">Comentar</button>
+                </div>
+            </div>
+            <div class="contenedor-publicar">
+                <div class="contenedor-publicar-head">
+                    <label for="">¡Hola Eduardo!</label>
+                    <p>Publica un nuevo comentario e interactúa con otros propietarios</p>
+                </div>
+                <div class="contenedor-publicar-body">
+                    <textarea name="" id="" [(ngModel)]="descripcionMuro" placeholder="esto es el muro"></textarea>
+                    <button (click)="saveMuro($event)">Publicar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
         <div class="col-8">
             <div class="conten-propiedades">
-
-                <textarea name="" id="" [(ngModel)]="descripcionMuro" style="width: 100%; max-height: 200px">
-                            esto es el muro
-
-                        </textarea>
+                <textarea name="" id="" [(ngModel)]="descripcionMuro" style="width: 100%; max-height: 200px">esto es el muro</textarea>
                 <button (click)="saveMuro($event)">Publicar</button>
                 <div class="contenedor-comentario">
-
                     <ng-container *ngFor="let item of arrayMuro">
                         <hr>
                         <h6>{{ item.nombre_user }}</h6>
@@ -41,84 +84,8 @@
 
                         </div>
                     </ng-container>
-
                 </div>
-
             </div>
         </div>
-        <!-- <div class="col-4">
-                    <div class="contect-comunidad">
-                        <img src="../../../assets/image/dashboard/Humaaan.png" alt="">
-                        <h6>Comunicados</h6>
-                        <button>Crear nuevo <mat-icon>add</mat-icon></button>
-                    </div>
-                </div> -->
-        <!-- <div class="col-4">
-            <div class="conten-buzon">
-                <h2>Buzón de mensajes</h2>
-                <div class="conten-buzon-mensaje">
-                    <hr>
-                    <div class="conten-buzon-mensaje-titulo">
-                        <label for="">De: <span>Santiago Trujillo</span></label>
-                        <div class="conten-buzon-mensaje-titulo-fecha-sede">
-                            <span>Sendai</span>
-                            <span>06 Feb</span>
-                        </div>
-                    </div>
-                    <p>Querida Juana, quería informarte que el veciono de arriba ha estado escuchando música a altos....
-                    </p>
-                </div>
-                <div class="conten-buzon-mensaje">
-                    <hr>
-                    <div class="conten-buzon-mensaje-titulo">
-                        <label for="">De: <span>David Gómez</span></label>
-                        <div class="conten-buzon-mensaje-titulo-fecha-sede">
-                            <span>Villas de sol</span>
-                            <span>06 Feb</span>
-                        </div>
-                    </div>
-                    <p>Querida Juana, quería informarte que el veciono de arriba ha estado escuchando música a altos....
-                    </p>
-                </div>
-                <div class="conten-buzon-mensaje">
-                    <hr>
-                    <div class="conten-buzon-mensaje-titulo">
-                        <label for="">De: <span>Carlos García</span></label>
-                        <div class="conten-buzon-mensaje-titulo-fecha-sede">
-                            <span>Villas de sol</span>
-                            <span>06 Feb</span>
-                        </div>
-                    </div>
-                    <p>Querida Juana, quería informarte que el veciono de arriba ha estado escuchando música a altos....
-                    </p>
-                </div>
-                <div class="conten-buzon-mensaje">
-                    <hr>
-                    <div class="conten-buzon-mensaje-titulo">
-                        <label for="">De: <span>Ricardo Jaramillo</span></label>
-                        <div class="conten-buzon-mensaje-titulo-fecha-sede">
-                            <span>Villas de sol</span>
-                            <span>06 Feb</span>
-                        </div>
-                    </div>
-                    <p>Querida Juana, quería informarte que el veciono de arriba ha estado escuchando música a altos....
-                    </p>
-                </div>
-                <div class="conten-buzon-mensaje">
-                    <hr>
-                    <div class="conten-buzon-mensaje-titulo">
-                        <label for="">De: <span>Gloria Giraldo</span></label>
-                        <div class="conten-buzon-mensaje-titulo-fecha-sede">
-                            <span>Villas de sol</span>
-                            <span>06 Feb</span>
-                        </div>
-                    </div>
-                    <p>Querida Juana, quería informarte que el veciono de arriba ha estado escuchando música a altos....
-                    </p>
-                </div>
-                <hr>
-                <a>Ver todos los mensajes <mat-icon>arrow_forward</mat-icon></a>
-            </div>
-        </div> -->
-    </div>
+    </div> -->
 </div>

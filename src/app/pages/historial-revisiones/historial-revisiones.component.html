@@ -1,7 +1,11 @@
 <div class="row" *ngIf="!documento">
-    <div class="col-sm-3" *ngFor="let item of arrayTipoRevision">
+    <div class="col-12">
+        <h2>Revisiones de administración</h2>
+    </div>
+    <div class="col-sm-2" *ngFor="let item of arrayTipoRevision">
         <div class="contenedor-carpeta" (click)="verDocumento(item)">
-            <img src="assets/image/documentos/carpeta.png" alt="">
+            <!-- <img src="assets/image/documentos/carpeta.png" alt=""> -->
+            <i class="fa-solid fa-folder-open"></i>
             <h6>
 
                 {{ item.nombre }}
@@ -33,6 +37,6 @@
 </div>
 
 <div class="contenedor-botones">
-    <button *ngIf="!propiedad" (click)="services.url('dashboard/revision')">Crear revición</button>
+    <button *ngIf="!propiedad" (click)="services.url('dashboard/revision')">Crear nueva revisión</button>
     <button (click)="atras()" *ngIf="documento">Atras</button>
 </div>

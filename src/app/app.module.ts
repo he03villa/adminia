@@ -8,17 +8,14 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ComponentsModule } from './components/components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { NgbModule, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
-import { LandingadminaComponent } from './pages/landingadmina/landingadmina.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ContentComponent,
-    DashboardComponent,
-    LandingadminaComponent,
-
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -27,8 +24,7 @@ import { LandingadminaComponent } from './pages/landingadmina/landingadmina.comp
     ComponentsModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-    NgbModule,
-    NgbAccordionModule,
+    NgbModule
 
   ],
   providers: [

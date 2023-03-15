@@ -4,15 +4,16 @@
         <a class="navbar-brand" href="#">
             <img class="logo" src="/assets/image/admina-landing.svg" alt="">
         </a>
-        <div class="d-flex align-items-center">
 
+        <div class="contenedor-inicio">
             <div [routerLink]="['/login']" routerLinkActive="router-link-active" class="iniciarsesion">
-                <img src="" alt="icon"> Inicia como propietario
+                <i class="fa-solid fa-user"></i> Inicia como propietario
             </div>
             <div [routerLink]="['/login']" routerLinkActive="router-link-active" class="iniciarsesion">
-                <img src="" alt="icon"> Inicia como propiedad
+                <i class="fa-solid fa-city"></i> Inicia como propiedad
             </div>
         </div>
+
 
 
     </div>
@@ -20,7 +21,7 @@
 
 <div class="contenedor-landing">
     <div class="row infolandingslogan">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <h1>
                 <strong> Creando <span> Comunidades </span> en propiedad horizontal</strong>
             </h1>
@@ -31,106 +32,73 @@
 
             <button class="quiero">Quiero iniciar con admina</button>
         </div>
-        <div class="col-sm-6">
-            <img src="" alt="">
+        <div class="col-sm-7">
+            <img src="/assets/image/elipse.png" alt="">
         </div>
     </div>
 </div>
 <div class="row unaherramienta">
 
     <div class="col-12 ">
-        <h5> <b>Desde edificios hasta urbanizaciones <br> <img class="logo" src="/assets/image/admina-landing.svg"
-                    alt="">
-
-                es tu herramienta <span> ideal </span> <br> para administrar tu conjunto en la nube</b>
-        </h5>
+        <p>
+            Desde edificios hasta urbanizaciones<br>
+            <img src="/assets/image/admina.png" alt=""> es tu herramienta <span>ideal</span><br> para administrar tu conjunto en la nube
+        </p>
     </div>
 </div>
 
 <div class="contenedor-landing">
-    <div class=" beneficios">
+    <div class=" row beneficios">
 
-        <div class=" item-beneficio">
-            <img src="" alt="imagenws">
-            <h6> COMUNICACIÓN <br> INMEDIATA</h6>
-            <p>Integración vía whatsapp.</p>
+        <div class="col-sm-4">
+            <div class="item-beneficio">
+                <i class="fa-brands fa-whatsapp"></i>
+                <h6> COMUNICACIÓN<br> INMEDIATA </h6>
+                <p>Integración vía<br> whatsapp.</p>
+            </div>
         </div>
-        <div class=" item-beneficio">
-            <img src="" alt="imagennube">
-            <h6> ALMACENAMIENTO <br> DE DATOS</h6>
-            <p>Analiza los datos del conjunto en tiempo real.</p>
+        <div class="col-sm-4">
+            <div class="item-beneficio">
+                <i class="fa-solid fa-cloud"></i>
+                <h6> ALMACENAMIENTO<br> DE DATOS </h6>
+                <p>Analiza los datos del<br> conjunto en tiempo real.</p>
+            </div>
         </div>
-        <div class=" item-beneficio">
-            <img src="" alt="imagenpagos">
-            <h6> PAGOS <br> DIGITALES </h6>
-            <p>Cobra de manera automática y recibe los pagos por medio de la plataforma.</p>
+        <div class="col-sm-4">
+            <div class="item-beneficio">
+                <i class="fa-solid fa-money-bill"></i>
+                <h6> PAGOS<br> DIGITALES </h6>
+                <p>Cobra de manera<br> automática y recibe los<br> pagos por medio de la<br> plataforma.</p>
+            </div>
         </div>
     </div>
-
-
     <div class="row">
-        <div class="col-10 mx-auto">
-            <h6>
-                Crear tu cuenta no tiene ningún valor!! <br> Regístrate y encuentra como <img class="logo" src="/assets/image/admina-landing.svg" alt=""> te soluciona tu día a día.
-            </h6>
+        <div class="col-sm-12">
+            <div class="contenedor-ningun-valor">
+                <p><span>Crear tu cuenta no tiene ningún valor!!</span><br> Regístrate y encuentra como <img src="/assets/image/admina.png" alt=""> te soluciona tu día a día.</p>
+            </div>
         </div>
     </div>
+    <div class="row beneficios max">
 
-    <div class=" beneficios">
-
-        <div class=" item-beneficio conjunyo">
-            <h6> COMUNICACIÓN <br> INMEDIATA</h6>
-            <img src="" alt="imagenws">
-            <p>Integración vía whatsapp.</p>
-            <button>Crea tu propiedad</button>
+        <div class="col-sm-6">
+            <div class="item-beneficio">
+                <h6>¿AÚN NO TIENES UN CONJUNTO<br> CREADO?</h6>
+                <i class="fa-solid fa-city"></i>
+                <p>En este espacio podrás administrar<br> tu conjunto residencial.</p>
+                <button class="btn">Crea tu propiedad</button>
+            </div>
         </div>
-        <div class=" item-beneficio conjunyo">
-            <h6> ALMACENAMIENTO <br> DE DATOS</h6>
-            <img src="" alt="imagennube">
-            <p>Analiza los datos del conjunto en tiempo real.</p>
-            <button>Crea tu propiedad</button>
+        <div class="col-sm-6">
+            <div class="item-beneficio">
+                <h6> TUS VECINOS YA CREARON SU<br> USUARIO PERO TU AÚN NO? </h6>
+                <i class="fa-solid fa-user"></i>
+                <p>Aquí podrás estar al tanto de<br> toda la información relevante<br> de tu conjunto.</p>
+                <button class="btn">Crea tu usuario como propietario</button>
+            </div>
         </div>
-
     </div>
-
-    <div class="row">
-        <div class="col-12">
-            <h4>Preguntas frecuentes</h4>
-        </div>
-        <ngb-accordion [closeOthers]="true" activeIds="static-1">
-            <ngb-panel id="static-1" title="Simple">
-                <ng-template ngbPanelContent>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-                    raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </ng-template>
-            </ngb-panel>
-            <ngb-panel id="static-2">
-                <ng-template ngbPanelTitle>
-                    <span>&#9733; <b>Fancy</b> title &#9733;</span>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-                    raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </ng-template>
-            </ngb-panel>
-            <ngb-panel id="static-3" title="Disabled" [disabled]="true">
-                <ng-template ngbPanelContent>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-                    raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </ng-template>
-            </ngb-panel>
-        </ngb-accordion>
-
-    </div>
-
-
-
-
-
-    <div class="row solicdemosos">
+    <!-- <div class="row solicdemosos">
 
         <div class="col-sm-6 solicitardemo">
             <button>
@@ -142,13 +110,49 @@
             <img class=" metodospago " src="assets/image/footer/metodos.png " alt=" ">
 
         </div>
+    </div> -->
+</div>
+<div class="preguntas">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Preguntas frecuentes</h2>
+            </div>
+
+            <div class="col-12">
+
+
+
+            </div>
+        </div>
     </div>
 </div>
 
-
 <footer>
+    <div class="text-center">
+        <div>
 
-    <div class="text-center ">
-        ©2022 Admina S.A.S
+            <img src="/assets/image/admin.png" alt="">
+        </div>
+        <div>
+            <h3>Síguenos</h3>
+            <div class="redessociales">
+
+                <img src="/assets/image/in.png" alt="">
+                <img src="/assets/image/fb.png" alt="">
+                <img src="/assets/image/in.png" alt="">
+                <img src="/assets/image/yt.png" alt="">
+            </div>
+        </div>
+
+        <div>
+
+            <img src="/assets/image/metodospagos.png" alt="">
+        </div>
+
+
+    </div>
+    <div style="background-color: #031826; color: #ffffff;padding: 16px;" class="text-center ">
+        Admina S.A.S ©2022 | Todos los derechos reservados. Desarrollado por Admina S.A.S
     </div>
 </footer>

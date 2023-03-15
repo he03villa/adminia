@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalVerInfoPropietarioComponent } from './modal-ver-info-propietario/modal-ver-info-propietario.component';
 import { ModalNotificacionComponent } from './modal-notificacion/modal-notificacion.component';
 import { ModalCambiarPasswordComponent } from './modal-cambiar-password/modal-cambiar-password.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -22,14 +23,16 @@ import { ModalCambiarPasswordComponent } from './modal-cambiar-password/modal-ca
     NoDataComponent, 
     ModalVerInfoPropietarioComponent, 
     ModalNotificacionComponent, 
-    ModalCambiarPasswordComponent
+    ModalCambiarPasswordComponent,
+    FooterComponent
   ],
   exports: [
     NavComponent, 
     ModalCrearRevisionComponent, 
     NoDataComponent, 
     ModalVerInfoPropietarioComponent, 
-    ModalCambiarPasswordComponent
+    ModalCambiarPasswordComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

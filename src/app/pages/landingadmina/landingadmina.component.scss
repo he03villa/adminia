@@ -39,6 +39,22 @@
     }
     .infolandingslogan {
         margin: 50px 0;
+        align-items: center;
+        overflow: hidden;
+        height: 422px;
+        img {
+            width: 100%;
+            position: relative;
+            right: -156px;
+        }
+        .quiero {
+            background: #d9d5fa 0% 0% no-repeat padding-box;
+            color: #3431A0;
+            border-radius: 80px;
+            border: none;
+            padding: 9px 32px;
+            font-weight: bold;
+        }
     }
     form {
         button {
@@ -92,12 +108,19 @@
                 border-radius: 30px;
                 padding: 10px 30px;
             }
+            p {
+                font-size: 24px;
+                text-align: center;
+            }
             @media (max-width: 575px) {
                 margin: 16px 0;
             }
+            &.conjunyo {
+                width: 50%;
+            }
         }
         &.max {
-            .item-beneficio{
+            .item-beneficio {
                 height: 400px;
             }
         }
@@ -118,7 +141,6 @@
         }
         object-fit: contain;
     }
-    
     .contenedor-ningun-valor {
         text-align: center;
         margin: 60px 0;
@@ -182,8 +204,16 @@
 }
 
 footer {
-    background-color: $primary;
+    background-color: #282b3b;
     color: $white;
     margin-top: 100px;
-    padding: 16px 32px;
+    padding: 16px 0px 0;
+    img {
+        margin-bottom: 32px;
+    }
+    .redessociales {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
 }

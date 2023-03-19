@@ -2,17 +2,15 @@
     <div class="container-fluid ">
 
         <a class="navbar-brand" href="#">
-            <img class="logo" src="/assets/image/admina.png" alt="">
+            <img class="logo" src="/assets/image/admina-landing.svg" alt="">
         </a>
 
         <div class="contenedor-inicio">
             <div [routerLink]="['/login']" routerLinkActive="router-link-active" class="iniciarsesion">
-                <i class="fa-solid fa-user"></i>
-                Inicia como propietario
+                <i class="fa-solid fa-user"></i> Inicia como propietario
             </div>
             <div [routerLink]="['/login']" routerLinkActive="router-link-active" class="iniciarsesion">
-                <i class="fa-solid fa-city"></i>
-                Inicia como propiedad
+                <i class="fa-solid fa-city"></i> Inicia como propiedad
             </div>
         </div>
 
@@ -23,26 +21,19 @@
 
 <div class="contenedor-landing">
     <div class="row infolandingslogan">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <h1>
-                <strong> Centraliza la administración de tu <br> propiedad horizontal </strong>
+                <strong> Creando <span> Comunidades </span> en propiedad horizontal</strong>
             </h1>
-            <img class="logo" src="/assets/image/dashboard/Humaaan.png" alt="">
+            <p>
+                <strong> Con nuestra plataforma web podrás centralizar la administración de tu conjunto
+                    residencial.</strong>
+            </p>
+
+            <button class="quiero">Quiero iniciar con admina</button>
         </div>
-        <div class="col-sm-6">
-            <h2>
-                <strong> Dejanos tus datos y espera nuestra llamada</strong>
-            </h2>
-            <form>
-
-                <input type="text" class="form-control name" placeholder="Tu nombre" name="" id="">
-                <input type="text" class="form-control email" placeholder="Tu email" name="" id="">
-
-                <input type="text" class="form-control ciudad" placeholder="Tu ciudad" name="" id="">
-                <input type="text" class="form-control telefono" placeholder="Tu telefóno" name="" id="">
-
-                <button class="btn mb-3">Envíar</button>
-            </form>
+        <div class="col-sm-7">
+            <img src="/assets/image/elipse.png" alt="">
         </div>
     </div>
 </div>
@@ -51,14 +42,13 @@
     <div class="col-12 ">
         <p>
             Desde edificios hasta urbanizaciones<br>
-            <img src="/assets/image/admina.png" alt=""> es tu herramienta <span>ideal</span><br>
-            para administrar tu conjunto en la nube
+            <img src="/assets/image/admina.png" alt=""> es tu herramienta <span>ideal</span><br> para administrar tu conjunto en la nube
         </p>
     </div>
 </div>
 
 <div class="contenedor-landing">
-    <div class="row beneficios">
+    <div class=" row beneficios">
 
         <div class="col-sm-4">
             <div class="item-beneficio">
@@ -128,14 +118,41 @@
             <div class="col-12">
                 <h2>Preguntas frecuentes</h2>
             </div>
-            <div class="col-12"></div>
+
+            <div class="col-12">
+
+
+
+            </div>
         </div>
     </div>
 </div>
 
 <footer>
+    <div class="text-center">
+        <div>
 
-    <div class="text-center ">
-        ©2022 Admina S.A.S
+            <img src="/assets/image/admin.png" alt="">
+        </div>
+        <div>
+            <h3>Síguenos</h3>
+            <div class="redessociales">
+
+                <img src="/assets/image/in.png" alt="">
+                <img src="/assets/image/fb.png" alt="">
+                <img src="/assets/image/in.png" alt="">
+                <img src="/assets/image/yt.png" alt="">
+            </div>
+        </div>
+
+        <div>
+
+            <img src="/assets/image/metodospagos.png" alt="">
+        </div>
+
+
+    </div>
+    <div style="background-color: #031826; color: #ffffff;padding: 16px;" class="text-center ">
+        Admina S.A.S ©2022 | Todos los derechos reservados. Desarrollado por Admina S.A.S
     </div>
 </footer>

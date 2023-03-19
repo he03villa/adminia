@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,9 +24,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ComponentsModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-    NgbModule,
+    NgbModule
+
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

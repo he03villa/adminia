@@ -35,7 +35,7 @@ const routes: Routes = [
     canActivate: [NoAuthService],
     children: [
       { path: '', loadChildren: () => import('./pages/landingadmina/landingadmina.module').then(m => m.LandingadminaModule) },
-      { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), canActivate: [ActivarUserService, ActivarPropiedadService] },
+      /* { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), canActivate: [ActivarUserService, ActivarPropiedadService] }, */
       { path: 'registro-propiedad', loadChildren: () => import('./pages/crearcopropiedad/crearcopropiedad.module').then(m => m.CrearcopropiedadModule) },
       { path: '**', redirectTo: '' }
     ]

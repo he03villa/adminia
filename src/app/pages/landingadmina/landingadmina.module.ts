@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LandingadminaComponent } from './landingadmina.component';
 import { LandingadminaRoutingModule } from './landingadmina-routing.module';
+import { ComponentsModule } from '../../components/components.module';
 
 
 
@@ -9,7 +10,8 @@ import { LandingadminaRoutingModule } from './landingadmina-routing.module';
   declarations: [LandingadminaComponent],
   imports: [
     CommonModule,
-    LandingadminaRoutingModule
+    LandingadminaRoutingModule,
+    ComponentsModule
   ]
 })
 export class LandingadminaModule { }

@@ -1,4 +1,7 @@
 @import 'src/variables.scss';
+::ng-deep body {
+    overflow-x: hidden;
+}
 .contenedornavlanding {
     /* background-color: $primary; */
     margin-bottom: 16px;
@@ -169,6 +172,41 @@
         text-align: center;
         font-weight: bold;
     }
+
+    a {
+        width: 100%;
+        color: $primary;
+        font-weight: bold;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &.collapsed {
+            i {
+                transform: rotate(0deg);
+            }
+        }
+        &:not(.collapsed) {
+            i {
+                transform: rotate(180deg);
+            }
+        }
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .collapse {
+        .card-body {
+            border: none;
+            background: transparent;
+            margin-top: -35px;
+            font-size: 20px;
+            color: #282B3B;
+            font-weight: normal;
+            display: block;
+        }
+    }
 }
 
 .unaherramienta {
@@ -206,7 +244,7 @@
 footer {
     background-color: #282b3b;
     color: $white;
-    margin-top: 100px;
+    margin-top: -40px;
     padding: 16px 0px 0;
     img {
         margin-bottom: 32px;

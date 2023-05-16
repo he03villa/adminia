@@ -6,10 +6,10 @@
         </a>
 
         <div class="contenedor-inicio">
-            <div [routerLink]="['/login']" routerLinkActive="router-link-active" class="iniciarsesion">
+            <div (click)="services.showModal('#modalLogin')" class="iniciarsesion">
                 <i class="fa-solid fa-user"></i> Inicia como propietario
             </div>
-            <div [routerLink]="['/login']" routerLinkActive="router-link-active" class="iniciarsesion">
+            <div (click)="services.showModal('#modalLogin')" routerLinkActive="router-link-active" class="iniciarsesion">
                 <i class="fa-solid fa-city"></i> Inicia como propiedad
             </div>
         </div>
@@ -121,16 +121,81 @@
 
             <div class="col-12">
                 <p>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Link with href
+                    <a class="btn" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
+                        ¿Quiénes somos?
+                        <i class="fa-solid fa-chevron-down"></i>
                     </a>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Button with data-target
-                    </button>
+                    </button> -->
                 </p>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse show" id="collapseExample1">
                     <div class="card card-body">
-                        Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                        Admina es una WebApp que busca crear una comunidad dentro de la propiedad horizontal.
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <p>
+                    <a class="btn" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+                        ¿Qué buscamos?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Button with data-target
+                    </button> -->
+                </p>
+                <div class="collapse show" id="collapseExample2">
+                    <div class="card card-body">
+                        Admina busca empoderar a los administradores de propiedad horizontal, facilitándoles y<br/> optimizándoles el trabajo para que puedan tener un mayor alcance.
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <p>
+                    <a class="btn" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample3">
+                        ¿Tiene algún valor el uso de la plataforma?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Button with data-target
+                    </button> -->
+                </p>
+                <div class="collapse show" id="collapseExample3">
+                    <div class="card card-body">
+                        Con Admina, podrás usar nuestra plataforma sin ningún costo. Esta versión es la versión Lite,<br> cuando desarrollemos la versión Pro te lo haremos saber*.
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <p>
+                    <a class="btn" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample4">
+                        ¿Dónde tenemos presencia?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Button with data-target
+                    </button> -->
+                </p>
+                <div class="collapse show" id="collapseExample4">
+                    <div class="card card-body">
+                        Admina actualmente opera en Colombia, en ciudades principales como Bogotá, Medellín,<br> Barranquilla y Bucaramanga.
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <p>
+                    <a class="btn" data-toggle="collapse" href="#collapseExample5" role="button" aria-expanded="false" aria-controls="collapseExample5">
+                        ¿Dónde tenemos presencia?
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+                    <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Button with data-target
+                    </button> -->
+                </p>
+                <div class="collapse show" id="collapseExample5">
+                    <div class="card card-body">
+                        Nuestros canales de comunicación están disponibles 24/7, escríbenos al correo<br> <b>santiago@admina.com.co</b> y te responderemos en minutos.
                     </div>
                 </div>
             </div>
@@ -166,3 +231,5 @@
         Admina S.A.S ©2022 | Todos los derechos reservados. Desarrollado por Admina S.A.S
     </div>
 </footer>
+
+<app-modal-login></app-modal-login>

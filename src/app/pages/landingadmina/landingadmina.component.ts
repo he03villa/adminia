@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { ServicesService } from '../../services/services.service';
 
 @Component({
   selector: 'app-landingadmina',
@@ -8,7 +9,9 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class LandingadminaComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public services: ServicesService
+  ) { }
   standalone: true;
   ngOnInit() {
   }

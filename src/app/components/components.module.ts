@@ -13,6 +13,7 @@ import { ModalVerInfoPropietarioComponent } from './modal-ver-info-propietario/m
 import { ModalNotificacionComponent } from './modal-notificacion/modal-notificacion.component';
 import { ModalCambiarPasswordComponent } from './modal-cambiar-password/modal-cambiar-password.component';
 import { FooterComponent } from './footer/footer.component';
+import { ModalLoginComponent } from './modal-login/modal-login.component';
 
 
 
@@ -24,7 +25,8 @@ import { FooterComponent } from './footer/footer.component';
     ModalVerInfoPropietarioComponent, 
     ModalNotificacionComponent, 
     ModalCambiarPasswordComponent,
-    FooterComponent
+    FooterComponent,
+    ModalLoginComponent
   ],
   exports: [
     NavComponent, 
@@ -32,7 +34,8 @@ import { FooterComponent } from './footer/footer.component';
     NoDataComponent, 
     ModalVerInfoPropietarioComponent, 
     ModalCambiarPasswordComponent,
-    FooterComponent
+    FooterComponent,
+    ModalLoginComponent
   ],
   imports: [
     CommonModule,

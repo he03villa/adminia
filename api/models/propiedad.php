@@ -129,7 +129,8 @@
         
         public function getAllPropietarioPro($propiedad) {
             parent::conectar();
-            $consultar2 = "SELECT p.nombre, p.id from propiedad p inner join cojunto c on c.id = p.cojunto_id where c.codigo = '$propiedad[token]'  order by p.fecha desc";
+            /* $consultar2 = "SELECT p.nombre, p.id from propiedad p inner join cojunto c on c.id = p.cojunto_id where c.codigo = '$propiedad[token]' order by p.fecha desc"; */
+            $consultar2 = "SELECT p.id, IF(t.nombre is null, p.nombre, concat(t.nombre,' - ',p.nombre)) nombre from propiedad p inner join cojunto c on c.id = p.cojunto_id left join torre t on p.torre_id = t.id where c.codigo = '$propiedad[token]' order by p.fecha desc";
             $lista = parent::consultaTodo($consultar2);
             $res = array('status' => 'success', 'message' => 'El propietario se registro', 'data' => $lista);
             parent::cerrar();

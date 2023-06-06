@@ -15,6 +15,8 @@ export class NavComponent implements OnInit {
   dataUser;
   arrayNotificaion = [];
   numeroNoVisto = 0;
+  text = '';
+  text2 = '';
 
 
   constructor(
@@ -28,11 +30,13 @@ export class NavComponent implements OnInit {
     const user = JSON.parse(localStorage.getItem('dataUser'));
     this.dataUser = user;
     this.cargarNotificacion();
+    this.text = `Hola!!👋🏼👋🏼😀😀%0ATe invito a que te unas a nuestro conjunto residencial🏠, así recibirás y tendrás acceso a toda la información de tu propiedad!%0AHacerlo es muy fácil!!!💥💥%0ASigue los siguientes pasos:%0A1) Ingresa a Admina.com.co%0A2) Crea un usuario como propietario%0A3) Ingresa el siguiente código en “agregar propiedad”%0AY listo!!%0A%0A💥💥El código de tu conjunto residencial es el siguiente:👇🏼👇🏼%0A ${this.dataUser.codigo}`;
+    this.text2 = this.text.split('%0A').join('\n');
   }
 
   compartirWhatsapp() {
     /* https://api.whatsapp.com/send?text= */
-    const content = `https://api.whatsapp.com/send?text=${this.dataUser.codigo}`;
+    const content = `https://api.whatsapp.com/send?text=${this.text}`;
     this.services.abrir(content);
   }
 

@@ -109,7 +109,7 @@
             </form>
             <div class="row contenedor-input" *ngIf="form.controls.tipo_propiedad_id.value == 1">
                 <div class="item-input col-4">
-                    <p> Nombre de la propiedad </p>
+                    <p class="height-40"> Nombre de la propiedad </p>
                     <input type="text" placeholder="" [(ngModel)]="dataUbanizacionCasa.nombre_nomezclatura" (keyup)="cambiarValidarMensaje();llenarArray()">
                     <!-- <ng-container *ngIf="form.controls.nombre_nomezclatura.errors && !validarMensaje">
                         <label for="" *ngIf="form.controls.nombre_nomezclatura.errors.required">El nombre postal de la
@@ -118,7 +118,7 @@
                     </ng-container> -->
                 </div>
                 <div class="item-input col-4">
-                    <p> Cantidad de propiedades </p>
+                    <p class="height-40"> Cantidad de propiedades </p>
                     <input type="number" placeholder="" [(ngModel)]="dataUbanizacionCasa.cantidad_propiedad" (keyup)="cambiarValidarMensaje();llenarArray()">
                     <!-- <ng-container *ngIf="form.controls.cantidad_propiedad.errors && !validarMensaje">
                         <label for="" *ngIf="form.controls.cantidad_propiedad.errors.required">El nombre postal de la

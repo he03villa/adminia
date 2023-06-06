@@ -14,6 +14,7 @@ export class ModalLoginComponent implements OnInit {
   formRegistro: FormGroup = new FormGroup({});
   validarMensaje = true;
   validarMensajeRegistro = true;
+  ojo = false;
 
   constructor(
     public services: ServicesService,

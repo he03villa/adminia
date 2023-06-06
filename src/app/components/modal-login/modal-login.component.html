@@ -24,8 +24,8 @@
                         <div class="group-input">
                             <label for="">Contraseña</label>
                             <div>
-                                <input type="password" formControlName="password" (keyup)="cambiarValidarMensaje()">
-                                <i class="fa-solid fa-eye-slash"></i>
+                                <input [type]="!ojo ? 'password' : 'text'" formControlName="password" (keyup)="cambiarValidarMensaje()">
+                                <i (click)="ojo = !ojo" [class]="!ojo ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
                             </div>
                             <ng-container *ngIf="form.controls.password.errors && !validarMensaje">
                                 <label for="" *ngIf="form.controls.password.errors.required">El email está vacio</label>
@@ -40,8 +40,8 @@
                     </div>
                     <div class="col-12">
                         <div class="content-registro">
-                            <label for="">¿Aún no eres miembro? <a (click)="abrirModal()">Crea una cuenta.</a></label>
-                            <label for="">¿Aún no tienes un conjunto? <a (click)="services.url('/login/registro-propiedad')">Regístrate aquí.</a></label>
+                            <label for="">¿Aún no eres miembro? <a (click)="abrirModal()" data-dismiss="modal">Crea una cuenta.</a></label>
+                            <label for="">¿Aún no tienes un conjunto? <a (click)="services.url('/registro-propiedad')" data-dismiss="modal">Regístrate aquí.</a></label>
                         </div>
                     </div>
                 </form>

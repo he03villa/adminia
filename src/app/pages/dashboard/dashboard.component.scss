@@ -5,6 +5,8 @@ mat-sidenav {
 mat-sidenav-content {
     background: $soft-grey;
     padding: 0;
+    height: calc(100vh - 100px) !important;
+    overflow-x: hidden;
 }
 
 .contenedor-menu-dashoboard {

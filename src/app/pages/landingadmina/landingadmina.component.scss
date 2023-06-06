@@ -45,6 +45,17 @@
         align-items: center;
         overflow: hidden;
         height: 422px;
+        h1 {
+            width: 520px;
+            font-size: 36px;
+
+            span {
+                color: #FFFFFF;
+                background-color: #8275F4;
+                border-radius: 30px;
+                padding: 0 8px;
+            }
+        }
         img {
             width: 100%;
             position: relative;

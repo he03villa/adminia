@@ -30,7 +30,7 @@
                     residencial.</strong>
             </p>
 
-            <button class="quiero">Quiero iniciar con admina</button>
+            <button class="quiero" (click)="services.showModal('#modalLogin')">Quiero iniciar con admina</button>
         </div>
         <div class="col-sm-7">
             <img src="/assets/image/elipse.png" alt="">
@@ -86,7 +86,7 @@
                 <h6>¿AÚN NO TIENES UN CONJUNTO<br> CREADO?</h6>
                 <i class="fa-solid fa-city"></i>
                 <p>En este espacio podrás administrar<br> tu conjunto residencial.</p>
-                <button class="btn">Crea tu propiedad</button>
+                <button class="btn" (click)="services.url('/registro-propiedad')">Crea tu propiedad</button>
             </div>
         </div>
         <div class="col-sm-6">
@@ -94,7 +94,7 @@
                 <h6> TUS VECINOS YA CREARON SU<br> USUARIO PERO TU AÚN NO? </h6>
                 <i class="fa-solid fa-user"></i>
                 <p>Aquí podrás estar al tanto de<br> toda la información relevante<br> de tu conjunto.</p>
-                <button class="btn">Crea tu usuario como propietario</button>
+                <button class="btn" (click)="services.showModal('#ModalRegistro')">Crea tu usuario como propietario</button>
             </div>
         </div>
     </div>

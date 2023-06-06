@@ -1,6 +1,9 @@
 @import 'src/variables.scss';
 .contenedor-tabla {
     /* height: 450px; */
+    height: 370px;
+    overflow: auto;
+    margin-top: 15px;
 }
 
 .row-tabla {

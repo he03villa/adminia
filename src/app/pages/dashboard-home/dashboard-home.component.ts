@@ -16,6 +16,7 @@ export class DashboardHomeComponent implements OnInit {
   comentario = '';
   dataComentario;
   propiedad;
+  dataUsuario;
 
   constructor(
     public services: ServicesService,
@@ -41,6 +42,7 @@ export class DashboardHomeComponent implements OnInit {
       pagina: this.page,
       conjunto: propiedad ? propiedad.cojunto_id : user.id
     };
+    this.dataUsuario = user;
     const res:any = await this.Muro.getListPropietario(data);
     this.arrayMuro = res.data;
     setTimeout(() => {

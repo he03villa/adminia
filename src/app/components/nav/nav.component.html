@@ -57,7 +57,7 @@
                     <div class="content-qr" id="propiedad-qr"></div>
                     <div class="contemt-text-copy">
                         <div class="text-qr">{{ dataUser.codigo }}</div>
-                        <i class="fas fal fa-copy" ngxClipboard [cbContent]="dataUser.codigo" [container]="referido" (cbOnSuccess)="services.Toast('success', 'Se copio con exito')"></i>
+                        <i class="fas fal fa-copy" ngxClipboard [cbContent]="text2" [container]="referido" (cbOnSuccess)="services.Toast('success', 'Se copio con exito')"></i>
                     </div>
                 </div>
 

@@ -1,6 +1,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 ">
+            <div class="contenedor-publicar">
+                <div class="contenedor-publicar-head">
+                    <label for="">¡Hola {{ dataUsuario ? dataUsuario.nombre : '' }}!</label>
+                    <p>Publica un nuevo comentario e interactúa con otros propietarios</p>
+                </div>
+                <div class="contenedor-publicar-body">
+                    <textarea name="" id="" [(ngModel)]="descripcionMuro" placeholder="esto es el muro"></textarea>
+                    <button (click)="saveMuro($event)">Publicar</button>
+                </div>
+            </div>
             <div class="conten-muro-scroll">
                 <div class="content-muro" [id]="indice" *ngFor="let item of arrayMuro; let indice = index" (click)="cargaDatarMuro(item, indice)">
                     <div class="content-muro-head">
@@ -34,16 +44,6 @@
                 <div class="contenedor-comentario-footer">
                     <textarea name="" id="" [(ngModel)]="comentario" placeholder="Escribe tu comentario...."></textarea>
                     <button (click)="saveComentario($event, dataComentario.id, comentario)">Comentar</button>
-                </div>
-            </div>
-            <div class="contenedor-publicar">
-                <div class="contenedor-publicar-head">
-                    <label for="">¡Hola Eduardo!</label>
-                    <p>Publica un nuevo comentario e interactúa con otros propietarios</p>
-                </div>
-                <div class="contenedor-publicar-body">
-                    <textarea name="" id="" [(ngModel)]="descripcionMuro" placeholder="esto es el muro"></textarea>
-                    <button (click)="saveMuro($event)">Publicar</button>
                 </div>
             </div>
         </div>

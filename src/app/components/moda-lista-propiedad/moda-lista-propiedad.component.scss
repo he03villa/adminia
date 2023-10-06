@@ -1,0 +1,46 @@
+@import 'src/variables.scss';
+h5 {
+    text-align: center;
+}
+.content-check {
+    label {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        border: none;
+        background-color: $white;
+        padding: 15px 10px;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 10px;
+        height: auto;
+        height: 60px !important;
+        cursor: pointer;
+    }
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    input[type="checkbox"]:checked + label {
+        box-shadow: 0px 3px 6px #0fbf12;
+    }
+}
+
+.contenedor-botones {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    button {
+        margin: 0 8px;
+        background-color: $primary;
+        color: #fff;
+        font-size: 14px;
+        border: none;
+        border-radius: 20px;
+        letter-spacing: 1px;
+        padding: 9px 16px;
+        font-weight: bold;
+        font-family: 'Montserrat';
+        min-width: 200px;
+    }
+}

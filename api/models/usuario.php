@@ -70,6 +70,8 @@
                     }
                     $consultar1 = "SELECT * from usuario_has_rol where usuario_id = $usuario[id]";
                     $usuario['rol'] = parent::consultaTodo($consultar1);
+                    $consultar2 = "SELECT * from cuentas_bancarias where usuario_id = $usuario[id]";
+                    $usuario['cuentas_bancarias'] = parent::consultaTodo($consultar2);
                     $resul = array('status' => 'success', 'message' => 'Datos del usuario', 'data' => $usuario);
                 } else {
                     $resul = array('status' => 'errorActivar', 'message' => 'No se ha activado la cuenta');

@@ -56,7 +56,7 @@ export class CopropiedadesComponent implements OnInit {
       let html = '';
       array.filter(f => html += `<option value="${ f.id }">${ f.nombre }</option>`);
       const data:any = await Swal.fire({
-        title: 'Escoge propiedad',
+        title: 'Escoge tu propiedad',
         html: `<select id="copropiedad" class="swal2-input">${html}</select>`,
         showCancelButton: true,
         confirmButtonText: 'Guardar',

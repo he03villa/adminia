@@ -76,7 +76,7 @@ export class ServicesService {
     }
   };
 
-  Alert(icon, title, text, confirmButtonText, cancelButtonText, showCancelButton = false) {
+  Alert(icon, title, text, confirmButtonText, cancelButtonText, showCancelButton = false, showCloseButton = true, backdrop = true) {
     return Swal.fire({
       icon,
       title,  
@@ -84,8 +84,29 @@ export class ServicesService {
       confirmButtonText,
       cancelButtonText,
       showCancelButton,
-      showCloseButton: true
+      showCloseButton: showCloseButton,
+      backdrop: backdrop,
+      background: '.swal2-container.swal2-backdrop-show'
     }).then();
+  }
+
+  AlertInput(text, confirmButtonText, cancelButtonText, showCancelButton = false, showCloseButton = true, backdrop = true) {
+    return Swal.fire({
+      input: 'text', 
+      html: text,
+      confirmButtonText,
+      cancelButtonText,
+      showCancelButton,
+      showCloseButton,
+      backdrop,
+      background: '.swal2-container.swal2-backdrop-show',
+      preConfirm: (input) => {
+        if (input == '') {
+          Swal.showValidationMessage(`El campo esta vacío`);
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    });
   }
 
   Toast(icon, title) {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MuroService } from '../../services/muro.service';
 import { ServicesService } from '../../services/services.service';
+import { PagosService } from '../../services/pagos.service';
+
 declare var $ : any;
 
 @Component({
@@ -21,16 +23,69 @@ export class DashboardHomeComponent implements OnInit {
   constructor(
     public services: ServicesService,
     private Muro: MuroService,
+    private pago: PagosService
   ) { }
 
   ngOnInit() {
     this.cargarMuro(1);
+    this.cargarPago();
   }
 
   cargaDatarMuro(item, id) {
     this.dataComentario = item;
     $('.content-muro').removeClass('active');
     $(`#${id}`).addClass('active');
+  }
+
+  async cargarPago() {
+    let propiedad:any = sessionStorage.getItem('dataPropiedad') || '';
+    if (propiedad != '') {
+      propiedad = JSON.parse(sessionStorage.getItem('dataPropiedad') || '');
+      if (propiedad.pago != null) {
+        this.cargarModalAceptacionPago(propiedad.pago);
+      } else {
+        const res = await this.cargaPagoWb(propiedad.id);
+        if (res != null) {
+          this.cargarModalAceptacionPago(res.pago);
+        }
+      }
+    }
+  }
+
+  async cargaPagoWb(id) {
+    const res:any = await this.pago.getPagos({ id });
+    return res.data;
+  }
+
+  async cargarModalAceptacionPago(pago) {
+    if (parseInt(pago.status) == 0) {
+      console.log(pago);
+      const html = `
+        <div class="content-informacion">
+          <p>
+            El administrador ya monto el pago mensual de la propiedad por un monto de <b>${ pago.pago }</b>.
+            Esta decuerdo con el moneto establecido
+          </p>
+        </div>
+      `;
+      const res = await this.services.Alert('info', '', html, 'Aceptar', 'Rechazar', true, false, false);
+      let descripcion = '';
+      if (res.isDismissed) {
+        const resInpu:any = await this.services.AlertInput('Ingrese la descipcion de rezachar el valor del arriendo', 'Aceptar', '', false, false, false);
+        console.log(resInpu);
+        descripcion = resInpu.value;
+      }
+      let status = res.isConfirmed ? 1 : (res.isDismissed ? 2 : 0);
+      const data = { id: pago.id, status, descripcion };
+      console.log(data);
+      const response:any = await this.pago.updatePagosStatus(data);
+      if (response.status == 'success') {
+        pago.status = status;
+        const propiedad = JSON.parse(sessionStorage.getItem('dataPropiedad') || '');
+        propiedad.pago = pago;
+        sessionStorage.setItem('dataPropiedad', JSON.stringify(propiedad));
+      }
+    }
   }
 
   async cargarMuro(page) {

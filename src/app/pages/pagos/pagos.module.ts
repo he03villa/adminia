@@ -3,13 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { PagosRoutingModule } from './pagos-routing.module';
 import { PagosComponent } from './pagos.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from '../../components/components.module';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
   declarations: [PagosComponent],
   imports: [
     CommonModule,
-    PagosRoutingModule
+    PagosRoutingModule,
+    FormsModule,
+    ComponentsModule,
+    MatExpansionModule,
+    ReactiveFormsModule
   ]
 })
 export class PagosModule { }

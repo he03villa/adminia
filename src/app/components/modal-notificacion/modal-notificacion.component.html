@@ -8,17 +8,14 @@
                 x
             </button>
             <div class="modal-body">
-                <div class="contenedor-notificacion" *ngIf="arrayNotificaion.length > 0">
-                    <ng-container *ngFor="let item of arrayNotificaion">
-                        <!-- <div class="contenedor-notificacion-imagen"></div> -->
+                <ng-container *ngIf="arrayNotificaion.length > 0">
+                    <div class="contenedor-notificacion" *ngFor="let item of arrayNotificaion">
                         <div class="contenedor-notificacion-body">
-                            <!-- <label for="">Lorem ipsum dolor sit</label> -->
-                            <p>{{ item.mensaje }}</p>
+                            <p [innerHTML]="item.mensaje"></p>
                             <span>{{ item.fecha }}</span>
                         </div>
-                        <!-- <div class="contenedor-notificacion-opciones"></div> -->
-                    </ng-container>
-                </div>
+                    </div>
+                </ng-container>
                 <app-no-data *ngIf="arrayNotificaion.length == 0"></app-no-data>
             </div>
             <div class="modal-footer">

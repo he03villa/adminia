@@ -16,6 +16,12 @@
             parent::conectar();
             $consultar1 = "SELECT p.*, c.telefono, uhp.status From usuario_has_propiedad uhp Inner Join propiedad p on p.id = uhp.propiedad_id inner join cojunto c on c.id = p.cojunto_id where uhp.usuario_id = $propiedad[user] order by p.fecha desc";
             $lista = parent::consultaTodo($consultar1);
+            for ($i=0; $i < count($lista); $i++) { 
+                $data = $lista[$i];
+                $consulta4 = "SELECT * From pagos Where propiedad_id = $data[id]";
+                $listaPago = parent::consultarArreglo($consulta4);
+                $lista[$i]['pago'] = $listaPago;
+            }
             parent::cerrar();
             return array('status' => 'success', 'message' => 'El listado de las propiedades', 'data' => $lista);
         }
@@ -122,6 +128,12 @@
             /* echo $consultar2; */
             $lista = parent::consultaTodo($consultar2);
             $listaTorre = parent::consultaTodo($consultar3);
+            for ($i=0; $i < count($lista); $i++) { 
+                $data = $lista[$i];
+                $consulta4 = "SELECT * From pagos Where propiedad_id = $data[id]";
+                $listaPago = parent::consultarArreglo($consulta4);
+                $lista[$i]['pago'] = $listaPago;
+            }
             $res = array('status' => 'success', 'message' => 'El propietario se registro', 'data' => $lista, 'torre' => $listaTorre);
             parent::cerrar();
             return $res;
@@ -227,23 +239,31 @@
         public function saveCuentas($propiedad) {
             parent::conectar();
             $resul = array('status' => 'success', 'error' => array(), 'mensaje' => 'Las cuentas se guardo correctamente');
+            $columna = '';
+            if ($propiedad['cojunto'] == '1' || $propiedad['cojunto'] == 1) {
+                $columna = 'cojunto_id';
+            } else {
+                $columna = 'usuario_id';
+            }
             for ($i=0; $i < count($propiedad['cuentas_bancarias']); $i++) { 
                 $element = $propiedad['cuentas_bancarias'][$i];
                 $consultar = "SELECT * FROM cuentas_bancarias where cuenta = '$element[cuenta]'";
                 $existe = parent::consultarArreglo($consultar);
                 if ($existe == null) {
-                    if (!isset($element['id'])) {
-                        $consultar2 = "INSERT INTO cuentas_bancarias (nombre, cuenta, cojunto_id) VALUE ('$element[nombre]', '$element[cuenta]', $propiedad[cojunto])";
+                    if (!isset($element['id']) || $element['id'] == 0 || $element['id'] == '0') {
+                        
+                        $consultar2 = "INSERT INTO cuentas_bancarias (nombre, cuenta, code, $columna) VALUE ('$element[nombre]', '$element[cuenta]', $element[code], $propiedad[id])";
+
                         parent::queryRegistro($consultar2);
                     } else {
-                        $consultar2 = "UPDATE cuentas_bancarias SET nombre = '$element[nombre]', cuenta = '$element[cuenta]' where id = $element[id];";
+                        $consultar2 = "UPDATE cuentas_bancarias SET nombre = '$element[nombre]', cuenta = '$element[cuenta]', code = '$element[code]' where id = $element[id];";
                         parent::query($consultar2);
                     }
                 } else {
                     array_push($resul['error'], $element['cuenta']);
                 }
             }
-            $consultar3 = "SELECT * FROM cuentas_bancarias where cojunto_id = $propiedad[cojunto]";
+            $consultar3 = "SELECT * FROM cuentas_bancarias where $columna = $propiedad[id]";
             $resul['data'] = parent::consultaTodo($consultar3);
             parent::cerrar();
             return $resul;

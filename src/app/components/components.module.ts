@@ -14,6 +14,8 @@ import { ModalNotificacionComponent } from './modal-notificacion/modal-notificac
 import { ModalCambiarPasswordComponent } from './modal-cambiar-password/modal-cambiar-password.component';
 import { FooterComponent } from './footer/footer.component';
 import { ModalLoginComponent } from './modal-login/modal-login.component';
+import { ModaListaPropiedadComponent } from './moda-lista-propiedad/moda-lista-propiedad.component';
+import { ModalAcaptarPagoComponent } from './modal-acaptar-pago/modal-acaptar-pago.component';
 
 
 
@@ -26,7 +28,9 @@ import { ModalLoginComponent } from './modal-login/modal-login.component';
     ModalNotificacionComponent, 
     ModalCambiarPasswordComponent,
     FooterComponent,
-    ModalLoginComponent
+    ModalLoginComponent,
+    ModaListaPropiedadComponent,
+    ModalAcaptarPagoComponent
   ],
   exports: [
     NavComponent, 
@@ -35,7 +39,9 @@ import { ModalLoginComponent } from './modal-login/modal-login.component';
     ModalVerInfoPropietarioComponent, 
     ModalCambiarPasswordComponent,
     FooterComponent,
-    ModalLoginComponent
+    ModalLoginComponent,
+    ModaListaPropiedadComponent,
+    ModalAcaptarPagoComponent
   ],
   imports: [
     CommonModule,

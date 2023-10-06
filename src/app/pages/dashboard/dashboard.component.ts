@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   dataUser;
   arrayTipoRevision = [];
   arrayPropietarios = [];
+  dataPago;
   propiedad;
   dataPropietario;
 

@@ -1,0 +1,134 @@
+@import 'src/variables.scss';
+.row {
+    padding: 16px;
+    h2 {
+        font-weight: bold;
+        font-size: 16px;
+        color: $heading;
+        margin-bottom: 25px;
+        font-family: 'Montserrat';
+    }
+    label {
+        color: $primary;
+        font-weight: 500;
+        font-family: 'Montserrat';
+        font-size: 12px;
+        letter-spacing: 0px;
+        cursor: pointer;
+    }
+}
+
+.contenedor-file {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    background-color: $white;
+    padding: 15px 0px;
+    margin-bottom: 32px;
+    border-radius: 10px;
+    padding-top: 35px;
+    cursor: pointer;
+    img {
+        width: 100px;
+        margin: auto;
+    }
+    i {
+        color: $primary;
+        font-size: 50px;
+    }
+    .contenedor-titulos {
+        margin-top: 20px;
+        h6 {
+            margin: 0;
+            padding: 2px;
+        }
+    }
+    h6 {
+        margin-top: 8px;
+        color: $heading;
+        display: flex;
+        flex-direction: column;
+        word-break: break-all;
+        padding: 9px 16px;
+        font-family: 'Montserrat';
+        font-size: 12px;
+    }
+}
+
+.contenedor-carpeta {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    background-color: $white;
+    padding: 15px 10px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    height: auto;
+    height: 60px !important;
+    cursor: pointer;
+    img {
+        width: 100px;
+        margin: auto;
+    }
+    i {
+        color: $primary;
+        font-size: 50px;
+    }
+    h6 {
+        margin-top: 8px;
+        color: $heading;
+        display: flex;
+        flex-direction: column;
+        word-break: break-all;
+        padding: 9px 16px;
+        font-family: 'Montserrat';
+        font-size: 15px;
+    }
+}
+
+.content-opcion {
+    display: flex;
+    justify-content: end;
+    /* flex-direction: column; */
+    position: absolute;
+    right: 25px;
+    top: 9px;
+    i {
+        color: $primary;
+        background-color: #d1ccfb;
+        border-radius: 15px;
+        margin: 3px;
+        font-size: 10px;
+        cursor: pointer;
+        padding: 5px;
+    }
+}
+
+.contenedor-botones {
+    text-align: center;
+    button {
+        margin: 0 8px;
+        background-color: $primary;
+        color: #fff;
+        font-size: 14px;
+        border: none;
+        border-radius: 20px;
+        letter-spacing: 1px;
+        padding: 9px 16px;
+        font-weight: bold;
+        font-family: 'Montserrat';
+        min-width: 240px;
+    }
+}
+
+.contente-body{
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+::ng-deep .swal2-actions {
+    flex-direction: inherit;
+}

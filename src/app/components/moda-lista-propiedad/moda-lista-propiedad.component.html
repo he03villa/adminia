@@ -1,0 +1,29 @@
+<div class="modal content-login " id="modalListaPropiedades" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button aria-label="Close" class="close" data-dismiss="modal" type="button"> <span aria-hidden="true"> ×</span> </button>
+            <div class="modal-header">
+                <h5 class="modal-title">Lista de propiedades</h5>
+            </div>
+            <div class="modal-body">
+                <h5>Elije las propiedades a aplicar el cambio</h5>
+                <form class="row" [formGroup]="form" *ngIf="arrayPropiedades.length > 0">
+                    <ng-container formArrayName="listaPropiedad">
+                        <ng-container *ngIf="getFormilarioArray().length > 0">
+                            <div class="col-4" *ngFor="let item of arrayPropiedades; let  indice =  index">
+                                <div [formGroupName]="indice" class="content-check">
+                                    <input type="checkbox" [id]="item.id" formControlName="option">
+                                    <label [for]="item.id">{{ item.nombre }}</label>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </form>
+                <div class="contenedor-botones">
+                    <button (click)="enviarPago()">Guardar</button>
+                    <button data-dismiss="modal">Canselar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

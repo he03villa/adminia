@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { PropiedadService } from '../../services/propiedad.service';
+import { PagosService } from '../../services/pagos.service';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -14,17 +15,21 @@ export class EditarPerfilComponent implements OnInit {
   formUser: FormGroup = new FormGroup({});
   formCojunto: FormGroup = new FormGroup({});
   formPasswors: FormGroup = new FormGroup({});
+  formBanks: FormGroup = new FormGroup({});
   validarMensaje = true;
   dataUser:any;
+  arrayBanks = [];
 
   constructor(
     public services: ServicesService,
     private fb: FormBuilder,
     private User: UserService,
-    private Propiedad: PropiedadService
+    private Propiedad: PropiedadService,
+    private pago: PagosService
   ) { }
 
   ngOnInit() {
+    this.cagraBanco();
     const user = JSON.parse(localStorage.getItem('dataUser'));
     this.dataUser = user;
     if (this.dataUser.conjunto == 0) {
@@ -44,7 +49,23 @@ export class EditarPerfilComponent implements OnInit {
       new_passwors: ['', [Validators.required]],
       confirmar_passwors: ['', [Validators.required]],
     });
+    this.formBanks = this.fb.group({
+      arrayBanks: this.fb.array([])
+    });
+    this.cargarCuentas();
     console.log(this.dataUser);
+  }
+
+  cargarCuentas() {
+    this.dataUser.cuentas_bancarias.filter(f => {
+      this.getFormItem().push(this.itemBank(f));
+    });
+  }
+
+  async cagraBanco() {
+    const res:any = await this.pago.listbank();
+    console.log(res);
+    this.arrayBanks = res.body;
   }
 
   abrirModalcontrasena() {
@@ -56,7 +77,9 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   addCuenta() {
-    this.dataUser.cuentas_bancarias.push({ nombre: '', cuenta: '' });
+    const data = { nombre: '', cuenta: '', code: '', id: 0 };
+    this.dataUser.cuentas_bancarias.push(data);
+    this.getFormItem().push(this.itemBank(data));
   }
 
   async removeCuenta(indece) {
@@ -114,10 +137,11 @@ export class EditarPerfilComponent implements OnInit {
 
   async saveCuenta(event) {
     this.services.addLoading(event.target);
-    const cantidad = this.dataUser.cuentas_bancarias.filter(f => !this.services.validarText(f.nombre) && !this.services.validarText(f.cuenta)).length;
+    const dataArrayBanks = this.formBanks.getRawValue().arrayBanks;
+    const cantidad = dataArrayBanks.filter(f => !this.services.validarText(f.nombre) && !this.services.validarText(f.cuenta)).length;
     console.log(cantidad);
     if (cantidad == 0) {
-      const data = { cuentas_bancarias: this.dataUser.cuentas_bancarias, cojunto: this.dataUser.id };
+      const data = { cuentas_bancarias: dataArrayBanks, id: this.dataUser.id, cojunto: this.dataUser.conjunto };
       console.log(data);
       const res:any = await this.Propiedad.saveCuentas(data);
       console.log(res);
@@ -173,6 +197,25 @@ export class EditarPerfilComponent implements OnInit {
     } else {
       this.services.removeLoading(event.submitter);
     }
+  }
+
+  getFormItem(): FormArray {
+    return this.formBanks.get('arrayBanks') as FormArray;
+  }
+
+  itemBank(item): FormGroup {
+    return this.fb.group({
+      nombre: [item.nombre],
+      cuenta: [item.cuenta],
+      code: [item.code],
+      id: [item.id]
+    });
+  }
+
+  optionNameBank(event, indiceBank) {
+    const tipo = this.arrayBanks.find(f => f.code == event.target.value);
+    const cuenta:any = this.getFormItem().controls[indiceBank];
+    cuenta.controls.nombre.setValue(tipo.name);
   }
 
 }

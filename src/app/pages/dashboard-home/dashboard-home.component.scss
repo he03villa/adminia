@@ -373,3 +373,15 @@
         }
     }
 }
+
+::ng-deep .swal2-actions {
+    flex-direction: inherit;
+}
+
+::ng-deep body.swal2-no-backdrop .swal2-container {
+    background: rgba(0,0,0,.4) !important;
+}
+
+::ng-deep .swal2-input {
+    margin: 10px auto;
+}

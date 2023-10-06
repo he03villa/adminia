@@ -1,7 +1,7 @@
 @import 'src/variables.scss';
 .contenedor-tabla {
     /* height: 450px; */
-    height: 370px;
+    height: calc(100vh - 210px);
     overflow: auto;
     margin-top: 15px;
 }

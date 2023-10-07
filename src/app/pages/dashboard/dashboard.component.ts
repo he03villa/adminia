@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive as  } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 
+@()
+@Directive()
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

@@ -1,9 +1,11 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, Directive as  } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { PropiedadService } from '../../services/propiedad.service';
 import { FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 
+@()
+@Directive()
 @Component({
   selector: 'app-modal-ver-info-propietario',
   templateUrl: './modal-ver-info-propietario.component.html',

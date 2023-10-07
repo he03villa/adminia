@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive as  } from '@angular/core';
 import { MuroService } from '../../services/muro.service';
 import { ServicesService } from '../../services/services.service';
 import { PagosService } from '../../services/pagos.service';
 
 declare var $ : any;
 
+@()
+@Directive()
 @Component({
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',

@@ -1,5 +1,7 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, Directive as  } from '@angular/core';
 
+@()
+@Directive()
 @Component({
   selector: 'app-modal-acaptar-pago',
   templateUrl: './modal-acaptar-pago.component.html',

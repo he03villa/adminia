@@ -1,5 +1,7 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, Directive as  } from '@angular/core';
 
+@()
+@Directive()
 @Component({
   selector: 'app-modal-notificacion',
   templateUrl: './modal-notificacion.component.html',

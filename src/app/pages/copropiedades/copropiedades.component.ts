@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive as  } from '@angular/core';
 import { PropiedadService } from '../../services/propiedad.service';
 import { ServicesService } from '../../services/services.service';
 import Swal from 'sweetalert2';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 
+@()
+@Directive()
 @Component({
   selector: 'app-copropiedades',
   templateUrl: './copropiedades.component.html',

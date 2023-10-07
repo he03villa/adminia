@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive as  } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 
+@()
+@Directive()
 @Component({
   selector: 'app-modal-login',
   templateUrl: './modal-login.component.html',

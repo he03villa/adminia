@@ -1,10 +1,12 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, Directive as  } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { RevicionService } from '../../services/revicion.service';
 import { PropiedadService } from '../../services/propiedad.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 declare var $ : any;
 
+@()
+@Directive()
 @Component({
   selector: 'app-modal-crear-revision',
   templateUrl: './modal-crear-revision.component.html',

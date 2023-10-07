@@ -2,7 +2,7 @@ import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { RevicionService } from '../../services/revicion.service';
 import { PropiedadService } from '../../services/propiedad.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 declare var $ : any;
 
 @Component({
@@ -14,7 +14,7 @@ export class ModalCrearRevisionComponent implements OnInit {
 
   @Input() tipoRevision;
   @Input() tipoPropiedad;
-  form: FormGroup = new FormGroup({});
+  form: UntypedFormGroup = new UntypedFormGroup({});
   arrayTipoRevision = [];
   arrayPropietarios = [];
   dataDocumento = {
@@ -28,7 +28,7 @@ export class ModalCrearRevisionComponent implements OnInit {
     public services: ServicesService,
     private Revicion: RevicionService,
     private Propiedad: PropiedadService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
   ) { }
 
   ngOnInit() {

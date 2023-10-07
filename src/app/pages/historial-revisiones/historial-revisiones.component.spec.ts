@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HistorialRevisionesComponent } from './historial-revisiones.component';
 
@@ -6,7 +6,7 @@ describe('HistorialRevisionesComponent', () => {
   let component: HistorialRevisionesComponent;
   let fixture: ComponentFixture<HistorialRevisionesComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ HistorialRevisionesComponent ]
     })

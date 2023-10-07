@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ServicesService } from '../../services/services.service';
 import { UserService } from '../../services/user.service';
 import { PropiedadService } from '../../services/propiedad.service';
@@ -11,13 +11,13 @@ import { PropiedadService } from '../../services/propiedad.service';
 })
 export class ModalCambiarPasswordComponent implements OnInit {
 
-  formPasswors: FormGroup = new FormGroup({});
+  formPasswors: UntypedFormGroup = new UntypedFormGroup({});
   validarMensaje = true;
   dataUser;
 
   constructor(
     public services: ServicesService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private User: UserService,
     private Propiedad: PropiedadService
   ) { }

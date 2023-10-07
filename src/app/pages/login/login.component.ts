@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -10,14 +10,14 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup = new FormGroup({});
-  formRegistro: FormGroup = new FormGroup({});
+  form: UntypedFormGroup = new UntypedFormGroup({});
+  formRegistro: UntypedFormGroup = new UntypedFormGroup({});
   validarMensaje = true;
   validarMensajeRegistro = true;
 
   constructor(
     public services: ServicesService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private User: UserService
   ) { }
 

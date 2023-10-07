@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ServicesService } from '../../services/services.service';
 import { PropiedadService } from '../../services/propiedad.service';
 import { AutocompleteService } from '../../services/autocomplete.service';
@@ -11,7 +11,7 @@ import { AutocompleteService } from '../../services/autocomplete.service';
 })
 export class CrearcopropiedadComponent implements OnInit, OnDestroy {
 
-  form: FormGroup = new FormGroup({});
+  form: UntypedFormGroup = new UntypedFormGroup({});
   validarMensaje = true;
   $_autoComplete;
   arrayTipo = [];
@@ -29,7 +29,7 @@ export class CrearcopropiedadComponent implements OnInit, OnDestroy {
 
   constructor(
     public services: ServicesService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private Propiedad: PropiedadService,
     private autoComplete: AutocompleteService
   ) { }

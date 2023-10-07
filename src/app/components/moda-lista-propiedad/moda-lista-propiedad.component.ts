@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit, SimpleChange, Directive as  } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormArray } from '@angular/forms';
 import { PagosService } from '../../services/pagos.service';
 import { ServicesService } from '../../services/services.service';
 
@@ -15,10 +15,10 @@ export class ModaListaPropiedadComponent implements OnInit {
   @Input() dataPago;
   arrayPropiedades = [];
   valor = 0;
-  form: FormGroup = new FormGroup({});
+  form: UntypedFormGroup = new UntypedFormGroup({});
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private pago: PagosService,
     private services: ServicesService
   ) { }
@@ -48,11 +48,11 @@ export class ModaListaPropiedadComponent implements OnInit {
     });
   }
 
-  getFormilarioArray(): FormArray {
-    return this.form.get('listaPropiedad') as FormArray;
+  getFormilarioArray(): UntypedFormArray {
+    return this.form.get('listaPropiedad') as UntypedFormArray;
   }
 
-  addItemForm(item:any): FormGroup {
+  addItemForm(item:any): UntypedFormGroup {
     return this.fb.group({
       id: [item.id],
       nombre: [item.nombre],

@@ -1,6 +1,6 @@
 import { Component, OnInit, Directive as  } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormArray } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { PropiedadService } from '../../services/propiedad.service';
 import { PagosService } from '../../services/pagos.service';
@@ -14,17 +14,17 @@ import { PagosService } from '../../services/pagos.service';
 })
 export class EditarPerfilComponent implements OnInit {
 
-  formUser: FormGroup = new FormGroup({});
-  formCojunto: FormGroup = new FormGroup({});
-  formPasswors: FormGroup = new FormGroup({});
-  formBanks: FormGroup = new FormGroup({});
+  formUser: UntypedFormGroup = new UntypedFormGroup({});
+  formCojunto: UntypedFormGroup = new UntypedFormGroup({});
+  formPasswors: UntypedFormGroup = new UntypedFormGroup({});
+  formBanks: UntypedFormGroup = new UntypedFormGroup({});
   validarMensaje = true;
   dataUser:any;
   arrayBanks = [];
 
   constructor(
     public services: ServicesService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private User: UserService,
     private Propiedad: PropiedadService,
     private pago: PagosService
@@ -201,11 +201,11 @@ export class EditarPerfilComponent implements OnInit {
     }
   }
 
-  getFormItem(): FormArray {
-    return this.formBanks.get('arrayBanks') as FormArray;
+  getFormItem(): UntypedFormArray {
+    return this.formBanks.get('arrayBanks') as UntypedFormArray;
   }
 
-  itemBank(item): FormGroup {
+  itemBank(item): UntypedFormGroup {
     return this.fb.group({
       nombre: [item.nombre],
       cuenta: [item.cuenta],

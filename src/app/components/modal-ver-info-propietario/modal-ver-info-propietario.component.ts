@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChange, Directive as  } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { PropiedadService } from '../../services/propiedad.service';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @()
@@ -18,7 +18,7 @@ export class ModalVerInfoPropietarioComponent implements OnInit {
   constructor(
     public services: ServicesService,
     private Propiedad: PropiedadService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
   ) { }
 
   ngOnInit() {

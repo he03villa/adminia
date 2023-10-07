@@ -1,9 +1,7 @@
-import { Component, OnInit, Directive as  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { PropiedadService } from '../../services/propiedad.service';
 
-@()
-@Directive()
 @Component({
   selector: 'app-buzon',
   templateUrl: './buzon.component.html',

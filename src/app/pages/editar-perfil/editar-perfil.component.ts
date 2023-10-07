@@ -1,12 +1,10 @@
-import { Component, OnInit, Directive as  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
 import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormArray } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { PropiedadService } from '../../services/propiedad.service';
 import { PagosService } from '../../services/pagos.service';
 
-@()
-@Directive()
 @Component({
   selector: 'app-editar-perfil',
   templateUrl: './editar-perfil.component.html',

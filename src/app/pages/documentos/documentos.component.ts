@@ -1,12 +1,10 @@
-import { Component, OnInit, Directive as  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { RevicionService } from '../../services/revicion.service';
 import { PropiedadService } from '../../services/propiedad.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import Swal from 'sweetalert2';
 
-@()
-@Directive()
 @Component({
   selector: 'app-documentos',
   templateUrl: './documentos.component.html',

@@ -1,7 +1,5 @@
-import { Component, OnInit, Directive as  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-@()
-@Directive()
 @Component({
   selector: 'app-no-data',
   templateUrl: './no-data.component.html',

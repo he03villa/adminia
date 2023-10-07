@@ -1,10 +1,8 @@
-import { Component, OnInit, Directive as  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 
-@()
-@Directive()
 @Component({
   selector: 'app-modal-login',
   templateUrl: './modal-login.component.html',
@@ -12,15 +10,15 @@ import { UserService } from '../../services/user.service';
 })
 export class ModalLoginComponent implements OnInit {
 
-  form: UntypedFormGroup = new UntypedFormGroup({});
-  formRegistro: UntypedFormGroup = new UntypedFormGroup({});
+  form: FormGroup = new FormGroup({});
+  formRegistro: FormGroup = new FormGroup({});
   validarMensaje = true;
   validarMensajeRegistro = true;
   ojo = false;
 
   constructor(
     public services: ServicesService,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private User: UserService
   ) { }
 

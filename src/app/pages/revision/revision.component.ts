@@ -1,10 +1,8 @@
-import { Component, OnInit, Directive as  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { RevicionService } from '../../services/revicion.service';
 import { PropiedadService } from '../../services/propiedad.service';
 
-@()
-@Directive()
 @Component({
   selector: 'app-revision',
   templateUrl: './revision.component.html',

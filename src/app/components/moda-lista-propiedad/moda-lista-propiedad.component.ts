@@ -1,10 +1,8 @@
-import { ChangeDetectorRef, Component, Input, OnInit, SimpleChange, Directive as  } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, UntypedFormArray } from '@angular/forms';
 import { PagosService } from '../../services/pagos.service';
 import { ServicesService } from '../../services/services.service';
 
-@()
-@Directive()
 @Component({
   selector: 'app-moda-lista-propiedad',
   templateUrl: './moda-lista-propiedad.component.html',

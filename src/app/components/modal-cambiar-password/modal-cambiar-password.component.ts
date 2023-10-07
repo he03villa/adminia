@@ -1,11 +1,9 @@
-import { Component, OnInit, Directive as  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ServicesService } from '../../services/services.service';
 import { UserService } from '../../services/user.service';
 import { PropiedadService } from '../../services/propiedad.service';
 
-@()
-@Directive()
 @Component({
   selector: 'app-modal-cambiar-password',
   templateUrl: './modal-cambiar-password.component.html',

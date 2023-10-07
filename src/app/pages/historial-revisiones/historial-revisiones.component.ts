@@ -1,9 +1,7 @@
-import { Component, OnInit, Directive as  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { RevicionService } from '../../services/revicion.service';
 
-@()
-@Directive()
 @Component({
   selector: 'app-historial-revisiones',
   templateUrl: './historial-revisiones.component.html',

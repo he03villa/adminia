@@ -1,9 +1,8 @@
-import { Component, OnInit, Directive as  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 
-@Directive()
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

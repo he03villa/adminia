@@ -1,11 +1,9 @@
-import { Component, OnInit, Directive as  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { NotificacionService } from '../../services/notificacion.service';
 import { Router } from '@angular/router';
 
-@()
-@Directive()
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',

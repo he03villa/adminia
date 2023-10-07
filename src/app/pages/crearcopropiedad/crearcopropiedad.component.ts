@@ -1,11 +1,9 @@
-import { Component, OnDestroy, OnInit, Directive as  } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ServicesService } from '../../services/services.service';
 import { PropiedadService } from '../../services/propiedad.service';
 import { AutocompleteService } from '../../services/autocomplete.service';
 
-@()
-@Directive()
 @Component({
   selector: 'app-crearcopropiedad',
   templateUrl: './crearcopropiedad.component.html',

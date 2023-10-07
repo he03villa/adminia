@@ -26,10 +26,10 @@
                 <tr *ngFor="let item of arrayPropietarios">
                     <td>{{ item.nombre }}</td>
                     <td>{{ services.validarText(item.nombre_user) ? item.nombre_user : '-' }}</td>
-                    <td style="cursor: pointer;" (click)="services.validarText(item.telefono_user) ? compartirWhatsapp(item.telefono_user) : ''">
+                    <td style="cursor: pointer;" >
                         {{ services.validarText(item.telefono_user) ? item.telefono_user : '-' }}</td>
                     <!-- <td>{{ item.fecha }}</td> -->
-                    <td *ngIf="services.validarText(item.telefono_user)" (click)="compartirWhatsapp(item.telefono_user)">
+                    <td *ngIf="services.validarText(item.telefono_user)">
                         <button class="btn btn-contactar">Contactar</button>
                     </td>
                     <td *ngIf="!services.validarText(item.telefono_user)">

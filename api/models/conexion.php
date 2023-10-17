@@ -127,7 +127,10 @@
             $signedHeaders = 'host;x-amz-date;x-amz-security-token'; // Agrega x-amz-security-token aquí también
 
             /* $payload = ''; */
-            $hashedPayload = hash('sha256',$payload);
+            if ($payload != '') {
+                $payloadEndoce = json_encode($payload);
+            }
+            $hashedPayload = hash('sha256', $payloadEndoce);
             $urlC = parse_url($endpoint, PHP_URL_PATH);
             $canonicalRequest = "$method\n$urlC\n" . "\n$canonicalHeaders\n$signedHeaders\n$hashedPayload";
             $stringToSign = "AWS4-HMAC-SHA256\n$timestamp\n$date/$region/$service/aws4_request\n" . hash('sha256',$canonicalRequest);
@@ -143,7 +146,7 @@
                 'Content-Type:application/json'
             ];
 
-            $respo = $this->remoteRequest($method, $endpoint, array(), 1000, $headers);
+            $respo = $this->remoteRequest($method, $endpoint, $payload, 1000, $headers);
 
             return $respo;
         }

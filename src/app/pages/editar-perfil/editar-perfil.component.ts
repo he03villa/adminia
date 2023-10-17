@@ -4,6 +4,7 @@ import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormArray } fr
 import { UserService } from '../../services/user.service';
 import { PropiedadService } from '../../services/propiedad.service';
 import { PagosService } from '../../services/pagos.service';
+import { TipoDocumentoService } from '../../services/tipo-documento.service';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -19,17 +20,20 @@ export class EditarPerfilComponent implements OnInit {
   validarMensaje = true;
   dataUser:any;
   arrayBanks = [];
+  arrayTipoDocumento = [];
 
   constructor(
     public services: ServicesService,
     private fb: UntypedFormBuilder,
     private User: UserService,
     private Propiedad: PropiedadService,
-    private pago: PagosService
+    private pago: PagosService,
+    private _tipoDocumento: TipoDocumentoService
   ) { }
 
   ngOnInit() {
     this.cagraBanco();
+    this.cargarTipoDocumentos();
     const user = JSON.parse(localStorage.getItem('dataUser'));
     this.dataUser = user;
     if (this.dataUser.conjunto == 0) {
@@ -37,11 +41,15 @@ export class EditarPerfilComponent implements OnInit {
         nombre: [user.nombre, [Validators.required]],
         email: [user.email, [Validators.required]],
         telefono: [user.telefono, [Validators.required]],
+        tipo_documentacion_id: [user.tipo_documentacion_id, [Validators.required]],
+        numero_documento: [user.numero_documento, [Validators.required]],
       });
     } else if (this.dataUser.conjunto == 1) {
       this.formCojunto = this.fb.group({
         nombre: [user.nombre_propietario, [Validators.required]],
         telefono: [user.telefono, [Validators.required]],
+        tipo_documentacion_id: [user.tipo_documentacion_id, [Validators.required]],
+        numero_documento: [user.numero_documento, [Validators.required]],
       });
     }
     this.formPasswors = this.fb.group({
@@ -66,6 +74,12 @@ export class EditarPerfilComponent implements OnInit {
     const res:any = await this.pago.listbank();
     console.log(res);
     this.arrayBanks = res.body;
+  }
+
+  async cargarTipoDocumentos() {
+    const res:any = await this._tipoDocumento.listTipoDocumento();
+    console.log(res);
+    this.arrayTipoDocumento = res.data;
   }
 
   abrirModalcontrasena() {
@@ -97,7 +111,9 @@ export class EditarPerfilComponent implements OnInit {
       const data = {
         nombre: this.formUser.controls.nombre.value,
         telefono: this.formUser.controls.telefono.value,
-        id: this.dataUser.id
+        id: this.dataUser.id,
+        numero_documento: this.formUser.controls.numero_documento.value,
+        tipo_documento: this.formUser.controls.tipo_documentacion_id.value
       };
       console.log(data);
       const res:any = await this.User.updateUser(data);
@@ -105,6 +121,8 @@ export class EditarPerfilComponent implements OnInit {
       if (res.status == 'success') {
         this.dataUser.nombre = data.nombre;
         this.dataUser.telefono = data.telefono;
+        this.dataUser.numero_documento = data.numero_documento;
+        this.dataUser.tipo_documentacion_id = data.tipo_documento;
         localStorage.setItem('dataUser', JSON.stringify(this.dataUser));
       }
       this.services.removeLoading(event.target);
@@ -119,7 +137,9 @@ export class EditarPerfilComponent implements OnInit {
       const data = {
         nombre: this.formCojunto.controls.nombre.value,
         telefono: this.formCojunto.controls.telefono.value,
-        id: this.dataUser.id
+        id: this.dataUser.id,
+        numero_documento: this.formCojunto.controls.numero_documento.value,
+        tipo_documento: this.formCojunto.controls.tipo_documentacion_id.value
       };
       console.log(data);
       const res:any = await this.Propiedad.updatePropietario(data);
@@ -127,6 +147,8 @@ export class EditarPerfilComponent implements OnInit {
       if (res.status == 'success') {
         this.dataUser.nombre_propietario = data.nombre;
         this.dataUser.telefono = data.telefono;
+        this.dataUser.numero_documento = data.numero_documento;
+        this.dataUser.tipo_documentacion_id = data.tipo_documento;
         localStorage.setItem('dataUser', JSON.stringify(this.dataUser));
       }
       this.services.removeLoading(event.target);

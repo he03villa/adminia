@@ -103,7 +103,7 @@
 
         public function updateUser($user) {
             parent::conectar();
-            $consultar = "UPDATE usuario SET nombre = '$user[nombre]', telefono = '$user[telefono]' where id = $user[id]";
+            $consultar = "UPDATE usuario SET nombre = '$user[nombre]', telefono = '$user[telefono]', numero_documento = '$user[numero_documento]', tipo_documentacion_id = '$user[tipo_documento]' where id = $user[id]";
             $user = parent::query($consultar);
             parent::cerrar();
             return $resul = array('status' => 'success', 'message' => 'El usuario se actualizo');

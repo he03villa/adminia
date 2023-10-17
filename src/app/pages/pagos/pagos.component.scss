@@ -16,6 +16,28 @@
         letter-spacing: 0px;
         cursor: pointer;
     }
+
+    table {
+        table-layout: fixed;
+        th,
+        td {
+            width: 300px;
+            padding: 9px 6px;
+            .btn-contactar {
+                font-family: 'Montserrat';
+                font-weight: bold;
+                color: $white;
+                background-color: $primary;
+                border-radius: 20px;
+                padding: 5px 20px;
+                cursor: pointer;
+                font-size: 12px;
+            }
+        }
+        th {
+            border-bottom: 1px solid;
+        }
+    }
 }
 
 .contenedor-file {

@@ -31,4 +31,14 @@ export class PagosService {
     const url = `${ this.servicios.ApiURL }/pagos/getListBanco.php`;
     return this.servicios.Promet(this.Data.metodoGet(url));
   }
+
+  getAllPagos(data) {
+    const url = `${ this.servicios.ApiURL }/pagos/getPagoUserAllPropiedad.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  pay(data) {
+    const url = `${ this.servicios.ApiURL }/pagos/pay.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
 }

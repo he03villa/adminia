@@ -92,7 +92,7 @@
                 if ($usuario['status'] == 1 || $usuario['status'] == '1') {
                     unset($usuario['password']);
                     $usuario['conjunto'] = 1;
-                    $consultar2 = "SELECT * from cuentas_bancarias where cojunto_id = $usuario[conjunto]";
+                    $consultar2 = "SELECT * from cuentas_bancarias where cojunto_id = $usuario[id]";
                     $usuario['cuentas_bancarias'] = parent::consultaTodo($consultar2);
                     $resul = array('status' => 'success', 'message' => 'Datos del usuario', 'data' => $usuario);
                 } else {

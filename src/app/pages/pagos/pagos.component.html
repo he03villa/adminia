@@ -17,7 +17,7 @@
                     <th>Propiedad</th>
                     <th>Precio</th>
                     <th>Fecha</th>
-                    <th>Fecha vencimiento</th>
+                    <th>{{ !propiedad ? 'Fecha vencimiento' : 'Estado del pago' }}</th>
                     <th></th>
                 </tr>
             </thead>
@@ -26,9 +26,32 @@
                     <td>{{ item.nombre }}</td>
                     <td>{{ services.formatNumberInteger(item.precio) }}</td>
                     <td>{{ item.fecha_creacion }}</td>
-                    <td>{{ item.fecha_vencimiento }}</td>
+                    <td>{{ !propiedad ? item.fecha_vencimiento : tipoStatud[item.statud] }}</td>
                     <td>
                         <button (click)="pagar(item)" *ngIf="item.statud == 0" class="btn btn-contactar">Pagar</button>
+                        <button (click)="getDetallePago(item)" *ngIf="item.statud > 0" class="btn btn-contactar">Ver detalle</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table *ngIf="dataUser.conjunto == 1">
+            <thead>
+                <tr>
+                    <th>Propiedad</th>
+                    <th>Precio</th>
+                    <th>Fecha</th>
+                    <th>Estado del pago</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of arrayPagos">
+                    <td>{{ item.nombre }}</td>
+                    <td>{{ services.formatNumberInteger(item.precio) }}</td>
+                    <td>{{ item.fecha_creacion }}</td>
+                    <td>{{ tipoStatud[item.statud] }}</td>
+                    <td>
+                        <button (click)="getDetallePago(item)" *ngIf="item.statud > 0" class="btn btn-contactar">Ver detalle</button>
                     </td>
                 </tr>
             </tbody>

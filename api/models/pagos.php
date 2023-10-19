@@ -104,7 +104,7 @@
         public function getPagoUser($pagos)
         {
             parent::conectar();
-            $consultar1 = "SELECT * from transaccion where usuario_has_propiedad_usuario_id = $pagos[id]";
+            $consultar1 = "SELECT t.*, p.nombre, DATE_ADD(t.fecha_creacion, interval 1 month) as fecha_vencimiento from transaccion t inner join propiedad p on p.id = t.usuario_has_propiedad_propiedad_id where t.usuario_has_propiedad_usuario_id = $pagos[id_user] and t.usuario_has_propiedad_propiedad_id = $pagos[id_propiedad]";
             $lista = parent::consultaTodo($consultar1);
             parent::cerrar();
             $res = array('status' => 'success', 'message' => 'Lista de transacciones a pagar', 'data' => $lista);
@@ -114,7 +114,7 @@
         public function getPagoAdministrador($pagos)
         {
             parent::conectar();
-            $consultar1 = "SELECT * from transaccion where usuario_has_propiedad_propiedad_id = $pagos[id]";
+            $consultar1 = "SELECT t.*, p.nombre, DATE_ADD(t.fecha_creacion, interval 1 month) as fecha_vencimiento from transaccion t inner join propiedad p on p.id = t.usuario_has_propiedad_propiedad_id where p.cojunto_id = $pagos[id]";
             $lista = parent::consultaTodo($consultar1);
             parent::cerrar();
             $res = array('status' => 'success', 'message' => 'Lista de transacciones a pagar', 'data' => $lista);
@@ -123,6 +123,10 @@
 
         public function pay($pagos)
         {
+            if (!isset($pagos["id"])) {
+                /* echo 'entra'; */
+                return false;
+            }
             parent::conectar();
             $consultar1 = "SELECT cb.* FROM cuentas_bancarias cb inner join propiedad pr on pr.id = $pagos[propiedad] inner join cojunto c on c.id = pr.cojunto_id and c.id = cb.cojunto_id where cb.code = $pagos[code];";
             $consultar2 = "SELECT c.* FROM propiedad pr inner join cojunto c on c.id = pr.cojunto_id where pr.id = $pagos[propiedad]";
@@ -130,12 +134,12 @@
             $cuentaCojunto = parent::consultarArreglo($consultar1);
             $cojunto = parent::consultarArreglo($consultar2);
             $user = parent::consultarArreglo($consultar3);
-
+            
             $data = array(
                 'payerId' => $pagos["id"],
                 'bankId' => $pagos["code"],
                 'description' => "Pago de prueba api",
-                'callback' => "http://localhost:4200/dashboard/pagos?$pagos[id]",
+                'callback' => "https://admina.com.co/dashboard/pagos?id=$pagos[id]",
                 'payerDocumentTypeId' => $user["tipo_documentacion_id"],
                 'payerDocumentNumber' => (int)$user["numero_documento"],
                 'payerNamesLastnames' => $user["nombre"],
@@ -157,18 +161,41 @@
                     )
                 )
             );
-
-            /* print_r(json_encode($data)); */
             
             $method = 'POST';
             $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/payoutGeneric';
             $respo = parent::headerAWL($method, $url, $data);
             $responseJson = json_decode($respo);
             $idPayout = $responseJson->body->idPayout;
-            $consultar1 = "UPDATE transaccion SET idPayout = '$idPayout' Where id = $pagos[id]";
+            $consultar1 = "UPDATE transaccion SET idPayout = '$idPayout', fecha_pago = current_time, statud = 1 Where id = $pagos[id]";
             parent::query($consultar1);
             parent::cerrar();
             return $respo;
+        }
+
+        public function pagoSuccess($pagos)
+        {
+            parent::conectar();
+            $consultar1 = "SELECT * FROM transaccion Where statud >= 2 and id = $pagos[id]";
+            $transap = parent::consultarArreglo($consultar1);
+            if ($transap == null) {
+                $consultar2 = "UPDATE transaccion SET statud = 2 Where id = $pagos[id]";
+                parent::query($consultar2);
+                parent::cerrar();
+                $res = array('status' => 'success', 'message' => 'Pago exitoso');
+            } else {
+                $res = array('status' => 'errorExiste', 'message' => 'El pago ya esta aprobado');
+            }
+            
+            return $res;
+        }
+
+        public function getPagoDetalle($pagos)
+        {
+            parent::conectar();
+            $method = 'GET';
+            $url = "https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/one/$pagos[businessId]/$pagos[payoutId]";
+            return parent::headerAWL($method, $url);
         }
     }
     

@@ -3,6 +3,7 @@ import { ServicesService } from '../../services/services.service';
 import { PropiedadService } from '../../services/propiedad.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { PagosService } from '../../services/pagos.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pagos',
@@ -18,6 +19,7 @@ export class PagosComponent implements OnInit {
   propiedad;
   dataUser;
   selectTorre = '0';
+  tipoStatud = environment.tipoPago;
 
   constructor(
     public services: ServicesService,
@@ -32,11 +34,15 @@ export class PagosComponent implements OnInit {
     this.dataUser = user;
     this.propiedad = propiedad;
     if (this.dataUser.conjunto == 0) {
-      this.cagarAllPagos(this.dataUser.id);
-    } else if (this.dataUser.conjunto == 1) {
       if (!this.propiedad) {
-        this.listarPropietarios(user.id);
+        this.cagarAllPagos(this.dataUser.id);
+      } else {
+        console.log(this.propiedad);
+        const data = { id_user: this.dataUser.id, id_propiedad: propiedad.id };
+        this.cargarPagosUser(data);
       }
+    } else if (this.dataUser.conjunto == 1) {
+      this.cagarAllPagosAministrador(this.dataUser.id);
     }
   }
 
@@ -56,8 +62,20 @@ export class PagosComponent implements OnInit {
     this.arrayPropietarios = this.auxArrayPropietarios.filter(f => f.torre_id == this.selectTorre);
   }
 
+  async cargarPagosUser(data) {
+    const res:any = await this._pagos.getPagoUser(data);
+    console.log(res);
+    this.arrayPagos = res.data;
+  }
+
   async cagarAllPagos(id) {
     const res:any = await this._pagos.getAllPagos({ id });
+    console.log(res);
+    this.arrayPagos = res.data;
+  }
+
+  async cagarAllPagosAministrador(id) {
+    const res:any = await this._pagos.getPagoAdministrador({ id });
     console.log(res);
     this.arrayPagos = res.data;
   }
@@ -97,8 +115,11 @@ export class PagosComponent implements OnInit {
       precio: item.precio,
       id: item.id,
     };
-    const res:any = await this._pagos.pay(data);
-    this.services.abrir(res.body.psePaymentURL);
+    console.log('ejecunatndo pago');
+    (await this._pagos.pay(data)).subscribe((resp:any) => {
+      console.log(resp);
+      this.services.abrir(resp.body.psePaymentURL);
+    });
   }
 
   async ingresarValor() {
@@ -111,6 +132,15 @@ export class PagosComponent implements OnInit {
       this.Dash.dataPago = data;
       this.services.showModal('#modalListaPropiedades');
     }
+  }
+
+  async getDetallePago(item) {
+    console.log(item);
+    const data = { businessId: item.id, payoutId: item.idPayout };
+    const res:any = await this._pagos.getPagoDetalle(data);
+    this.Dash.dataDetallePago = { detallePagoLocal: item, detallePagoMelo: res.body };
+    this.services.showModal('#modalDetallePago');
+    console.log(res.body);
   }
 
 }

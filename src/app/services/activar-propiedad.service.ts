@@ -25,7 +25,7 @@ export class ActivarPropiedadService implements CanActivate {
       } else {
         this.services.Alert('error', '', res['message'], 'Aceptar', '', false);
       }
-      this.services.url('/login');
+      /* this.services.url('/login'); */
     }
     return true;
   }

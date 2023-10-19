@@ -109,6 +109,29 @@ export class ServicesService {
     });
   }
 
+  AlertAllHTML(text, confirmButtonText, id,  showCancelButton = false, cancelButtonText = '') {
+    return Swal.fire({ 
+      html: text,
+      confirmButtonText,
+      cancelButtonText,
+      showCancelButton,
+      showCloseButton: false,
+      preConfirm: () => {
+        const select:any = document.getElementById(id);
+        if (select) {
+          if (select.value) {
+            return select.value;
+          } else {
+            Swal.showValidationMessage(`El campo esta vacío`);
+          }
+        } else {
+          Swal.showValidationMessage(`El campo esta vacío`);
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    });
+  }
+
   Toast(icon, title) {
     const Toast = Swal.mixin({
       toast: true,

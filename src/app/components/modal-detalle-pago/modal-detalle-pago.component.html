@@ -1,0 +1,37 @@
+<div class="modal content-login " id="modalDetallePago" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button aria-label="Close" class="close" data-dismiss="modal" type="button"> <span aria-hidden="true"> ×</span> </button>
+            <div class="modal-header">
+                <h5 class="modal-title">Detalle del pago</h5>
+            </div>
+            <div class="modal-body" *ngIf="dataDetallePago">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Detalle del pago</h3>
+                    </div>
+                    <div class="col-12">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cojunto</th>
+                                    <th>Propiedad</th>
+                                    <th>Estado</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of dataDetallePago.detallePagoMelo.payouts">
+                                    <td>{{ item.receiverName }}</td>
+                                    <td>{{ dataDetallePago.detallePagoLocal.nombre }}</td>
+                                    <td>{{ item.meloStatus }}</td>
+                                    <td>{{ item.payedValue }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

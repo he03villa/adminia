@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   dataPago;
   propiedad;
   dataPropietario;
+  dataDetallePago;
 
   constructor(
     public services: ServicesService

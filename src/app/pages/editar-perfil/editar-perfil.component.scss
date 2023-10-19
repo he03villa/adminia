@@ -39,7 +39,7 @@ h2 {
             font-size: 14px;
             color: #6A707E;
             border: 1px solid #E9EAEB;
-            min-width: 25%;
+            min-width: 30%;
         }
         span {
             font-family: 'Montserrat';
@@ -91,7 +91,7 @@ h2 {
 }
 #profile {
     .group-input {
-        input, label {
+        input, label, select {
             width: auto;
             font-family: 'Montserrat';
             font-weight: normal;

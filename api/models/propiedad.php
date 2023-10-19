@@ -92,7 +92,7 @@
                 if ($usuario['status'] == 1 || $usuario['status'] == '1') {
                     unset($usuario['password']);
                     $usuario['conjunto'] = 1;
-                    $consultar2 = "SELECT * from cuentas_bancarias where cojunto_id = $usuario[conjunto]";
+                    $consultar2 = "SELECT * from cuentas_bancarias where cojunto_id = $usuario[id]";
                     $usuario['cuentas_bancarias'] = parent::consultaTodo($consultar2);
                     $resul = array('status' => 'success', 'message' => 'Datos del usuario', 'data' => $usuario);
                 } else {
@@ -213,7 +213,7 @@
 
         public function updateConjunto($propiedad) {
             parent::conectar();
-            $consultar = "UPDATE cojunto SET nombre_propietario = '$propiedad[nombre]', telefono = '$propiedad[telefono]' where id = $propiedad[id]";
+            $consultar = "UPDATE cojunto SET nombre_propietario = '$propiedad[nombre]', telefono = '$propiedad[telefono]', numero_documento = '$propiedad[numero_documento]', tipo_documentacion_id = '$propiedad[tipo_documento]' where id = $propiedad[id]";
             $user = parent::query($consultar);
             parent::cerrar();
             return $resul = array('status' => 'success', 'message' => 'El cojunto se actualizo');

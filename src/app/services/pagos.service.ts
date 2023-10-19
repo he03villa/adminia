@@ -31,4 +31,36 @@ export class PagosService {
     const url = `${ this.servicios.ApiURL }/pagos/getListBanco.php`;
     return this.servicios.Promet(this.Data.metodoGet(url));
   }
+
+  getAllPagos(data) {
+    const url = `${ this.servicios.ApiURL }/pagos/getPagoUserAllPropiedad.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  getPagoUser(data) {
+    const url = `${ this.servicios.ApiURL }/pagos/getPagoUser.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  getPagoDetalle(data) {
+    const url = `${ this.servicios.ApiURL }/pagos/getPagoDetalle.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  async pay(data) {
+    const url = `${ this.servicios.ApiURL }/pagos/pay.php`;
+    return this.Data.metodoPost(url, data);
+    /* return this.servicios.Promet(this.Data.metodoPost(url, data)); */
+    /* return await this.Data.metodoPostAxios(url, data); */
+  }
+
+  pagoSuccess(data) {
+    const url = `${ this.servicios.ApiURL }/pagos/pagoSuccess.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
+
+  getPagoAdministrador(data) {
+    const url = `${ this.servicios.ApiURL }/pagos/getPagoAdministrador.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
 }

@@ -83,12 +83,13 @@
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            /* curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); */
             if ($method != 'GET') {
-                curl_setopt($ch, CURLOPT_POST, "1");
+                /* print_r(json_encode($post_data)); */
+                curl_setopt($ch, CURLOPT_POST, 1);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post_data));
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method); 
+                /* curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method); */ 
             }
             $file_contents = curl_exec($ch);
             curl_close($ch);
@@ -126,8 +127,12 @@
             $canonicalHeaders = "host:du2qzoaok4.execute-api.us-east-2.amazonaws.com\nx-amz-date:$timestamp\nx-amz-security-token:$securityToken\n"; // Agrega x-amz-security-token
             $signedHeaders = 'host;x-amz-date;x-amz-security-token'; // Agrega x-amz-security-token aquí también
 
-            /* $payload = ''; */
-            $hashedPayload = hash('sha256',$payload);
+            $payloadEndoce = '';
+            if ($payload != '') {
+                $payloadEndoce = json_encode($payload);
+            }
+            $hashedPayload = hash('sha256', $payloadEndoce);
+            /* print_r($payloadEndoce); */
             $urlC = parse_url($endpoint, PHP_URL_PATH);
             $canonicalRequest = "$method\n$urlC\n" . "\n$canonicalHeaders\n$signedHeaders\n$hashedPayload";
             $stringToSign = "AWS4-HMAC-SHA256\n$timestamp\n$date/$region/$service/aws4_request\n" . hash('sha256',$canonicalRequest);
@@ -140,10 +145,10 @@
                 "Authorization: AWS4-HMAC-SHA256 Credential=$accessKey/$date/$region/$service/aws4_request, SignedHeaders=$signedHeaders, Signature=$signature",
                 "x-amz-date: $timestamp",
                 "x-amz-security-token: $securityToken",
-                'Content-Type:application/json'
+                'Content-Type: application/json'
             ];
 
-            $respo = $this->remoteRequest($method, $endpoint, array(), 1000, $headers);
+            $respo = $this->remoteRequest($method, $endpoint, $payload, 1000, $headers);
 
             return $respo;
         }

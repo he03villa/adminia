@@ -44,6 +44,24 @@
                             <label for="" *ngIf="formCojunto.controls.telefono.errors.required">El telefono está vacio</label>
                         </ng-container>
                     </div>
+                    <div class="group-input">
+                
+                        <p>Tipo de documento</p>
+                        <select name="" id="" formControlName="tipo_documentacion_id">
+                            <option *ngFor="let item of arrayTipoDocumento" [value]="item.id">{{ item.nombre }}</option>
+                        </select>
+                        <ng-container *ngIf="formCojunto.controls.tipo_documentacion_id.errors && !validarMensaje">
+                            <label for="" *ngIf="formCojunto.controls.tipo_documentacion_id.errors.required">Seleccione el tipo de documento</label>
+                        </ng-container>
+                    </div>
+                    <div class="group-input">
+                
+                        <p>Número de documento</p>
+                        <input type="text" formControlName="numero_documento" (keyup)="cambiarValidarMensaje()" placeholder="">
+                        <ng-container *ngIf="formCojunto.controls.numero_documento.errors && !validarMensaje">
+                            <label for="" *ngIf="formCojunto.controls.numero_documento.errors.required">El número de documento está vacio</label>
+                        </ng-container>
+                    </div>
                     <div class="col-12 my-3">
                         <!-- <button (click)="abrirModalcontrasena()">cambiar contraseña</button> -->
                         <button (click)="updateConjunto($event)">Actualizar</button>
@@ -115,6 +133,25 @@
                         <span>*Este teléfono va ir vinculado a WhatsApp</span>
                         <ng-container *ngIf="formUser.controls.telefono.errors && !validarMensaje">
                             <label for="" *ngIf="formUser.controls.telefono.errors.required">El telefono de la propiedad está vacio</label>
+                        </ng-container>
+                    </div>
+
+                    <div class="group-input">
+                
+                        <p>Tipo de documento</p>
+                        <select name="" id="" formControlName="tipo_documentacion_id">
+                            <option *ngFor="let item of arrayTipoDocumento" [value]="item.id">{{ item.nombre }}</option>
+                        </select>
+                        <ng-container *ngIf="formUser.controls.tipo_documentacion_id.errors && !validarMensaje">
+                            <label for="" *ngIf="formUser.controls.tipo_documentacion_id.errors.required">Seleccione el tipo de documento</label>
+                        </ng-container>
+                    </div>
+                    <div class="group-input">
+                
+                        <p>Número de documento</p>
+                        <input type="text" formControlName="numero_documento" (keyup)="cambiarValidarMensaje()" placeholder="">
+                        <ng-container *ngIf="formUser.controls.numero_documento.errors && !validarMensaje">
+                            <label for="" *ngIf="formUser.controls.numero_documento.errors.required">El número de documento está vacio</label>
                         </ng-container>
                     </div>
                     <div class="col-12 my-3">

@@ -16,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ModalLoginComponent } from './modal-login/modal-login.component';
 import { ModaListaPropiedadComponent } from './moda-lista-propiedad/moda-lista-propiedad.component';
 import { ModalAcaptarPagoComponent } from './modal-acaptar-pago/modal-acaptar-pago.component';
+import { ModalDetallePagoComponent } from './modal-detalle-pago/modal-detalle-pago.component';
 
 
 
@@ -30,7 +31,8 @@ import { ModalAcaptarPagoComponent } from './modal-acaptar-pago/modal-acaptar-pa
     FooterComponent,
     ModalLoginComponent,
     ModaListaPropiedadComponent,
-    ModalAcaptarPagoComponent
+    ModalAcaptarPagoComponent,
+    ModalDetallePagoComponent
   ],
   exports: [
     NavComponent, 
@@ -41,7 +43,8 @@ import { ModalAcaptarPagoComponent } from './modal-acaptar-pago/modal-acaptar-pa
     FooterComponent,
     ModalLoginComponent,
     ModaListaPropiedadComponent,
-    ModalAcaptarPagoComponent
+    ModalAcaptarPagoComponent,
+    ModalDetallePagoComponent
   ],
   imports: [
     CommonModule,

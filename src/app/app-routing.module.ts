@@ -8,6 +8,7 @@ import { NoAuthService } from './services/no-auth.service';
 import { ActivarUserService } from './services/activar-user.service';
 import { ActivarPropiedadService } from './services/activar-propiedad.service';
 import { LandingadminaComponent } from './pages/landingadmina/landingadmina.component';
+import { PagoSuccessService } from './services/pago-success.service';
 
 
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
     children: [
       { path: '', loadChildren: () => import('./pages/dashboard-home/dashboard-home.module').then(m => m.DashboardHomeModule) },
       { path: 'copropiedades', loadChildren: () => import('./pages/copropiedades/copropiedades.module').then(m => m.CopropiedadesModule) },
-      { path: 'pagos', loadChildren: () => import('./pages/pagos/pagos.module').then(m => m.PagosModule) },
+      { path: 'pagos', loadChildren: () => import('./pages/pagos/pagos.module').then(m => m.PagosModule), canActivate: [PagoSuccessService] },
       { path: 'buzon', loadChildren: () => import('./pages/buzon/buzon.module').then(m => m.BuzonModule) },
       { path: 'propietarios', loadChildren: () => import('./pages/propietarios/propietarios.module').then(m => m.PropietariosModule) },
       { path: 'documento', loadChildren: () => import('./pages/documentos/documentos.module').then(m => m.DocumentosModule) },

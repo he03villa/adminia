@@ -5,41 +5,59 @@
             <option *ngFor="let item of arrayTorre" [value]="item.id">{{ item.nombre }}</option>
         </select>
     </div>
-    <div class="col-12">
+    <div class="col-12" *ngIf="dataUser.conjunto == 1">
         <div class="contenedor-botones">
             <button (click)="ingresarValor()">Agregar Valor</button>
         </div>
     </div>
     <div class="col-12 contenedor-tabla">
-
-        <table>
+        <table *ngIf="dataUser.conjunto == 0">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Propietario</th>
-                    <th>Número</th>
-                    <!-- <th>Fecha</th> -->
-                    <th>Contacto via whatsapp</th>
+                    <th>Propiedad</th>
+                    <th>Precio</th>
+                    <th>Fecha</th>
+                    <th>{{ !propiedad ? 'Fecha vencimiento' : 'Estado del pago' }}</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of arrayPropietarios">
+                <tr *ngFor="let item of arrayPagos">
                     <td>{{ item.nombre }}</td>
-                    <td>{{ services.validarText(item.nombre_user) ? item.nombre_user : '-' }}</td>
-                    <td style="cursor: pointer;" >
-                        {{ services.validarText(item.telefono_user) ? item.telefono_user : '-' }}</td>
-                    <!-- <td>{{ item.fecha }}</td> -->
-                    <td *ngIf="services.validarText(item.telefono_user)">
-                        <button class="btn btn-contactar">Contactar</button>
+                    <td>{{ services.formatNumberInteger(item.precio) }}</td>
+                    <td>{{ item.fecha_creacion }}</td>
+                    <td>{{ !propiedad ? item.fecha_vencimiento : tipoStatud[item.statud] }}</td>
+                    <td>
+                        <button (click)="pagar(item)" *ngIf="item.statud == 0" class="btn btn-contactar">Pagar</button>
+                        <button (click)="getDetallePago(item)" *ngIf="item.statud > 0" class="btn btn-contactar">Ver detalle</button>
                     </td>
-                    <td *ngIf="!services.validarText(item.telefono_user)">
-                        <button class="btn btn-contactar">Contactar</button>
+                </tr>
+            </tbody>
+        </table>
+        <table *ngIf="dataUser.conjunto == 1">
+            <thead>
+                <tr>
+                    <th>Propiedad</th>
+                    <th>Precio</th>
+                    <th>Fecha</th>
+                    <th>Estado del pago</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of arrayPagos">
+                    <td>{{ item.nombre }}</td>
+                    <td>{{ services.formatNumberInteger(item.precio) }}</td>
+                    <td>{{ item.fecha_creacion }}</td>
+                    <td>{{ tipoStatud[item.statud] }}</td>
+                    <td>
+                        <button (click)="getDetallePago(item)" *ngIf="item.statud > 0" class="btn btn-contactar">Ver detalle</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <ng-container *ngIf="arrayPropietarios.length == 0">
+    <ng-container *ngIf="arrayPagos.length == 0">
         <div class="col-sm-12">
             <div class="contenedor-carpeta">
                 <app-no-data></app-no-data>

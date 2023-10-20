@@ -70,7 +70,7 @@
                     }
                     $consultar1 = "SELECT * from usuario_has_rol where usuario_id = $usuario[id]";
                     $usuario['rol'] = parent::consultaTodo($consultar1);
-                    $consultar2 = "SELECT * from cuentas_bancarias where usuario_id = $usuario[id]";
+                    $consultar2 = "SELECT  c.*, c.tipo_cuenta_bancaria_id as tipo from cuentas_bancarias c where c.usuario_id = $usuario[id]";
                     $usuario['cuentas_bancarias'] = parent::consultaTodo($consultar2);
                     $resul = array('status' => 'success', 'message' => 'Datos del usuario', 'data' => $usuario);
                 } else {

@@ -43,6 +43,7 @@ export class PagosComponent implements OnInit {
       }
     } else if (this.dataUser.conjunto == 1) {
       this.cagarAllPagosAministrador(this.dataUser.id);
+      this.listarPropietarios(this.dataUser.id);
     }
   }
 
@@ -106,7 +107,7 @@ export class PagosComponent implements OnInit {
       </div>
     `;
 
-    const resulAlert = await this.services.AlertAllHTML(html, 'Aceptar', 'stc-banco', true, 'Canselar');
+    const resulAlert = await this.services.AlertAllHTML(html, 'Aceptar', 'stc-banco', true, 'Cancelar');
     console.log(resulAlert);
     const data =  {
       code: resulAlert.value,
@@ -123,7 +124,7 @@ export class PagosComponent implements OnInit {
   }
 
   async ingresarValor() {
-    const res = await this.services.AlertInput('Ingresa el valor', 'Aceptar', 'Canselar', true);
+    const res = await this.services.AlertInput('Ingresa el valor', 'Aceptar', 'Cancelar', true);
     if (res.isConfirmed ==  true) {
       const data = {
         valor: res.value,

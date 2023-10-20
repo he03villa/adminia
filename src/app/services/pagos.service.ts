@@ -32,6 +32,11 @@ export class PagosService {
     return this.servicios.Promet(this.Data.metodoGet(url));
   }
 
+  listaTipoBanco() {
+    const url = `${ this.servicios.ApiURL }/pagos/getAllTipoBanco.php`;
+    return this.servicios.Promet(this.Data.metodoGet(url));
+  }
+
   getAllPagos(data) {
     const url = `${ this.servicios.ApiURL }/pagos/getPagoUserAllPropiedad.php`;
     return this.servicios.Promet(this.Data.metodoPost(url, data));

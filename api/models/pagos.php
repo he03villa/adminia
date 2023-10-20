@@ -75,6 +75,16 @@
             return parent::headerAWL($method, $url);
         }
 
+        public function getAllTipoBanco()
+        {
+            parent::conectar();
+            $consultar1 = "SELECT * FROM tipo_cuenta_bancaria;";
+            $lista = parent::consultaTodo($consultar1);
+            parent::cerrar();
+            $res = array('status' => 'success', 'message' => 'Lista de tipo de pago', 'data' => $lista);
+            return $res;
+        }
+
         public function createTransacciones()
         {
             parent::conectar();
@@ -128,7 +138,7 @@
                 return false;
             }
             parent::conectar();
-            $consultar1 = "SELECT cb.* FROM cuentas_bancarias cb inner join propiedad pr on pr.id = $pagos[propiedad] inner join cojunto c on c.id = pr.cojunto_id and c.id = cb.cojunto_id where cb.code = $pagos[code];";
+            $consultar1 = "SELECT cb.*, tcb.code as code_tipo FROM cuentas_bancarias cb inner join propiedad pr on pr.id = $pagos[propiedad] inner join cojunto c on c.id = pr.cojunto_id and c.id = cb.cojunto_id inner join tipo_cuenta_bancaria tcb on tcb.id = cb.tipo_cuenta_bancaria_id where cb.code = $pagos[code];";
             $consultar2 = "SELECT c.* FROM propiedad pr inner join cojunto c on c.id = pr.cojunto_id where pr.id = $pagos[propiedad]";
             $consultar3 = "SELECT us.* FROM usuario us where us.id = $pagos[user]";
             $cuentaCojunto = parent::consultarArreglo($consultar1);
@@ -155,7 +165,7 @@
                         'receiverEmail' => $cojunto["correo"],
                         'receiverPhone' => (int)$cojunto["telefono"],
                         'receiverBankId' => (int)$cuentaCojunto["code"],
-                        'receiverBankAccountTypeId' => $cuentaCojunto["code"],
+                        'receiverBankAccountTypeId' => $cuentaCojunto["code_tipo"],
                         'receiverBankAccountNumber' => (int)$cuentaCojunto["cuenta"],
                         'receiverAmount' => (int)$pagos["precio"],
                     )

@@ -92,7 +92,7 @@
                 if ($usuario['status'] == 1 || $usuario['status'] == '1') {
                     unset($usuario['password']);
                     $usuario['conjunto'] = 1;
-                    $consultar2 = "SELECT * from cuentas_bancarias where cojunto_id = $usuario[id]";
+                    $consultar2 = "SELECT c.*, c.tipo_cuenta_bancaria_id as tipo from cuentas_bancarias c where c.cojunto_id = $usuario[id]";
                     $usuario['cuentas_bancarias'] = parent::consultaTodo($consultar2);
                     $resul = array('status' => 'success', 'message' => 'Datos del usuario', 'data' => $usuario);
                 } else {
@@ -247,23 +247,23 @@
             }
             for ($i=0; $i < count($propiedad['cuentas_bancarias']); $i++) { 
                 $element = $propiedad['cuentas_bancarias'][$i];
-                $consultar = "SELECT * FROM cuentas_bancarias where cuenta = '$element[cuenta]'";
+                $consultar = "SELECT * FROM cuentas_bancarias where cuenta = '$element[cuenta]' and code = $element[code]";
                 $existe = parent::consultarArreglo($consultar);
-                if ($existe == null) {
-                    if (!isset($element['id']) || $element['id'] == 0 || $element['id'] == '0') {
-                        
-                        $consultar2 = "INSERT INTO cuentas_bancarias (nombre, cuenta, code, $columna) VALUE ('$element[nombre]', '$element[cuenta]', $element[code], $propiedad[id])";
+                if (!isset($element['id']) || $element['id'] == 0 || $element['id'] == '0') {
+                    
+                    $consultar2 = "INSERT INTO cuentas_bancarias (nombre, cuenta, code, $columna, tipo_cuenta_bancaria_id) VALUE ('$element[nombre]', '$element[cuenta]', $element[code], $propiedad[id], , $element[tipo])";
 
-                        parent::queryRegistro($consultar2);
-                    } else {
-                        $consultar2 = "UPDATE cuentas_bancarias SET nombre = '$element[nombre]', cuenta = '$element[cuenta]', code = '$element[code]' where id = $element[id];";
-                        parent::query($consultar2);
-                    }
+                    parent::queryRegistro($consultar2);
+                } else {
+                    $consultar2 = "UPDATE cuentas_bancarias SET nombre = '$element[nombre]', cuenta = '$element[cuenta]', code = '$element[code]', tipo_cuenta_bancaria_id = $element[tipo] where id = $element[id];";
+                    parent::query($consultar2);
+                }
+                /* if ($existe == null) {
                 } else {
                     array_push($resul['error'], $element['cuenta']);
-                }
+                } */
             }
-            $consultar3 = "SELECT * FROM cuentas_bancarias where $columna = $propiedad[id]";
+            $consultar3 = "SELECT c.*, c.tipo_cuenta_bancaria_id as tipo from cuentas_bancarias c where c.$columna = $propiedad[id]";
             $resul['data'] = parent::consultaTodo($consultar3);
             parent::cerrar();
             return $resul;

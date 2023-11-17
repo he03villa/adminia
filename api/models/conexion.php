@@ -100,10 +100,15 @@
         {
             $data = [
                 'userName' => 'he03villa@gmail.com',
-                'password' => 'T0l9|1r(C34^'
+                'password' => 'IVOredq1'
             ];
+            /* $data = [
+                'userName' => 'he03villa@gmail.com',
+                'password' => 'T0l9|1r(C34^'
+            ]; */
 
-            $resp = $this->remoteRequest('POST', 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/open/login', $data);
+            $resp = $this->remoteRequest('POST', 'https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/open/login', $data);
+            /* $resp = $this->remoteRequest('POST', 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/open/login', $data); */
             return $resp;
         }
 
@@ -124,7 +129,8 @@
             $timestamp = gmdate('Ymd\THis\Z');
             $date = gmdate('Ymd');
 
-            $canonicalHeaders = "host:du2qzoaok4.execute-api.us-east-2.amazonaws.com\nx-amz-date:$timestamp\nx-amz-security-token:$securityToken\n"; // Agrega x-amz-security-token
+            $canonicalHeaders = "host:q7f622c1s0.execute-api.us-east-2.amazonaws.com\nx-amz-date:$timestamp\nx-amz-security-token:$securityToken\n"; // Agrega x-amz-security-token
+            /* $canonicalHeaders = "host:du2qzoaok4.execute-api.us-east-2.amazonaws.com\nx-amz-date:$timestamp\nx-amz-security-token:$securityToken\n"; // Agrega x-amz-security-token */
             $signedHeaders = 'host;x-amz-date;x-amz-security-token'; // Agrega x-amz-security-token aquí también
 
             $payloadEndoce = '';

@@ -71,7 +71,8 @@
         {
             parent::conectar();
             $method = 'GET';
-            $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/pseBanks';
+            $url = 'https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/pseBanks';
+            /* $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/pseBanks'; */
             return parent::headerAWL($method, $url);
         }
 
@@ -173,7 +174,8 @@
             );
             
             $method = 'POST';
-            $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/payoutGeneric';
+            $url = 'https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/payoutGeneric';
+            /* $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/payoutGeneric'; */
             $respo = parent::headerAWL($method, $url, $data);
             $responseJson = json_decode($respo);
             $idPayout = $responseJson->body->idPayout;
@@ -204,7 +206,8 @@
         {
             parent::conectar();
             $method = 'GET';
-            $url = "https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/one/$pagos[businessId]/$pagos[payoutId]";
+            $url = "https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/one/$pagos[businessId]/$pagos[payoutId]";
+            /* $url = "https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/one/$pagos[businessId]/$pagos[payoutId]"; */
             return parent::headerAWL($method, $url);
         }
     }

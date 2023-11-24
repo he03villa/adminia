@@ -84,13 +84,15 @@ export class PagosComponent implements OnInit {
   async pagar(item) {
     console.log(item);
     console.log(this.dataUser);
-    if (this.dataUser.cuentas_bancarias.length == 0) {
+    this.Dash.dataPagos = item;
+    this.services.showModal('#modal-pago');
+    /* if (this.dataUser.cuentas_bancarias.length == 0) {
       const res = await this.services.Alert('info', '', 'No tienes ninguna cuenta asociada', 'Ir', '');
       console.log(res);
       this.services.url('dashboard/editar-perfil');
       return;
-    }
-    let htmlOption = '';
+    } */
+    /* let htmlOption = '';
     for (const key in this.dataUser.cuentas_bancarias) {
       if (Object.prototype.hasOwnProperty.call(this.dataUser.cuentas_bancarias, key)) {
         const element = this.dataUser.cuentas_bancarias[key];
@@ -120,7 +122,7 @@ export class PagosComponent implements OnInit {
     (await this._pagos.pay(data)).subscribe((resp:any) => {
       console.log(resp);
       this.services.abrir(resp.body.psePaymentURL);
-    });
+    }); */
   }
 
   async ingresarValor() {

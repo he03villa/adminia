@@ -5,7 +5,6 @@
     {
         public function saveUser($user)
         {
-            $resul;
             $existe = $this->getUserEmail($user['email']);
             if ($existe['data'] != null) {
                 $resul = array('status' => 'errorUser', 'message' => 'El usuairo ya existe');

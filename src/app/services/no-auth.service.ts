@@ -13,6 +13,7 @@ export class NoAuthService implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    /* localStorage.removeItem('dataUser'); */
     const user = JSON.parse(localStorage.getItem('dataUser'));
     console.log(user);
     if (!user) {

@@ -71,8 +71,8 @@
         {
             parent::conectar();
             $method = 'GET';
-            $url = 'https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/pseBanks';
-            /* $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/pseBanks'; */
+            /* $url = 'https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/pseBanks'; */
+            $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/pseBanks';
             return parent::headerAWL($method, $url);
         }
 
@@ -141,10 +141,23 @@
             parent::conectar();
             $consultar1 = "SELECT cb.*, tcb.code as code_tipo FROM cuentas_bancarias cb inner join propiedad pr on pr.id = $pagos[propiedad] inner join cojunto c on c.id = pr.cojunto_id and c.id = cb.cojunto_id inner join tipo_cuenta_bancaria tcb on tcb.id = cb.tipo_cuenta_bancaria_id where cb.code = $pagos[code];";
             $consultar2 = "SELECT c.* FROM propiedad pr inner join cojunto c on c.id = pr.cojunto_id where pr.id = $pagos[propiedad]";
-            $consultar3 = "SELECT us.* FROM usuario us where us.id = $pagos[user]";
+            $user = array();
+            if ($pagos["optionDatos"] == true || $pagos["optionDatos"] == "true") {
+                $consultar3 = "SELECT us.* FROM usuario us where us.id = $pagos[user]";
+                $user = parent::consultarArreglo($consultar3);
+            } else {
+                $consultar = "UPDATE usuario SET nombre = '$pagos[nombre]', telefono = '$pagos[telefono]', numero_documento = '$pagos[numero_identidad]', tipo_documentacion_id = '$pagos[tipo_identidad]' where id = $pagos[user]";
+                $user = parent::query($consultar);
+                $user = array(
+                    "tipo_documentacion_id" => $pagos["tipo_identidad"],
+                    "numero_documento" => $pagos["numero_identidad"],
+                    "nombre" => $pagos["nombre"],
+                    "telefono" => $pagos["telefono"],
+                    "email" => $pagos["email"],
+                );
+            }
             $cuentaCojunto = parent::consultarArreglo($consultar1);
             $cojunto = parent::consultarArreglo($consultar2);
-            $user = parent::consultarArreglo($consultar3);
             
             $data = array(
                 'payerId' => $pagos["id"],
@@ -174,13 +187,15 @@
             );
             
             $method = 'POST';
-            $url = 'https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/payoutGeneric';
-            /* $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/payoutGeneric'; */
+            /* $url = 'https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/payoutGeneric'; */
+            $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/payoutGeneric';
             $respo = parent::headerAWL($method, $url, $data);
             $responseJson = json_decode($respo);
-            $idPayout = $responseJson->body->idPayout;
-            $consultar1 = "UPDATE transaccion SET idPayout = '$idPayout', fecha_pago = current_time, statud = 1 Where id = $pagos[id]";
-            parent::query($consultar1);
+            if ($responseJson->body->psePaymentURL != 'ERROR') {
+                $idPayout = $responseJson->body->idPayout;
+                $consultar1 = "UPDATE transaccion SET idPayout = '$idPayout', fecha_pago = current_time, statud = 1 Where id = $pagos[id]";
+                parent::query($consultar1);
+            }
             parent::cerrar();
             return $respo;
         }
@@ -206,8 +221,8 @@
         {
             parent::conectar();
             $method = 'GET';
-            $url = "https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/one/$pagos[businessId]/$pagos[payoutId]";
-            /* $url = "https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/one/$pagos[businessId]/$pagos[payoutId]"; */
+            /* $url = "https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/one/$pagos[businessId]/$pagos[payoutId]"; */
+            $url = "https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/one/$pagos[businessId]/$pagos[payoutId]";
             return parent::headerAWL($method, $url);
         }
     }

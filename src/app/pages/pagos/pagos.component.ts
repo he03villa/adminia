@@ -51,9 +51,10 @@ export class PagosComponent implements OnInit {
     const res:any = await this.Propiedad.getAllPropiedad({ id: propiedad });
     this.arrayTorre = res.torre;
     if (this.arrayTorre.length > 0) {
-      this.selectTorre = this.arrayTorre[0].id;
+      /* this.selectTorre = this.arrayTorre[0].id; */
       this.auxArrayPropietarios = res.data;
-      this.arrayPropietarios = this.auxArrayPropietarios.filter(f => f.torre_id == this.selectTorre);
+      this.arrayPropietarios = res.data;
+      /* this.arrayPropietarios = this.auxArrayPropietarios.filter(f => f.torre_id == this.selectTorre); */
     } else {
       this.arrayPropietarios = res.data;
     }

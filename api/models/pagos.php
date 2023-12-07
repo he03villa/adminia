@@ -71,8 +71,8 @@
         {
             parent::conectar();
             $method = 'GET';
-            /* $url = 'https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/pseBanks'; */
-            $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/pseBanks';
+            $url = 'https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/pseBanks';
+            /* $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/pseBanks'; */
             return parent::headerAWL($method, $url);
         }
 
@@ -143,11 +143,18 @@
             $consultar2 = "SELECT c.* FROM propiedad pr inner join cojunto c on c.id = pr.cojunto_id where pr.id = $pagos[propiedad]";
             $user = array();
             if ($pagos["optionDatos"] == true || $pagos["optionDatos"] == "true") {
-                $consultar3 = "SELECT us.* FROM usuario us where us.id = $pagos[user]";
-                $user = parent::consultarArreglo($consultar3);
-            } else {
+                /* $consultar3 = "SELECT us.* FROM usuario us where us.id = $pagos[user]";
+                $user = parent::consultarArreglo($consultar3); */
+                $user = array(
+                    "tipo_documentacion_id" => $pagos["tipo_identidad"],
+                    "numero_documento" => $pagos["numero_identidad"],
+                    "nombre" => $pagos["nombre"],
+                    "telefono" => $pagos["telefono"],
+                    "email" => $pagos["email"],
+                );
                 $consultar = "UPDATE usuario SET nombre = '$pagos[nombre]', telefono = '$pagos[telefono]', numero_documento = '$pagos[numero_identidad]', tipo_documentacion_id = '$pagos[tipo_identidad]' where id = $pagos[user]";
                 $user = parent::query($consultar);
+            } else {
                 $user = array(
                     "tipo_documentacion_id" => $pagos["tipo_identidad"],
                     "numero_documento" => $pagos["numero_identidad"],
@@ -187,8 +194,8 @@
             );
             
             $method = 'POST';
-            /* $url = 'https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/payoutGeneric'; */
-            $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/payoutGeneric';
+            $url = 'https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/payoutGeneric';
+            /* $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/payoutGeneric'; */
             $respo = parent::headerAWL($method, $url, $data);
             $responseJson = json_decode($respo);
             if ($responseJson->body->psePaymentURL != 'ERROR') {
@@ -221,8 +228,8 @@
         {
             parent::conectar();
             $method = 'GET';
-            /* $url = "https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/one/$pagos[businessId]/$pagos[payoutId]"; */
-            $url = "https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/one/$pagos[businessId]/$pagos[payoutId]";
+            $url = "https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/one/$pagos[businessId]/$pagos[payoutId]";
+            /* $url = "https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/one/$pagos[businessId]/$pagos[payoutId]"; */
             return parent::headerAWL($method, $url);
         }
     }

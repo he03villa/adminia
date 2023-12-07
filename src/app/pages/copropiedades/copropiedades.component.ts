@@ -20,6 +20,11 @@ export class CopropiedadesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const token = sessionStorage.getItem('ref');
+    if (token != null) {
+      sessionStorage.removeItem('ref');
+      this.cargarPropiedades(token);
+    }
     this.cargarPropiedad();
   }
 
@@ -50,31 +55,35 @@ export class CopropiedadesComponent implements OnInit {
     });
     console.log(url);
     if (url != undefined && url != "") {
-      const res:any = await this.Propiedad.getAllPropiedadPro({ token: url });
-      console.log(res);
-      const array = res.data;
-      let html = '';
-      array.filter(f => html += `<option value="${ f.id }">${ f.nombre }</option>`);
-      const data:any = await Swal.fire({
-        title: 'Escoge tu propiedad',
-        html: `<select id="copropiedad" class="swal2-input">${html}</select>`,
-        showCancelButton: true,
-        confirmButtonText: 'Guardar',
-        cancelButtonText: 'Cancelar',
-        allowOutsideClick: () => !Swal.isLoading(),
-        preConfirm: async (fech) => {
-          const user = JSON.parse(localStorage.getItem('dataUser'));
-          const propiedad = document.getElementById('copropiedad')['value'];
-          const data = { user: user.id, propiedad: propiedad };
-          return await this.Propiedad.savePropietario(data);
-        }
-      });
-      console.log(data);
-      if (data.isConfirmed) {
-        this.services.Alert(data.value.status, '', data.value.message, 'Aceptar', '');
-        if (data.value.status == 'success') {
-          this.cargarPropiedad();
-        }
+      this.cargarPropiedades(url);
+    }
+  }
+
+  async cargarPropiedades(codigo) {
+    const res:any = await this.Propiedad.getAllPropiedadPro({ token: codigo });
+    console.log(res);
+    const array = res.data;
+    let html = '';
+    array.filter(f => html += `<option value="${ f.id }">${ f.nombre }</option>`);
+    const data:any = await Swal.fire({
+      title: 'Escoge tu propiedad',
+      html: `<select id="copropiedad" class="swal2-input">${html}</select>`,
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      cancelButtonText: 'Cancelar',
+      allowOutsideClick: () => !Swal.isLoading(),
+      preConfirm: async (fech) => {
+        const user = JSON.parse(localStorage.getItem('dataUser'));
+        const propiedad = document.getElementById('copropiedad')['value'];
+        const data = { user: user.id, propiedad: propiedad };
+        return await this.Propiedad.savePropietario(data);
+      }
+    });
+    console.log(data);
+    if (data.isConfirmed) {
+      this.services.Alert(data.value.status, '', data.value.message, 'Aceptar', '');
+      if (data.value.status == 'success') {
+        this.cargarPropiedad();
       }
     }
   }

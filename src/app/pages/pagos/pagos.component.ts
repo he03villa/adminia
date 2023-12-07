@@ -43,6 +43,7 @@ export class PagosComponent implements OnInit {
       }
     } else if (this.dataUser.conjunto == 1) {
       this.cagarAllPagosAministrador(this.dataUser.id);
+      this.listarPropietarios(this.dataUser.id);
     }
   }
 
@@ -50,9 +51,10 @@ export class PagosComponent implements OnInit {
     const res:any = await this.Propiedad.getAllPropiedad({ id: propiedad });
     this.arrayTorre = res.torre;
     if (this.arrayTorre.length > 0) {
-      this.selectTorre = this.arrayTorre[0].id;
+      /* this.selectTorre = this.arrayTorre[0].id; */
       this.auxArrayPropietarios = res.data;
-      this.arrayPropietarios = this.auxArrayPropietarios.filter(f => f.torre_id == this.selectTorre);
+      this.arrayPropietarios = res.data;
+      /* this.arrayPropietarios = this.auxArrayPropietarios.filter(f => f.torre_id == this.selectTorre); */
     } else {
       this.arrayPropietarios = res.data;
     }
@@ -83,13 +85,15 @@ export class PagosComponent implements OnInit {
   async pagar(item) {
     console.log(item);
     console.log(this.dataUser);
-    if (this.dataUser.cuentas_bancarias.length == 0) {
+    this.Dash.dataPagos = item;
+    this.services.showModal('#modal-pago');
+    /* if (this.dataUser.cuentas_bancarias.length == 0) {
       const res = await this.services.Alert('info', '', 'No tienes ninguna cuenta asociada', 'Ir', '');
       console.log(res);
       this.services.url('dashboard/editar-perfil');
       return;
-    }
-    let htmlOption = '';
+    } */
+    /* let htmlOption = '';
     for (const key in this.dataUser.cuentas_bancarias) {
       if (Object.prototype.hasOwnProperty.call(this.dataUser.cuentas_bancarias, key)) {
         const element = this.dataUser.cuentas_bancarias[key];
@@ -106,7 +110,7 @@ export class PagosComponent implements OnInit {
       </div>
     `;
 
-    const resulAlert = await this.services.AlertAllHTML(html, 'Aceptar', 'stc-banco', true, 'Canselar');
+    const resulAlert = await this.services.AlertAllHTML(html, 'Aceptar', 'stc-banco', true, 'Cancelar');
     console.log(resulAlert);
     const data =  {
       code: resulAlert.value,
@@ -119,11 +123,11 @@ export class PagosComponent implements OnInit {
     (await this._pagos.pay(data)).subscribe((resp:any) => {
       console.log(resp);
       this.services.abrir(resp.body.psePaymentURL);
-    });
+    }); */
   }
 
   async ingresarValor() {
-    const res = await this.services.AlertInput('Ingresa el valor', 'Aceptar', 'Canselar', true);
+    const res = await this.services.AlertInput('Ingresa el valor', 'Aceptar', 'Cancelar', true);
     if (res.isConfirmed ==  true) {
       const data = {
         valor: res.value,

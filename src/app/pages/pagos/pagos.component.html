@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-12">
         <h2>Pagos</h2>
-        <select *ngIf="arrayTorre.length > 0" [(ngModel)]="selectTorre" (change)="cambiarTorre()">
+        <!-- <select *ngIf="arrayTorre.length > 0" [(ngModel)]="selectTorre" (change)="cambiarTorre()">
             <option *ngFor="let item of arrayTorre" [value]="item.id">{{ item.nombre }}</option>
-        </select>
+        </select> -->
     </div>
     <div class="col-12" *ngIf="dataUser.conjunto == 1">
         <div class="contenedor-botones">

@@ -405,12 +405,12 @@ export class ServicesService {
     document.dispatchEvent(out);
   }
 
-  abrir(url) {
+  abrir(url, target = "_blank") {
     let a = document.createElement("a");
     document.body.appendChild(a);
     a.classList.add('d-none');
     a.href = url;
-    a.target = "_blank";
+    a.target = target;
     a.click();
     document.body.removeChild(a);
   }

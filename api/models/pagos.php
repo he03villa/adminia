@@ -76,6 +76,16 @@
             return parent::headerAWL($method, $url);
         }
 
+        public function getAllTipoBanco()
+        {
+            parent::conectar();
+            $consultar1 = "SELECT * FROM tipo_cuenta_bancaria;";
+            $lista = parent::consultaTodo($consultar1);
+            parent::cerrar();
+            $res = array('status' => 'success', 'message' => 'Lista de tipo de pago', 'data' => $lista);
+            return $res;
+        }
+
         public function createTransacciones()
         {
             parent::conectar();
@@ -129,12 +139,32 @@
                 return false;
             }
             parent::conectar();
-            $consultar1 = "SELECT cb.* FROM cuentas_bancarias cb inner join propiedad pr on pr.id = $pagos[propiedad] inner join cojunto c on c.id = pr.cojunto_id and c.id = cb.cojunto_id where cb.code = $pagos[code];";
+            $consultar1 = "SELECT cb.*, tcb.code as code_tipo FROM cuentas_bancarias cb inner join propiedad pr on pr.id = $pagos[propiedad] inner join cojunto c on c.id = pr.cojunto_id and c.id = cb.cojunto_id inner join tipo_cuenta_bancaria tcb on tcb.id = cb.tipo_cuenta_bancaria_id where cb.code = $pagos[code];";
             $consultar2 = "SELECT c.* FROM propiedad pr inner join cojunto c on c.id = pr.cojunto_id where pr.id = $pagos[propiedad]";
-            $consultar3 = "SELECT us.* FROM usuario us where us.id = $pagos[user]";
+            $user = array();
+            if ($pagos["optionDatos"] == true || $pagos["optionDatos"] == "true") {
+                /* $consultar3 = "SELECT us.* FROM usuario us where us.id = $pagos[user]";
+                $user = parent::consultarArreglo($consultar3); */
+                $user = array(
+                    "tipo_documentacion_id" => $pagos["tipo_identidad"],
+                    "numero_documento" => $pagos["numero_identidad"],
+                    "nombre" => $pagos["nombre"],
+                    "telefono" => $pagos["telefono"],
+                    "email" => $pagos["email"],
+                );
+                $consultar = "UPDATE usuario SET nombre = '$pagos[nombre]', telefono = '$pagos[telefono]', numero_documento = '$pagos[numero_identidad]', tipo_documentacion_id = '$pagos[tipo_identidad]' where id = $pagos[user]";
+                $user = parent::query($consultar);
+            } else {
+                $user = array(
+                    "tipo_documentacion_id" => $pagos["tipo_identidad"],
+                    "numero_documento" => $pagos["numero_identidad"],
+                    "nombre" => $pagos["nombre"],
+                    "telefono" => $pagos["telefono"],
+                    "email" => $pagos["email"],
+                );
+            }
             $cuentaCojunto = parent::consultarArreglo($consultar1);
             $cojunto = parent::consultarArreglo($consultar2);
-            $user = parent::consultarArreglo($consultar3);
             
             $data = array(
                 'payerId' => $pagos["id"],
@@ -156,7 +186,7 @@
                         'receiverEmail' => $cojunto["correo"],
                         'receiverPhone' => (int)$cojunto["telefono"],
                         'receiverBankId' => (int)$cuentaCojunto["code"],
-                        'receiverBankAccountTypeId' => $cuentaCojunto["code"],
+                        'receiverBankAccountTypeId' => $cuentaCojunto["code_tipo"],
                         'receiverBankAccountNumber' => (int)$cuentaCojunto["cuenta"],
                         'receiverAmount' => (int)$pagos["precio"],
                     )
@@ -168,9 +198,11 @@
             /* $url = 'https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/payoutGeneric'; */
             $respo = parent::headerAWL($method, $url, $data);
             $responseJson = json_decode($respo);
-            $idPayout = $responseJson->body->idPayout;
-            $consultar1 = "UPDATE transaccion SET idPayout = '$idPayout', fecha_pago = current_time, statud = 1 Where id = $pagos[id]";
-            parent::query($consultar1);
+            if ($responseJson->body->psePaymentURL != 'ERROR') {
+                $idPayout = $responseJson->body->idPayout;
+                $consultar1 = "UPDATE transaccion SET idPayout = '$idPayout', fecha_pago = current_time, statud = 1 Where id = $pagos[id]";
+                parent::query($consultar1);
+            }
             parent::cerrar();
             return $respo;
         }

@@ -68,7 +68,7 @@
                 <div class="item-input">
 
                     <p> Departamento: </p>
-                    <input type="text" [disabled]="true" [readonly]="true" placeholder="" formControlName="departamento" (keyup)="cambiarValidarMensaje()">
+                    <input type="text" placeholder="" formControlName="departamento" (keyup)="cambiarValidarMensaje()">
                     <ng-container *ngIf="form.controls.departamento.errors && !validarMensaje">
                         <label for="" *ngIf="form.controls.departamento.errors.required">El departamento de la propiedad
                             está
@@ -78,7 +78,7 @@
                 <div class="item-input">
 
                     <p> Ciudad: </p>
-                    <input type="text" [disabled]="true" [readonly]="true" placeholder="" formControlName="ciudad" (keyup)="cambiarValidarMensaje()">
+                    <input type="text" placeholder="" formControlName="ciudad" (keyup)="cambiarValidarMensaje()">
                     <ng-container *ngIf="form.controls.ciudad.errors && !validarMensaje">
                         <label for="" *ngIf="form.controls.ciudad.errors.required">La ciudad de la propiedad está
                             vacio</label>
@@ -87,7 +87,7 @@
                 <div class="item-input">
 
                     <p> Código postal </p>
-                    <input type="number" [disabled]="true" [readonly]="true" placeholder="" formControlName="codigo_postal" (keyup)="cambiarValidarMensaje()">
+                    <input type="number" placeholder="" formControlName="codigo_postal" (keyup)="cambiarValidarMensaje()">
                     <ng-container *ngIf="form.controls.codigo_postal.errors && !validarMensaje">
                         <label for="" *ngIf="form.controls.codigo_postal.errors.required">El código postal de la
                             propiedad

@@ -7,7 +7,7 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link" [ngClass]="dataUser.conjunto == 0 ? 'active': ''" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Perfil de la propiedad</button>
             </li>
-            <li class="nav-item" role="presentation">
+            <li class="nav-item" role="presentation" *ngIf="dataUser.conjunto == 1">
                 <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Datos bancarios</button>
             </li>
             <li class="nav-item" role="presentation">
@@ -160,7 +160,7 @@
                     </div>
                 </form>
             </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="tab-pane fade" id="contact" *ngIf="dataUser.conjunto == 1" role="tabpanel" aria-labelledby="contact-tab">
                 <div class="row contenedor-input bordermix">
                     <form [formGroup]="formBanks">
                         <ng-container formArrayName="arrayBanks">
@@ -171,6 +171,13 @@
                                         <select name="" id="" formControlName="code" (change)="optionNameBank($event, indice)">
                                             <option value="">Seleccione el banco</option>
                                             <option *ngFor="let item of arrayBanks" [value]="item.code">{{ item.name }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="group-input">
+                                        <p> Tipo de cuenta </p>
+                                        <select name="" id="" formControlName="tipo">
+                                            <option value="">Seleccione el tipo de cuenta</option>
+                                            <option *ngFor="let item of arrayTipoBanco" [value]="item.id">{{ item.nombre }}</option>
                                         </select>
                                     </div>
                                     <div class="group-input">

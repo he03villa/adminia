@@ -9,6 +9,7 @@ import { ActivarUserService } from './services/activar-user.service';
 import { ActivarPropiedadService } from './services/activar-propiedad.service';
 import { LandingadminaComponent } from './pages/landingadmina/landingadmina.component';
 import { PagoSuccessService } from './services/pago-success.service';
+import { ReferidoGuard } from './guard/referido.guard';
 
 
 const routes: Routes = [
@@ -35,7 +36,7 @@ const routes: Routes = [
     component: ContentComponent,
     canActivate: [NoAuthService],
     children: [
-      { path: '', loadChildren: () => import('./pages/landingadmina/landingadmina.module').then(m => m.LandingadminaModule), canActivate: [ActivarUserService, ActivarPropiedadService] },
+      { path: '', loadChildren: () => import('./pages/landingadmina/landingadmina.module').then(m => m.LandingadminaModule), canActivate: [ActivarUserService, ActivarPropiedadService, ReferidoGuard] },
       /* { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), canActivate: [ActivarUserService, ActivarPropiedadService] }, */
       { path: 'registro-propiedad', loadChildren: () => import('./pages/crearcopropiedad/crearcopropiedad.module').then(m => m.CrearcopropiedadModule) },
       { path: '**', redirectTo: '' }

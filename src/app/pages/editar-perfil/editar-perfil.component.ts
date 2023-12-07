@@ -21,6 +21,7 @@ export class EditarPerfilComponent implements OnInit {
   dataUser:any;
   arrayBanks = [];
   arrayTipoDocumento = [];
+  arrayTipoBanco = [];
 
   constructor(
     public services: ServicesService,
@@ -61,6 +62,7 @@ export class EditarPerfilComponent implements OnInit {
       arrayBanks: this.fb.array([])
     });
     this.cargarCuentas();
+    this.cargaTipoBanco();
     console.log(this.dataUser);
   }
 
@@ -74,6 +76,12 @@ export class EditarPerfilComponent implements OnInit {
     const res:any = await this.pago.listbank();
     console.log(res);
     this.arrayBanks = res.body;
+  }
+
+  async cargaTipoBanco() {
+    const res:any = await this.pago.listaTipoBanco();
+    console.log(res);
+    this.arrayTipoBanco = res.data;
   }
 
   async cargarTipoDocumentos() {
@@ -91,7 +99,7 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   addCuenta() {
-    const data = { nombre: '', cuenta: '', code: '', id: 0 };
+    const data = { nombre: '', cuenta: '', code: '', tipo: '', id: 0 };
     this.dataUser.cuentas_bancarias.push(data);
     this.getFormItem().push(this.itemBank(data));
   }
@@ -230,6 +238,7 @@ export class EditarPerfilComponent implements OnInit {
       nombre: [item.nombre],
       cuenta: [item.cuenta],
       code: [item.code],
+      tipo: [item.tipo],
       id: [item.id]
     });
   }

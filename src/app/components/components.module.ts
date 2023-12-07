@@ -17,7 +17,8 @@ import { ModalLoginComponent } from './modal-login/modal-login.component';
 import { ModaListaPropiedadComponent } from './moda-lista-propiedad/moda-lista-propiedad.component';
 import { ModalAcaptarPagoComponent } from './modal-acaptar-pago/modal-acaptar-pago.component';
 import { ModalDetallePagoComponent } from './modal-detalle-pago/modal-detalle-pago.component';
-
+import { ModalPagoComponent } from './modal-pago/modal-pago.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ModalDetallePagoComponent } from './modal-detalle-pago/modal-detalle-pa
     ModalLoginComponent,
     ModaListaPropiedadComponent,
     ModalAcaptarPagoComponent,
-    ModalDetallePagoComponent
+    ModalDetallePagoComponent,
+    ModalPagoComponent
   ],
   exports: [
     NavComponent, 
@@ -44,7 +46,8 @@ import { ModalDetallePagoComponent } from './modal-detalle-pago/modal-detalle-pa
     ModalLoginComponent,
     ModaListaPropiedadComponent,
     ModalAcaptarPagoComponent,
-    ModalDetallePagoComponent
+    ModalDetallePagoComponent,
+    ModalPagoComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +57,8 @@ import { ModalDetallePagoComponent } from './modal-detalle-pago/modal-detalle-pa
     ClipboardModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    MatSlideToggleModule
   ]
 })
 export class ComponentsModule { }

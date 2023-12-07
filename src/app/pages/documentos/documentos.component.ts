@@ -141,7 +141,7 @@ export class DocumentosComponent implements OnInit {
   }
 
   async deleteCarpeta(item) {
-    const res: any = await this.services.Alert('info', '', 'Esta seguro en eliminar esta carpeta', 'Aceptar', 'Canselar', true);
+    const res: any = await this.services.Alert('info', '', 'Esta seguro en eliminar esta carpeta', 'Aceptar', 'Cancelar', true);
     if (res.isConfirmed) {
       const data = { id: item.id };
       const resp: any = await this.Revicion.deleteTipoRevicion(data);

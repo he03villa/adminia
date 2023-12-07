@@ -1,0 +1,134 @@
+<div class="modal fade" id="modal-pago" tabindex="-1" role="dialog" aria-labelledby="perfilusuarioTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="perfilusuarioLongTitle">Pagos</h5>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                x
+            </button>
+            <div class="modal-body">
+                <form [formGroup]="form" class="form-datos-user">
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-slide-toggle (change)="cambiarOptionDato()" formControlName="optionDatos">Mis datos</mat-slide-toggle>
+                        </div>
+                        <div class="col-6">
+                            <div class="group-input">
+                                <label for="">Nombre</label>
+                                <div>
+                                    <input type="text" placeholder="Nombre" formControlName="nombre">
+                                </div>
+                            </div>
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                                validation: 'required',
+                                message: 'El nombre es requrido',
+                                control: form.controls['nombre'],
+                                clase: 'black'
+                              }"></ng-container>
+                        </div>
+                        <div class="col-6">
+                            <div class="group-input">
+                                <label for="">Telefono</label>
+                                <div>
+                                    <input type="number" placeholder="Telefono" formControlName="telefono">
+                                </div>
+                            </div>
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                                validation: 'required',
+                                message: 'El telefono es requrido',
+                                control: form.controls['telefono'],
+                                clase: 'black'
+                              }"></ng-container>
+                        </div>
+                        <div class="col-6">
+                            <div class="group-input">
+                                <label for="">Tipo de documento</label>
+                                <div>
+                                    <select name="" id="" formControlName="tipo_identidad">
+                                        <option value="">Selecione el tipo</option>
+                                        <option *ngFor="let item of arrayTipoDocumento" [value]="item.id">{{ item.nombre }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                                validation: 'required',
+                                message: 'El tipo de documento es requrido',
+                                control: form.controls['tipo_identidad'],
+                                clase: 'black'
+                              }"></ng-container>
+                        </div>
+                        <div class="col-6">
+                            <div class="group-input">
+                                <label for="">Numero de identidad</label>
+                                <div>
+                                    <input type="number" placeholder="Numero de identidad" formControlName="numero_identidad">
+                                </div>
+                            </div>
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                                validation: 'required',
+                                message: 'El numero de identidad es requrido',
+                                control: form.controls['numero_identidad'],
+                                clase: 'black'
+                              }"></ng-container>
+                        </div>
+                        <div class="col-6">
+                            <div class="group-input">
+                                <label for="">Correo</label>
+                                <div>
+                                    <input type="email" placeholder="Correo" formControlName="email">
+                                </div>
+                            </div>
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                                validation: 'required',
+                                message: 'El correo es requrido',
+                                control: form.controls['email'],
+                                clase: 'black'
+                              }"></ng-container>
+                              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                                validation: 'email',
+                                message: 'El correo no es valido',
+                                control: form.controls['email'],
+                                clase: 'black'
+                              }"></ng-container>
+                        </div>
+                        <div class="col-6">
+                            <div class="group-input">
+                                <label for="">Banco</label>
+                                <div>
+                                    <select name="" id="" formControlName="banco">
+                                        <!-- <option value="">Selecione el tipo</option> -->
+                                        <option *ngFor="let item of arrayBanks" [value]="item.code">{{ item.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                                validation: 'required',
+                                message: 'El banco es requrido',
+                                control: form.controls['banco'],
+                                clase: 'black'
+                              }"></ng-container>
+                        </div>
+                        <div class="col-12 my-3">
+                            <div class="content-btn">
+                                <button class="btn" [disabled]="form.invalid" (click)="pagar($event)">Pagar</button>
+                                <button class="btn" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #formError let-control="control" let-message="message" let-clase="clase" let-validation="validation">
+    <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+      <div class="fv-plugins-message-container">
+        <!-- [ngClass]="clase" -->
+        <span role="alert" >
+          {{ message }}
+        </span>
+      </div>
+    </ng-container>
+</ng-template>

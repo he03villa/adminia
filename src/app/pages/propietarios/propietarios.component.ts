@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { PropiedadService } from '../../services/propiedad.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-propietarios',
@@ -49,6 +50,24 @@ export class PropietariosComponent implements OnInit {
 
   cambiarTorre() {
     this.arrayPropietarios = this.auxArrayPropietarios.filter(f => f.torre_id == this.selectTorre);
+  }
+
+  async decargarExcel() {
+    const res:any = await this.Propiedad.descargarExcel({ id: this.dataUser.id });
+    console.log(res.data);
+    const data = res.data;
+
+    let workbook = XLSX.utils.book_new();
+    let worksheet = XLSX.utils.json_to_sheet(data);
+
+    // first way to add a sheet
+    workbook.SheetNames.push('Hoja 1');
+    workbook.Sheets['Hoja 1'] = worksheet;
+
+    // second way to add a sheet
+    // XLSX.utils.book_append_sheet(workbook, worksheet, "Hoja 1")
+
+    XLSX.writeFileXLSX(workbook, 'excel.xls', {});
   }
 
 }

@@ -6,6 +6,7 @@
         <select *ngIf="arrayTorre.length > 0" [(ngModel)]="selectTorre" (change)="cambiarTorre()">
             <option *ngFor="let item of arrayTorre" [value]="item.id">{{ item.nombre }}</option>
         </select>
+        <button (click)="decargarExcel()">Descargar</button>
     </div>
     <div class="col-12 contenedor-tabla">
         <table>

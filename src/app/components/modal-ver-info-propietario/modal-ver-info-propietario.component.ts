@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { PropiedadService } from '../../services/propiedad.service';
-import { UntypedFormBuilder } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { PagosService } from 'src/app/services/pagos.service';
 
 @Component({
   selector: 'app-modal-ver-info-propietario',
@@ -12,19 +13,34 @@ import Swal from 'sweetalert2';
 export class ModalVerInfoPropietarioComponent implements OnInit {
 
   @Input() dataPropietario;
+  form: UntypedFormGroup = new UntypedFormGroup({});
+  
   
   constructor(
     public services: ServicesService,
     private Propiedad: PropiedadService,
     private fb: UntypedFormBuilder,
+    private Pago: PagosService
   ) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      id: [''],
+      pago: ['', [Validators.required]],
+      fecha: ['', [Validators.required]]
+    });
   }
 
   ngOnChanges(change: SimpleChange) {
     console.log(change);
     this.dataPropietario = change['dataPropietario'].currentValue;
+    this.cargarPago();
+  }
+
+  cargarPago() {
+    this.form.controls?.id.setValue(this.dataPropietario?.id);
+    this.form.controls?.pago.setValue(this.dataPropietario?.pago?.pago);
+    this.form.controls?.fecha.setValue(this.dataPropietario?.pago?.fecha);
   }
 
   async aceptarPropietario(event) {
@@ -79,6 +95,17 @@ export class ModalVerInfoPropietarioComponent implements OnInit {
       this.dataPropietario.email_user = null;
       this.services.hideModal('#modal-info-propietario');
     }
+  }
+
+  async actualizarPago(event) {
+    this.services.addLoading(event.target);
+    const data = this.form.getRawValue();
+    console.log(data);
+    const res:any = await this.Pago.updatePago(data);
+    if (res.status == 'success') {
+      this.services.Alert('success', '', 'El valor ser actualizar', 'Aceptar', false);
+    }
+    this.services.removeLoading(event.target);
   }
 
 }

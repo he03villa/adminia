@@ -139,7 +139,8 @@
                 return false;
             }
             parent::conectar();
-            $consultar1 = "SELECT cb.*, tcb.code as code_tipo FROM cuentas_bancarias cb inner join propiedad pr on pr.id = $pagos[propiedad] inner join cojunto c on c.id = pr.cojunto_id and c.id = cb.cojunto_id inner join tipo_cuenta_bancaria tcb on tcb.id = cb.tipo_cuenta_bancaria_id where cb.code = $pagos[code];";
+            $consultar1 = "SELECT cb.*, tcb.code as code_tipo FROM cuentas_bancarias cb inner join propiedad pr on pr.id = $pagos[propiedad] inner join cojunto c on c.id = pr.cojunto_id and c.id = cb.cojunto_id inner join tipo_cuenta_bancaria tcb on tcb.id = cb.tipo_cuenta_bancaria_id limit 1;";
+            /* $consultar1 = "SELECT cb.*, tcb.code as code_tipo FROM cuentas_bancarias cb inner join propiedad pr on pr.id = $pagos[propiedad] inner join cojunto c on c.id = pr.cojunto_id and c.id = cb.cojunto_id inner join tipo_cuenta_bancaria tcb on tcb.id = cb.tipo_cuenta_bancaria_id where cb.code = $pagos[code];"; */
             $consultar2 = "SELECT c.* FROM propiedad pr inner join cojunto c on c.id = pr.cojunto_id where pr.id = $pagos[propiedad]";
             $user = array();
             if ($pagos["optionDatos"] == true || $pagos["optionDatos"] == "true") {
@@ -153,7 +154,7 @@
                     "email" => $pagos["email"],
                 );
                 $consultar = "UPDATE usuario SET nombre = '$pagos[nombre]', telefono = '$pagos[telefono]', numero_documento = '$pagos[numero_identidad]', tipo_documentacion_id = '$pagos[tipo_identidad]' where id = $pagos[user]";
-                $user = parent::query($consultar);
+                parent::query($consultar);
             } else {
                 $user = array(
                     "tipo_documentacion_id" => $pagos["tipo_identidad"],
@@ -163,6 +164,7 @@
                     "email" => $pagos["email"],
                 );
             }
+            /* print_r($user); */
             $cuentaCojunto = parent::consultarArreglo($consultar1);
             $cojunto = parent::consultarArreglo($consultar2);
             
@@ -180,8 +182,8 @@
                 'payouts' => array(
                     array(
                         'payoutId' => $cojunto["id"],
-                        'receiverIdentificationType' => $cojunto["tipo_documentacion_id"],
-                        'receiverIdentificationNumber' => (int)$cojunto["numero_documento"],
+                        'receiverIdentificationType' => $cuentaCojunto["tipo_documentacion_id"],
+                        'receiverIdentificationNumber' => (int)$cuentaCojunto["numero_documento"],
                         'receiverNamesLastNames' => $cojunto["nombre"],
                         'receiverEmail' => $cojunto["correo"],
                         'receiverPhone' => (int)$cojunto["telefono"],
@@ -231,6 +233,25 @@
             $url = "https://q7f622c1s0.execute-api.us-east-2.amazonaws.com/prod/payments/one/$pagos[businessId]/$pagos[payoutId]";
             /* $url = "https://du2qzoaok4.execute-api.us-east-2.amazonaws.com/dev/payments/one/$pagos[businessId]/$pagos[payoutId]"; */
             return parent::headerAWL($method, $url);
+        }
+
+        public function updatePagos($pagos) {
+            parent::conectar();
+            $prevId = 0;
+            $consultar1 = "SELECT * From pagos Where propiedad_id =  $pagos[id]";
+            $pago = parent::consultarArreglo($consultar1);
+            if ($pago != null) {
+                $consultar2 = "UPDATE pagos SET pago = $pagos[pago], fecha = '$pagos[fecha]', status = 0 Where id = $pago[id]";
+                parent::query($consultar2);
+                $prevId = $pago["id"];
+            } else {
+                $consultar3 = "INSERT INTO pagos(pago, status, fecha, current_create, propiedad_id) VALUE($pagos[pago], 0, $pagos[fecha], current_timestamp, $pagos[id])";
+                $prevId = parent::queryRegistro($consultar3);
+            }
+            $prevPago = parent::consultarArreglo("SELECT * From pagos Where id =  $prevId");
+            parent::cerrar();
+            $res = array('status' => 'success', 'message' => 'Pago exitoso', "data" => $prevPago);
+            return $res;
         }
     }
     

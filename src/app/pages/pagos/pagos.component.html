@@ -5,11 +5,11 @@
             <option *ngFor="let item of arrayTorre" [value]="item.id">{{ item.nombre }}</option>
         </select> -->
     </div>
-    <div class="col-12" *ngIf="dataUser.conjunto == 1">
+    <!-- <div class="col-12" *ngIf="dataUser.conjunto == 1">
         <div class="contenedor-botones">
             <button (click)="ingresarValor()">Agregar Valor</button>
         </div>
-    </div>
+    </div> -->
     <div class="col-12 contenedor-tabla">
         <table *ngIf="dataUser.conjunto == 0">
             <thead>

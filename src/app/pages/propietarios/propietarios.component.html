@@ -6,7 +6,15 @@
         <select *ngIf="arrayTorre.length > 0" [(ngModel)]="selectTorre" (change)="cambiarTorre()">
             <option *ngFor="let item of arrayTorre" [value]="item.id">{{ item.nombre }}</option>
         </select>
-        <button (click)="decargarExcel()">Descargar</button>
+        <div class="content-head-btn">
+            <div>
+                <button (click)="decargarExcel()">Descargar</button>
+            </div>
+            <div class="btn-file">
+                <label for="file1" id="file1-label">Subir pagos</label>
+                <input type="file" name="" id="file1" (change)="subirArchivo($event)">
+            </div>
+        </div>
     </div>
     <div class="col-12 contenedor-tabla">
         <table>

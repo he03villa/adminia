@@ -245,6 +245,7 @@ export class ServicesService {
   }
 
   removeLoading(target) {
+    console.log(target);
     let sprinner = target.lastChild;
     target.removeChild(sprinner);
     target.disabled = false;

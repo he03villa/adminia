@@ -71,3 +71,27 @@ button, a {
     font-weight: bold;
     font-size: 14px;
 }
+
+.content-head-btn {
+    display: flex;
+    div {
+        margin: 0 5px;
+    }
+    .btn-file {
+        label{
+            background: $primary;
+            color: white;
+            font-family: "Montserrat", sans-serif;
+            border-radius: 20px;
+            margin: 15px 0px;
+            padding: 7px 20px;
+            border: none;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        input {
+            display: none;
+        }
+    }
+}

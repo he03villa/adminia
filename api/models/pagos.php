@@ -1,32 +1,42 @@
 <?php
     require_once 'conexion.php';
     require_once 'notificacion.php';
+    require_once '../../plugin_execel/PHPExcel/IOFactory.php';
 
     class Pagos extends Conexion
     {
         public function savePagos($pagos)
         {
             parent::conectar();
-            $respArray = array();
-            for ($i=0; $i < count($pagos["propiedades"]); $i++) { 
-                $propiedad = $pagos["propiedades"][$i];
-                $consultar1 = "SELECT * From pagos Where propiedad_id =  $propiedad[id]";
-                $pago = parent::consultarArreglo($consultar1);
-                if ($pago != null) {
-                    $consultar2 = "UPDATE pagos SET pago = $pagos[valor], status = 0 Where id = $pago[id]";
-                    parent::query($consultar2);
-                    $pago['pago'] = $pagos['valor'];
-                    $pago['status'] = 0;
-                    array_push($respArray, $pago);
-                } else {
-                    $consultar3 = "INSERT INTO pagos(pago, status, fecha, current_create, propiedad_id) VALUE($pagos[valor], 0, '2023-09-1', current_timestamp, $propiedad[id])";
-                    $prevId = parent::queryRegistro($consultar3);
-                    $prevPago = parent::consultarArreglo("SELECT * From pagos Where id =  $prevId");
-                    array_push($respArray, $prevPago);
-                }
+            $carpeta1 = parent::getRutaService() . '/archivo_excel';
+            $documento = $pagos['documento'];
+            if (file_exists($carpeta1 . "/$documento[nombre]")) {
+                unlink($carpeta1 . "/$documento[nombre]");
             }
-            parent::cerrar();
-            $res = array('status' => 'success', 'message' => 'La pagos se registro', 'data' => $respArray);
+            $base64_1  = base64_decode(explode(',', $documento['base'])[1]);
+            $filepath1 = $carpeta1 . "/$documento[nombre]";
+            file_put_contents($filepath1, $base64_1);
+            set_time_limit(10);
+            $objPHPExcel = PHPExcel_IOFactory::load($filepath1);
+            $objPHPExcel->setActiveSheetIndex(0);
+            $numRows = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
+            for ($i=2; $i <= $numRows; $i++) {
+                parent::conectar();
+                $propiedad =  $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getValue();
+                $precio =  $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getValue();
+                $fecha =  $objPHPExcel->getActiveSheet()->getCell('G'.$i)->getValue();
+                $consultar1 = "SELECT * From cojunto co
+                inner join propiedad pro on pro.cojunto_id = co.id
+                Where co.id = $pagos[id] and pro.nombre = '$propiedad';";
+                $propiedad1 = parent::consultarArreglo($consultar1);
+                $data = array(
+                    "id" => $propiedad1["id"],
+                    "pago" => $precio,
+                    "fecha" => $fecha
+                );
+                $this->updatePagos($data);
+            }
+            $res = array('status' => 'success', 'message' => 'La pagos se registro', 'data' => $numRows);
             return $res;
         }
 
@@ -249,9 +259,42 @@
                 $prevId = parent::queryRegistro($consultar3);
             }
             $prevPago = parent::consultarArreglo("SELECT * From pagos Where id =  $prevId");
+            $usua = parent::consultarArreglo("Select us.id, us.email from pagos pa inner join usuario_has_propiedad uhp on uhp.propiedad_id = pa.propiedad_id inner join usuario us on us.id = uhp.usuario_id where pa.id = $prevId");
             parent::cerrar();
+            if ($usua != null) {
+                $notificacion = new Notificacion();
+                $data = array(
+                    'mensaje' => "El valor de la renta se a agregado o actulizado por un valor de $pagos[pago] y tiene una fecha de caducidad $pagos[fecha]",
+                    'user' => $usua["id"]
+                );
+                $notificacion->saveNotificacion($data);
+                $user = array(
+                    "pago" => $prevPago["pago"],
+                    "fecha" => $prevPago["fecha"],
+                    "email" => $usua['email']
+                );
+                $this->enviarCorreoRegistro($user);
+            }
             $res = array('status' => 'success', 'message' => 'Pago exitoso', "data" => $prevPago);
             return $res;
+        }
+
+        public function enviarCorreoRegistro($user) {
+            parent::conectar();
+            $fecha = getdate();
+            $html = file_get_contents(parent::getRutaService() . '/html/crear-pago.html');
+            $html = str_replace("@pago@", $user['pago'], $html);
+            $html = str_replace("@fecha@", $user['fecha'], $html);
+            $html = str_replace("@yerd@", $fecha['year'], $html);
+            $para      = $user['email'];
+            $titulo    = 'Pagos a Admina';
+            $mensaje1   = $html;
+            /* $titulo    = $json->rango1; */
+            $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+            $cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+            $cabeceras .= 'From: info@admina.com' . "\r\n";
+            $dataArray = array("para"=>$para, "titulo"=>$titulo, "mensaje"=>$mensaje1, "cabeceras"=> $cabeceras);
+            return parent::mail($dataArray);
         }
     }
     

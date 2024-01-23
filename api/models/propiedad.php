@@ -304,7 +304,7 @@
 
         public function descargarExcel($propiedad) {
             parent::conectar();
-            $consultar1 = "Select tor.nombre TORRE, pr.nombre NUM_PROPIEDAD, us.nombre NOMBRE_PROPIETARIO, us.telefono TELEFONO_PROPIETARIO, us.email CORREO_PROPIETARIO, pa.pago VALOR_RENTA, pa.fecha FECHA_CORTE from cojunto cn 
+            $consultar1 = "Select tor.nombre TORRE, pr.nombre NUM_PROPIEDAD, us.nombre NOMBRE_PROPIETARIO, us.telefono TELEFONO_PROPIETARIO, us.email CORREO_PROPIETARIO, pa.pago VALOR_RENTA, pa.dia_corte DIA_CORTE from cojunto cn 
             inner join propiedad pr on pr.cojunto_id = cn.id
             left join torre tor on tor.id = pr.torre_id
             left join usuario_has_propiedad uhp on uhp.propiedad_id = pr.id

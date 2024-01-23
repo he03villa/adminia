@@ -251,11 +251,11 @@
             $consultar1 = "SELECT * From pagos Where propiedad_id =  $pagos[id]";
             $pago = parent::consultarArreglo($consultar1);
             if ($pago != null) {
-                $consultar2 = "UPDATE pagos SET pago = $pagos[pago], fecha = '$pagos[fecha]', status = 0 Where id = $pago[id]";
+                $consultar2 = "UPDATE pagos SET pago = $pagos[pago], dia_corte = '$pagos[fecha]', status = 0 Where id = $pago[id]";
                 parent::query($consultar2);
                 $prevId = $pago["id"];
             } else {
-                $consultar3 = "INSERT INTO pagos(pago, status, fecha, current_create, propiedad_id) VALUE($pagos[pago], 0, $pagos[fecha], current_timestamp, $pagos[id])";
+                $consultar3 = "INSERT INTO pagos(pago, status, dia_corte, current_create, propiedad_id) VALUE($pagos[pago], 0, $pagos[fecha], current_timestamp, $pagos[id])";
                 $prevId = parent::queryRegistro($consultar3);
             }
             $prevPago = parent::consultarArreglo("SELECT * From pagos Where id =  $prevId");
@@ -270,7 +270,7 @@
                 $notificacion->saveNotificacion($data);
                 $user = array(
                     "pago" => $prevPago["pago"],
-                    "fecha" => $prevPago["fecha"],
+                    "fecha" => $prevPago["dia_corte"],
                     "email" => $usua['email']
                 );
                 $this->enviarCorreoRegistro($user);

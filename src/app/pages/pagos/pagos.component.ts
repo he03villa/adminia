@@ -20,6 +20,7 @@ export class PagosComponent implements OnInit {
   dataUser;
   selectTorre = '0';
   tipoStatud = environment.tipoPago;
+  showTabla = true;
 
   constructor(
     public services: ServicesService,
@@ -35,15 +36,18 @@ export class PagosComponent implements OnInit {
     this.propiedad = propiedad;
     if (this.dataUser.conjunto == 0) {
       if (!this.propiedad) {
-        this.cagarAllPagos(this.dataUser.id);
+        this.showTabla = false;
+        /* this.cagarAllPagos(this.dataUser.id); */
       } else {
         console.log(this.propiedad);
         const data = { id_user: this.dataUser.id, id_propiedad: propiedad.id };
         this.cargarPagosUser(data);
+        this.showTabla = true;
       }
     } else if (this.dataUser.conjunto == 1) {
       this.cagarAllPagosAministrador(this.dataUser.id);
       this.listarPropietarios(this.dataUser.id);
+      this.showTabla = true;
     }
   }
 

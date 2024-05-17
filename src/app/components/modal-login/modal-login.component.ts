@@ -1,25 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { LanzamientoService } from 'src/app/services/lanzamiento.service';
 
 @Component({
   selector: 'app-modal-login',
   templateUrl: './modal-login.component.html',
-  styleUrls: ['./modal-login.component.scss']
+  styleUrls: ['./modal-login.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ModalLoginComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
   formRegistro: FormGroup = new FormGroup({});
+  formRegistroLanzamiento: FormGroup = new FormGroup({});
   validarMensaje = true;
   validarMensajeRegistro = true;
   ojo = false;
+  offcanvasService = inject(NgbOffcanvas);
 
   constructor(
     public services: ServicesService,
     private fb: FormBuilder,
-    private User: UserService
+    private User: UserService,
+    private _lanzamiento: LanzamientoService
   ) { }
 
   ngOnInit() {
@@ -33,6 +39,12 @@ export class ModalLoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       confirmar_password: ['', [Validators.required]],
+      telefono: ['', [Validators.required]]
+    });
+    this.formRegistroLanzamiento = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      emailConfirmar: ['', [Validators.required]],
+      nombre: ['', [Validators.required]],
       telefono: ['', [Validators.required]]
     });
   }
@@ -122,6 +134,32 @@ export class ModalLoginComponent implements OnInit {
     } else {
       this.validarMensajeRegistro = false;
       this.services.removeLoading(event.submitter);
+    }
+  }
+
+  limpiarLanzamiento() {
+    this.formRegistroLanzamiento.reset();
+  }
+
+  async saveLanzamiento(event) {
+    this.services.addLoading(event.target);
+    if (!this.formRegistroLanzamiento.invalid) {
+      const data = this.formRegistroLanzamiento.getRawValue();
+      console.log(data);
+      const res = await this._lanzamiento.saveLanzamiento(data);
+      this.services.removeLoading(event.target);
+      if (res['status'] == 'success') {
+        const re = await this.services.Alert('success', '', 'La solicitud se envió', 'Aceptar', '', false);
+        this.services.hideModal('#ModalRegistroEspera');
+        this.limpiarLanzamiento();
+        /* localStorage.setItem('dataUser', JSON.stringify(res['data']));
+        this.services.url('dashboard'); */
+      } else {
+        this.services.Alert('error', '', 'No se pudo enviar la solicitud', 'Aceptar', '', false);
+      }
+    } else {
+      this.validarMensaje = false;
+      this.services.removeLoading(event.target);
     }
   }
 

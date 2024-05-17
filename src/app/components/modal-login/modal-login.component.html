@@ -40,10 +40,15 @@
                     </div>
                     <div class="col-12">
                         <div class="content-registro">
+                            <label for="">Entra a la lista de lanzamiento <a (click)="services.showModal('#ModalRegistroEspera')">aquí</a></label>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12">
+                        <div class="content-registro">
                             <label for="">¿Aún no eres miembro? <a (click)="abrirModal()" data-dismiss="modal">Crea una cuenta.</a></label>
                             <label for="">¿Aún no tienes un conjunto? <a (click)="services.url('/registro-propiedad')" data-dismiss="modal">Regístrate aquí.</a></label>
                         </div>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>
@@ -116,6 +121,72 @@
                         </div>
                         <div class="content-btn">
                             <button class="btn">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal content-login left fade" id="ModalRegistroEspera" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button aria-label="Close" class="close" data-dismiss="modal" type="button"> <span
+                aria-hidden="true"> × </span> </button>
+            <div class="modal-header">
+                <h5 class="modal-title">Regístrate a la lista de lanzamiento</h5>
+            </div>
+            <div class="modal-body">
+                <p>Si ya <b class="color">eres cliente Admina</b> usa el correo que tienes registrado.</p>
+                <div class="row">
+                    <form [formGroup]="formRegistroLanzamiento" class="col-12 content-input">
+                        <div class="group-input">
+                            <label for="">Email</label>
+                            <div>
+                                <input type="text" formControlName="email" class="form-control email" placeholder="Tu email" name="" id="">
+                            </div>
+                            <ng-container *ngIf="formRegistroLanzamiento.controls.email.errors && !validarMensajeRegistro">
+                                <label for="" *ngIf="formRegistroLanzamiento.controls.email.errors.required">El email está
+                                    vacio</label>
+                                <label for="" *ngIf="formRegistroLanzamiento.controls.email.errors.email">El email no es
+                                    valido</label>
+                            </ng-container>
+                        </div>
+                        <div class="group-input">
+                            <label for="">Confirma tu email</label>
+                            <div>
+                                <input type="text" formControlName="emailConfirmar" class="form-control email" placeholder="Confirma tu email" name="" id="">
+                            </div>
+                            <ng-container *ngIf="formRegistroLanzamiento.controls.emailConfirmar.errors && !validarMensajeRegistro">
+                                <label for="" *ngIf="formRegistroLanzamiento.controls.emailConfirmar.errors.required">El email está
+                                    vacio</label>
+                                <label for="" *ngIf="formRegistroLanzamiento.controls.emailConfirmar.errors.email">El email no es
+                                    valido</label>
+                            </ng-container>
+                        </div>
+                        <div class="group-input">
+                            <label for="">Nombre completo</label>
+                            <div>
+                                <input type="text" formControlName="nombre" class="form-control email" placeholder="Ingrese el nombre completo" name="" id="">
+                            </div>
+                            <ng-container *ngIf="formRegistroLanzamiento.controls.nombre.errors && !validarMensajeRegistro">
+                                <label for="" *ngIf="formRegistroLanzamiento.controls.nombre.errors.required">El email está
+                                    vacio</label>
+                            </ng-container>
+                        </div>
+                        <div class="group-input">
+                            <label for="">Celular</label>
+                            <div>
+                                <input type="number" formControlName="telefono" class="form-control email" placeholder="Celular" name="" id="">
+                            </div>
+                            <ng-container *ngIf="formRegistroLanzamiento.controls.telefono.errors && !validarMensajeRegistro">
+                                <label for="" *ngIf="formRegistroLanzamiento.controls.telefono.errors.required">El email está
+                                    vacio</label>
+                            </ng-container>
+                        </div>
+                        <div class="content-btn">
+                            <button class="btn" (click)="saveLanzamiento($event)">Enviar</button>
                         </div>
                     </form>
                 </div>

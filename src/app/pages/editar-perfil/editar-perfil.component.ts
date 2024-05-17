@@ -67,9 +67,13 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   cargarCuentas() {
-    this.dataUser.cuentas_bancarias.filter(f => {
-      this.getFormItem().push(this.itemBank(f));
-    });
+    if (this.dataUser.cuentas_bancarias.length > 0) {
+      this.dataUser.cuentas_bancarias.filter(f => {
+        this.getFormItem().push(this.itemBank(f));
+      });
+    } else {
+      this.addCuenta();
+    }
   }
 
   async cagraBanco() {
@@ -99,7 +103,7 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   addCuenta() {
-    const data = { nombre: '', cuenta: '', code: '', tipo: '', id: 0 };
+    const data = { nombre: '', cuenta: '', code: '', tipo: '', id: 0, tipo_documentacion_id: '', numero_documento: '', documento: '' };
     this.dataUser.cuentas_bancarias.push(data);
     this.getFormItem().push(this.itemBank(data));
   }
@@ -168,7 +172,7 @@ export class EditarPerfilComponent implements OnInit {
   async saveCuenta(event) {
     this.services.addLoading(event.target);
     const dataArrayBanks = this.formBanks.getRawValue().arrayBanks;
-    const cantidad = dataArrayBanks.filter(f => !this.services.validarText(f.nombre) && !this.services.validarText(f.cuenta)).length;
+    const cantidad = dataArrayBanks.filter(f => !this.services.validarText(f.nombre) && !this.services.validarText(f.cuenta) && !this.services.validarText(f.code) && !this.services.validarText(f.tipo) && !this.services.validarText(f.tipo_documentacion_id) && !this.services.validarText(f.numero_documento) && !this.services.validarText(f.documento)).length;
     console.log(cantidad);
     if (cantidad == 0) {
       const data = { cuentas_bancarias: dataArrayBanks, id: this.dataUser.id, cojunto: this.dataUser.conjunto };
@@ -239,7 +243,10 @@ export class EditarPerfilComponent implements OnInit {
       cuenta: [item.cuenta],
       code: [item.code],
       tipo: [item.tipo],
-      id: [item.id]
+      id: [item.id],
+      tipo_documentacion_id: [item.tipo_documentacion_id],
+      numero_documento: [item.numero_documento],
+      documento: [item.documento]
     });
   }
 
@@ -247,6 +254,21 @@ export class EditarPerfilComponent implements OnInit {
     const tipo = this.arrayBanks.find(f => f.code == event.target.value);
     const cuenta:any = this.getFormItem().controls[indiceBank];
     cuenta.controls.nombre.setValue(tipo.name);
+  }
+
+  async cambiarFoto(event, indice1) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      if (file.size >= 5000000) {
+        this.services.Alert('warning', '', 'El tamaño de la imagen debe de ser menor a 5 M.B.', 'Aceptar', false);
+        return;
+      }/*  else if (file.type != 'image/jpeg' && file.type != 'image/png') {
+        this.services.Alert('warning', '', 'Solo se permite imagen con el formato png y jpg', 'Aceptar', false);
+        return;
+      } */
+      const res:any = await this.services.cargar_img(file);
+      this.getFormItem().controls[indice1]['controls']['documento'].setValue(res);
+    }
   }
 
 }

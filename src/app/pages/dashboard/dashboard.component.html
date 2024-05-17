@@ -8,7 +8,7 @@
         <ng-container *ngIf="!propiedad">
             <div *ngIf="dataUser.conjunto == 1" [routerLink]="['/dashboard']" class="contenedor-menu-dashoboard dashoboard">
                 <img src="../../../assets/image/sideboard/dashboard.png" alt="">
-                <p>Feed</p>
+                <p>Comunidad</p>
             </div>
             <div *ngIf="dataUser.conjunto == 0" [routerLink]="['/dashboard/copropiedades']" class="contenedor-menu-dashoboard copropiedades">
                 <img src="../../../assets/image/sideboard/copropiedades.png" alt="">
@@ -42,7 +42,7 @@
         <ng-container *ngIf="propiedad">
             <div [routerLink]="['/dashboard']" class="contenedor-menu-dashoboard dashoboard">
                 <img src="../../../assets/image/sideboard/dashboard.png" alt="">
-                <p>Feed</p>
+                <p>Comunidad</p>
             </div>
             <div [routerLink]="['/dashboard/documento']" class="contenedor-menu-dashoboard pagos">
                 <img style="    filter: contrast(0.5);" src="../../../assets/image/sideboard/documents_files_icon_144654.png" alt="">
@@ -51,7 +51,7 @@
             </div>
             <div [routerLink]="['/dashboard/historial-reviciones']" class="contenedor-menu-dashoboard pagos">
                 <img style="    filter: contrast(0.5);" src="../../../assets/image/sideboard/revision.png" alt="">
-                <p>Revisiones de administración</p>
+                <p>Reviciones de administración</p>
             </div>
             <div [routerLink]="['/dashboard/pagos']" class="contenedor-menu-dashoboard pagos">
                 <img src="../../../assets/image/sideboard/pagos.png" alt="">

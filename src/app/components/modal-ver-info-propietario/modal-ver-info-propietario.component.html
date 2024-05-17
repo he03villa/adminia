@@ -22,6 +22,25 @@
                         <a target="_blank" href="https://api.whatsapp.com/send?phone={{ dataPropietario.telefono_user }}">{{
                             dataPropietario.telefono_user }}</a>
                     </div>
+                    <div class="col-sm-6">
+                        <form [formGroup]="form">
+                            <div class="group-input">
+                                <label for="">Valor</label>
+                                <div>
+                                    <input type="number" name="" id="" formControlName="pago">
+                                </div>
+                            </div>
+                            <div class="group-input">
+                                <label for="">Fecha</label>
+                                <div>
+                                    <input type="date" name="" id="" formControlName="fecha">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="content-btn">
+                            <button class="btn" [disabled]="form.invalid" (click)="actualizarPago($event)">Actualizar</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6" *ngIf="dataPropietario.status == '0'">

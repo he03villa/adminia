@@ -245,19 +245,44 @@
             } else {
                 $columna = 'usuario_id';
             }
+            $carpeta1 = parent::getRutaService() . '/documento_bancarios';
+            if (!file_exists($carpeta1)) {
+                mkdir($carpeta1, 0777, TRUE);
+            }
+            $carpeta2 = $carpeta1 . "/$propiedad[id]";
+            if (!file_exists($carpeta2)) {
+                mkdir($carpeta2, 0777, TRUE);
+            }
             for ($i=0; $i < count($propiedad['cuentas_bancarias']); $i++) { 
                 $element = $propiedad['cuentas_bancarias'][$i];
                 $consultar = "SELECT * FROM cuentas_bancarias where cuenta = '$element[cuenta]' and code = $element[code]";
                 $existe = parent::consultarArreglo($consultar);
+                $id = 0;
                 if (!isset($element['id']) || $element['id'] == 0 || $element['id'] == '0') {
-                    
-                    $consultar2 = "INSERT INTO cuentas_bancarias (nombre, cuenta, code, $columna, tipo_cuenta_bancaria_id) VALUE ('$element[nombre]', '$element[cuenta]', $element[code], $propiedad[id], , $element[tipo])";
-
-                    parent::queryRegistro($consultar2);
+                    $consultar2 = "INSERT INTO cuentas_bancarias (nombre, cuenta, code, cojunto_id, tipo_cuenta_bancaria_id, numero_documento, tipo_documentacion_id) VALUE ('$element[nombre]', '$element[cuenta]', $element[code], $propiedad[id], $element[tipo], '$element[numero_documento]', $element[tipo_documentacion_id])";
+                    $id = parent::queryRegistro($consultar2);
                 } else {
-                    $consultar2 = "UPDATE cuentas_bancarias SET nombre = '$element[nombre]', cuenta = '$element[cuenta]', code = '$element[code]', tipo_cuenta_bancaria_id = $element[tipo] where id = $element[id];";
+                    $consultar2 = "UPDATE cuentas_bancarias SET nombre = '$element[nombre]', cuenta = '$element[cuenta]', code = '$element[code]', tipo_cuenta_bancaria_id = $element[tipo], numero_documento = '$element[numero_documento]', tipo_documentacion_id = $element[tipo_documentacion_id] where id = $element[id];";
                     parent::query($consultar2);
+                    $id = $element["id"];
                 }
+
+                $pos = strpos($element['documento'], 'base64');
+
+                if ($pos != false) {
+                    $carpeta3 = $carpeta2 . "/$id";
+                    if (!file_exists($carpeta3)) {
+                        mkdir($carpeta3, 0777, TRUE);
+                    }
+                    $documento = $element['documento'];
+                    $base64_1  = base64_decode(explode(',', $documento)[1]);
+                    $filepath1 = $carpeta3 . "/documento_bancario.pdf";
+                    $filepath2 = "/documento_bancarios/$propiedad[id]/$id/documento_bancario.pdf";
+                    file_put_contents($filepath1, $base64_1);
+                    $consultar3 = "UPDATE cuentas_bancarias SET documento = '$filepath2' where id = $id;";
+                    parent::query($consultar3);
+                }
+
                 /* if ($existe == null) {
                 } else {
                     array_push($resul['error'], $element['cuenta']);
@@ -275,5 +300,19 @@
             parent::query($consultar3);
             parent::cerrar();
             return $resul = array('status' => 'success');
+        }
+
+        public function descargarExcel($propiedad) {
+            parent::conectar();
+            $consultar1 = "Select tor.nombre TORRE, pr.nombre NUM_PROPIEDAD, us.nombre NOMBRE_PROPIETARIO, us.telefono TELEFONO_PROPIETARIO, us.email CORREO_PROPIETARIO, pa.pago VALOR_RENTA, pa.dia_corte DIA_CORTE from cojunto cn 
+            inner join propiedad pr on pr.cojunto_id = cn.id
+            left join torre tor on tor.id = pr.torre_id
+            left join usuario_has_propiedad uhp on uhp.propiedad_id = pr.id
+            left join usuario us on us.id = uhp.usuario_id
+            left join pagos pa on pa.propiedad_id = pr.id
+            where cn.id = $propiedad[id];";
+            $lista = parent::consultaTodo($consultar1);
+            parent::cerrar();
+            return $resul = array('status' => 'success', 'data' => $lista);
         }
     }

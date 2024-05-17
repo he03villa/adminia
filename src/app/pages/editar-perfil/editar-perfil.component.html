@@ -44,7 +44,7 @@
                             <label for="" *ngIf="formCojunto.controls.telefono.errors.required">El telefono está vacio</label>
                         </ng-container>
                     </div>
-                    <div class="group-input">
+                    <div class="group-input" *ngIf="dataUser.conjunto == 0">
                 
                         <p>Tipo de documento</p>
                         <select name="" id="" formControlName="tipo_documentacion_id">
@@ -54,7 +54,7 @@
                             <label for="" *ngIf="formCojunto.controls.tipo_documentacion_id.errors.required">Seleccione el tipo de documento</label>
                         </ng-container>
                     </div>
-                    <div class="group-input">
+                    <div class="group-input" *ngIf="dataUser.conjunto == 0">
                 
                         <p>Número de documento</p>
                         <input type="text" formControlName="numero_documento" (keyup)="cambiarValidarMensaje()" placeholder="">
@@ -184,6 +184,22 @@
                                         <p> Cuenta </p>
                                         <input type="text" formControlName="cuenta" placeholder="Numero de la cuenta">
                                     </div>
+                                    <div class="group-input">
+                
+                                        <p>Tipo de documento</p>
+                                        <select name="" id="" formControlName="tipo_documentacion_id">
+                                            <option *ngFor="let item of arrayTipoDocumento" [value]="item.id">{{ item.nombre }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="group-input">
+                                
+                                        <p>Número de documento</p>
+                                        <input type="text" formControlName="numero_documento" placeholder="">
+                                    </div>
+                                    <div class="group-input">
+                                        <label for="documento" class="label">Subir documento bancario <i class="fa-solid fa-paperclip"></i></label>
+                                        <input class="inputfile" type="file" id="documento" name="documento" (change)="cambiarFoto($event, indice)">
+                                    </div>
                                 </div>
                                 <!-- <div class="col-2" style="margin: auto;">
                                     <i (click)="removeCuenta(indice)" style="cursor: pointer" class="fas fa-trash-alt"></i>
@@ -193,7 +209,7 @@
                     </form>
                     <div class="col-12 my-3">
                         <div class="contec-btn">
-                            <button (click)="addCuenta()">Agregar cuenta bancaria</button>
+                            <!-- <button (click)="addCuenta()">Agregar cuenta bancaria</button> -->
                             <button (click)="saveCuenta($event)">Actualizar</button>
                         </div>
                     </div>

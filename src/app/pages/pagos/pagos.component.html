@@ -5,12 +5,12 @@
             <option *ngFor="let item of arrayTorre" [value]="item.id">{{ item.nombre }}</option>
         </select> -->
     </div>
-    <div class="col-12" *ngIf="dataUser.conjunto == 1">
+    <!-- <div class="col-12" *ngIf="dataUser.conjunto == 1">
         <div class="contenedor-botones">
             <button (click)="ingresarValor()">Agregar Valor</button>
         </div>
-    </div>
-    <div class="col-12 contenedor-tabla">
+    </div> -->
+    <div class="col-12 contenedor-tabla" *ngIf="showTabla">
         <table *ngIf="dataUser.conjunto == 0">
             <thead>
                 <tr>
@@ -57,11 +57,93 @@
             </tbody>
         </table>
     </div>
-    <ng-container *ngIf="arrayPagos.length == 0">
-        <div class="col-sm-12">
-            <div class="contenedor-carpeta">
-                <app-no-data></app-no-data>
+    <ng-container *ngIf="showTabla">
+        <ng-container *ngIf="arrayPagos.length == 0">
+            <div class="col-sm-12">
+                <div class="contenedor-carpeta">
+                    <app-no-data></app-no-data>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+    <div class="col-12 contenedor-tabla" *ngIf="!showTabla">
+        <div class="col-12 container-pagos">
+            <div class="container-pagos-body">
+                <label for="">Cuota Administración</label>
+                <div class="body-opciones">
+                    <select>
+                        <option>Selecciona entidad</option>
+                    </select>
+                    <div class="opciones-referencia">
+                        <input type="text" placeholder="# Referencia factura">
+                        <button class="btn">Cargar</button>
+                    </div>
+                    <input type="text" placeholder="Valor factura">
+                </div>
+            </div>
+            <div class="container-pagos-footer">
+                <button class="btn">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </button>
+                <div class="contentc-radio">
+                    <input type="checkbox" id="checkbox1">
+                    <label for="checkbox1"></label>
+                </div>
             </div>
         </div>
-    </ng-container>
+        <div class="col-12 container-pagos">
+            <div class="container-pagos-body">
+                <label for="">Servicios publicos</label>
+                <div class="body-opciones">
+                    <select>
+                        <option>Selecciona entidad</option>
+                    </select>
+                    <div class="opciones-referencia">
+                        <input type="text" placeholder="# Referencia factura">
+                        <button class="btn">Cargar</button>
+                    </div>
+                    <input type="text" placeholder="Valor factura">
+                </div>
+            </div>
+            <div class="container-pagos-footer">
+                <button class="btn">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </button>
+                <div class="contentc-radio">
+                    <input type="checkbox" id="checkbox2">
+                    <label for="checkbox2"></label>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 container-pagos">
+            <div class="container-pagos-body">
+                <label for="">Servicios hogar</label>
+                <div class="body-opciones">
+                    <select>
+                        <option>Selecciona entidad</option>
+                    </select>
+                    <div class="opciones-referencia">
+                        <input type="text" placeholder="# Referencia factura">
+                        <button class="btn">Cargar</button>
+                    </div>
+                    <input type="text" placeholder="Valor factura">
+                </div>
+            </div>
+            <div class="container-pagos-footer">
+                <button class="btn">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </button>
+                <div class="contentc-radio">
+                    <input type="checkbox" id="checkbox3">
+                    <label for="checkbox3"></label>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 container-pagos-total-pago">
+            <div class="contect-pago-total">
+                <input type="text" placeholder="Total valor a pagar">
+                <button>Pagar</button>
+            </div>
+        </div>
+    </div>
 </div>

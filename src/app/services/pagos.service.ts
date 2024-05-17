@@ -68,4 +68,9 @@ export class PagosService {
     const url = `${ this.servicios.ApiURL }/pagos/getPagoAdministrador.php`;
     return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
+
+  updatePago(data) {
+    const url = `${ this.servicios.ApiURL }/pagos/updatePagos.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
 }

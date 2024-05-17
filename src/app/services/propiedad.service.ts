@@ -74,4 +74,9 @@ export class PropiedadService {
     const url = `${ this.servicios.ApiURL }/propiedad/deleteCuentas.php`;
     return this.servicios.Promet(this.Data.metodoPost(url, data));
   }
+
+  descargarExcel(data) {
+    const url = `${ this.servicios.ApiURL }/propiedad/descargarExcel.php`;
+    return this.servicios.Promet(this.Data.metodoPost(url, data));
+  }
 }

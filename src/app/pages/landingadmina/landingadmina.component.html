@@ -1,42 +1,51 @@
-<nav class="navbar navbar-expand-lg  contenedornavlanding">
-    <div class="container-fluid ">
+<header class="main-header menu-absolute header-white no-border">
+    <div class="container-fluid header-upper">
 
-        <a class="navbar-brand" href="#">
-            <img class="logo" src="/assets/image/admina.png" alt="">
-        </a>
-
-        <div class="contenedor-inicio">
-            <div (click)="services.showModal('#modalLogin')" class="iniciarsesion">
-                <i class="fa-solid fa-user"></i> Inicia como propietario
-            </div>
-            <div (click)="services.showModal('#modalLogin')" routerLinkActive="router-link-active" class="iniciarsesion">
-                <i class="fa-solid fa-city"></i> Inicia como propiedad
+        <div class="container container-1660 clearfix">
+            <div class="header-inner py-15 rel d-flex align-items-center">
+                <a class="navbar-brand" href="#">
+                    <img class="logo" src="/assets/image/admina.png" alt="">
+                </a>
+        
+                <div class="content-opciones-menu">
+                    <a>Solucionés</a>
+                    <a>Sobre nosotros</a>
+                    <a>Marketplace Provedores</a>
+                </div>
+        
+                <div class="contenedor-inicio">
+                    <div (click)="services.showModal('#modalLogin')" class="iniciarsesion">
+                        Inicia sesión
+                    </div>
+                    <!-- <div (click)="services.showModal('#modalLogin')" class="iniciarsesion">
+                        <i class="fa-solid fa-user"></i> Inicia como propietario
+                    </div>
+                    <div (click)="services.showModal('#modalLogin')" routerLinkActive="router-link-active" class="iniciarsesion">
+                        <i class="fa-solid fa-city"></i> Inicia como propiedad
+                    </div> -->
+                </div>
             </div>
         </div>
-
-
-
     </div>
-</nav>
+</header>
 
-<div class="contenedor-landing">
+<section class="contenedor-landing">
     <div class="row infolandingslogan">
-        <div class="col-sm-5">
+        <div class="col-sm-5 content-eslogan">
             <h1>
-                <strong> Creando <span> Comunidades </span> en propiedad horizontal</strong>
+                <strong>Administración moderna, eficiente y simple</strong>
             </h1>
             <p>
-                <strong> Con nuestra plataforma web podrás centralizar la administración de tu conjunto
-                    residencial.</strong>
+                Conoce Admina, una forma más rápida, fácil y transparente para administrar tu hogar.
             </p>
 
-            <button class="quiero" (click)="services.showModal('#modalLogin')">Quiero iniciar con admina</button>
+            <button class="quiero" (click)="services.showModal('#ModalRegistroEspera')">Únete a la lista de lanzamiento</button>
         </div>
-        <div class="col-sm-7">
-            <img src="/assets/image/elipse.png" alt="">
+        <div class="col-sm-6">
+            <img src="/assets/image/fotos_admina_2.0/principal_grande .jpeg" alt="">
         </div>
     </div>
-</div>
+</section>
 <div class="row unaherramienta">
 
     <div class="col-12 ">

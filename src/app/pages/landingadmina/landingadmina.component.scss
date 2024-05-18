@@ -2,6 +2,64 @@
 ::ng-deep body {
     overflow-x: hidden;
 }
+
+.main-header {
+    /* position: relative;
+    left: 0px;
+    top: 0px;
+    z-index: 999;
+    width: 100%;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+
+    &.menu-absolute {
+        .header-upper {
+            position: absolute;
+        }
+    }
+
+    .header-upper {
+        z-index: 5;
+        width: 100%;
+        position: relative;
+        -webkit-transition: all 500ms ease;
+        -o-transition: all 500ms ease;
+        transition: all 500ms ease;
+    } */
+
+    .container {
+        &.container-1660 {
+            @media (min-width: 1200px) {
+                max-width: 1690px;
+            }
+        }
+        @media (min-width: 1200px) {
+            max-width: 1320px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .contenedor-inicio {
+            display: flex;
+            .iniciarsesion {
+                background-color: $primary;
+                color: white;
+                font-weight: normal;
+                font-size: 14px;
+                margin: 0 9px;
+                cursor: pointer;
+                padding: 10px 19px;
+                border-radius: 25px;
+                i {
+                    color: $primary;
+                    margin: 0 5px;
+                }
+            }
+        }
+    }
+}
+
 .contenedornavlanding {
     /* background-color: $primary; */
     margin-bottom: 16px;
@@ -11,11 +69,14 @@
     .contenedor-inicio {
         display: flex;
         .iniciarsesion {
-            color: $heading;
+            background-color: $primary;
+            color: white;
             font-weight: normal;
             font-size: 14px;
             margin: 0 9px;
             cursor: pointer;
+            padding: 10px 19px;
+            border-radius: 25px;
             i {
                 color: $primary;
                 margin: 0 5px;
@@ -25,8 +86,20 @@
 }
 
 .contenedor-landing {
-    width: min(100% - 32px, 1200px);
-    margin-inline: auto;
+    width: min(100%);
+    height: 100%;
+    /* margin-left: 120px; */
+    /* background-image: url('/assets/image/inicio_pagina.jpeg');
+    background-size: cover;
+    &::before {
+        content:'';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0,0,0,0.2);
+    } */
     h1 {
         @media (max-width: 575px) {
             line-height: 1;
@@ -41,14 +114,21 @@
         }
     }
     .infolandingslogan {
-        margin: 50px 0;
+        margin: 0px;
+        /* margin: 0px 155px; */
         align-items: center;
         overflow: hidden;
-        height: 422px;
+        height: 100%;
+        z-index: 9;
+        position: relative;
+        .content-eslogan {
+            /* margin-top: auto; */
+            padding-left: 165px;
+        }
         h1 {
-            width: 520px;
-            font-size: 36px;
-
+            width: 590px;
+            font-size: 46px;
+            /* color: #FFFFFF; */
             span {
                 color: #FFFFFF;
                 background-color: #8275F4;
@@ -56,14 +136,17 @@
                 padding: 0 8px;
             }
         }
+        p {
+            /* color: #FFFFFF; */
+        }
         img {
             width: 100%;
             position: relative;
             right: -156px;
         }
         .quiero {
-            background: #d9d5fa 0% 0% no-repeat padding-box;
-            color: #3431A0;
+            background: $primary 0% 0% no-repeat padding-box;
+            color: white;
             border-radius: 80px;
             border: none;
             padding: 9px 32px;
@@ -264,5 +347,17 @@ footer {
         display: flex;
         gap: 10px;
         justify-content: center;
+    }
+}
+
+.content-opciones-menu {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    a {
+        /* color: white; */
+        margin: 0 20px;
+        cursor: pointer;
     }
 }

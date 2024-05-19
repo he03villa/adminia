@@ -428,6 +428,9 @@
 .seccion4-container {
     padding: 0 40px;
     margin-top: 250px;
+    img {
+        width: 100%;
+    }
     .container-seccion4 {
         display: flex;
         flex-direction: column;

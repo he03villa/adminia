@@ -12,8 +12,12 @@ export class LandingadminaComponent implements OnInit {
   constructor(
     public services: ServicesService
   ) { }
-  standalone: true;
+
   ngOnInit() {
+  }
+
+  showAlert(text) {
+    this.services.Alert('', '', text, 'Aceptar', '');
   }
 
 }
